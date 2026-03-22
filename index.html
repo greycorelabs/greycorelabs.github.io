@@ -642,8 +642,8 @@
     "url": "https://greycorelabs.com",
     "email": "contact@greycorelabs.com",
     "areaServed": "Worldwide",
-    "serviceType": ["Penetration Testing", "Source Code Review", "SAST Automation", "Threat Intelligence"],
-    "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Semgrep", "Burp Suite"]
+    "serviceType": ["Penetration Testing", "Cloud Pentesting", "AI Security Testing", "Source Code Review", "SAST Automation", "DFIR", "Incident Response", "AI-Automated SOC", "Threat Hunting", "Compromise Assessment", "Configuration Review"],
+    "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Semgrep", "Burp Suite", "AWS Security", "Azure Security", "GCP Security"]
   }
   </script>
 </head>
@@ -663,7 +663,6 @@
           <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
           <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
           <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="#credentials">Team</a></li>
           <li class="nav-item"><a class="nav-link nav-cta" href="#free-scan">Free Scan</a></li>
         </ul>
       </div>
@@ -798,13 +797,20 @@
     <div class="container">
       <div class="section-label">What We Do</div>
       <h2 class="section-title">Security Services</h2>
-      <p class="section-desc mb-5">End-to-end offensive security — from automated scanning to manual exploitation and source-level code review.</p>
+      <p class="section-desc mb-5">End-to-end offensive security — from automated scanning to manual exploitation, incident response, and source-level code review.</p>
       <div class="row g-4">
         <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-crosshairs"></i></div>
             <h5>Penetration Testing</h5>
-            <p>Network, web application, API, and mobile penetration testing. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
+            <p>Web, API, mobile, backend, frontend, and cloud penetration testing. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-up">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-cloud"></i></div>
+            <h5>Cloud & AI Pentesting</h5>
+            <p>AWS, GCP, and Azure security assessments. AI/ML model testing, LLM prompt injection, and cloud infrastructure misconfiguration audits.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 fade-up">
@@ -818,14 +824,37 @@
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-robot"></i></div>
             <h5>SAST Automation</h5>
-            <p>Custom Semgrep rules tailored to your stack. CI/CD integration that blocks vulnerabilities in pull requests before they ship.</p>
+            <p>Custom Semgrep rules tailored to your stack. CI/CD integration that catches vulnerabilities in pull requests before they ship.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4 mt-0">
+        <div class="col-md-6 col-lg-3 fade-up">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-brain"></i></div>
+            <h5>AI-Automated SOC</h5>
+            <p>AI-powered Security Operations Center setup. Automated alert triage, threat correlation, and intelligent incident prioritization for your team.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-satellite-dish"></i></div>
-            <h5>Threat Intelligence</h5>
-            <p>Credential leak monitoring, attack surface discovery, and exposed data detection with IntelX, Nessus, and Acunetix.</p>
+            <div class="service-icon-wrap"><i class="fas fa-fire-extinguisher"></i></div>
+            <h5>DFIR & Incident Response</h5>
+            <p>Digital forensics and incident response. Breach investigation, evidence collection, root cause analysis, and containment strategy.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-up">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-magnifying-glass"></i></div>
+            <h5>Threat Hunting & Compromise Assessment</h5>
+            <p>Proactive threat hunting across your environment. Detect active or past compromise, lateral movement, and persistent access.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-up">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-sliders"></i></div>
+            <h5>Configuration Review</h5>
+            <p>Security configuration audits for servers, cloud resources, firewalls, and network devices against CIS benchmarks and best practices.</p>
           </div>
         </div>
       </div>
@@ -890,9 +919,10 @@
           <div class="plan-card">
             <div class="plan-name">One-Time Assessment</div>
             <div class="plan-price">Custom</div>
-            <p class="plan-desc">Scoped engagement for a specific application, network, or API.</p>
+            <p class="plan-desc">Scoped engagement for a specific application, network, API, or cloud environment.</p>
             <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Web, API, network, or mobile</li>
+              <li><i class="fas fa-check"></i> Web, API, mobile, backend, frontend, or cloud</li>
+              <li><i class="fas fa-check"></i> AI/ML security & cloud infrastructure testing</li>
               <li><i class="fas fa-check"></i> Manual + automated testing</li>
               <li><i class="fas fa-check"></i> Executive summary + technical report</li>
               <li><i class="fas fa-check"></i> Remediation guidance with code fixes</li>
@@ -944,9 +974,8 @@
             <div class="plan-price">$500</div>
             <p class="plan-desc">Single repo, single language. Get security guardrails fast.</p>
             <ul class="plan-features">
-              <li><i class="fas fa-check"></i> 10-15 custom Semgrep rules</li>
+              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules for your stack</li>
               <li><i class="fas fa-check"></i> CI/CD pipeline integration</li>
-              <li><i class="fas fa-check"></i> PR blocking on critical findings</li>
               <li><i class="fas fa-check"></i> 30-minute walkthrough call</li>
               <li><i class="fas fa-check"></i> 3-5 day delivery</li>
             </ul>
@@ -960,7 +989,7 @@
             <div class="plan-price">$1,000</div>
             <p class="plan-desc">Up to 3 repos, 2 languages. Full OWASP Top 10 coverage.</p>
             <ul class="plan-features">
-              <li><i class="fas fa-check"></i> 25-40 custom Semgrep rules</li>
+              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules</li>
               <li><i class="fas fa-check"></i> Framework-specific rules</li>
               <li><i class="fas fa-check"></i> Baseline triage & false positive tuning</li>
               <li><i class="fas fa-check"></i> Developer documentation & fix guides</li>
@@ -976,8 +1005,8 @@
             <div class="plan-price">$2,000</div>
             <p class="plan-desc">Up to 10 repos, any languages. Quarterly updates included.</p>
             <ul class="plan-features">
-              <li><i class="fas fa-check"></i> 50+ custom Semgrep rules</li>
-              <li><i class="fas fa-check"></i> Custom rules for internal frameworks</li>
+              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules at scale</li>
+              <li><i class="fas fa-check"></i> Rules for internal frameworks & libraries</li>
               <li><i class="fas fa-check"></i> Multi-repo centralized reporting</li>
               <li><i class="fas fa-check"></i> Full severity classification</li>
               <li><i class="fas fa-check"></i> Developer training documentation</li>
@@ -1090,20 +1119,20 @@
     </div>
   </section>
 
-  <!-- CREDENTIALS -->
-  <section id="credentials" style="background: var(--bg-card);">
+  <!-- OUR HACKERS -->
+  <section id="hackers" style="background: var(--bg-card);">
     <div class="container text-center">
-      <div class="section-label">Credentials</div>
-      <h2 class="section-title mb-5">Trusted on Top Platforms</h2>
+      <div class="section-label">Our Team</div>
+      <h2 class="section-title mb-3">Top-Ranked Bug Bounty Hackers</h2>
+      <p class="section-desc mx-auto mb-5">Our hackers are ranked on the world's top bug bounty platforms — finding real vulnerabilities in production systems every day.</p>
       <div class="platform-row mb-5">
         <div class="platform-badge"><i class="fas fa-bug"></i> HackerOne</div>
         <div class="platform-badge"><i class="fas fa-bug"></i> Bugcrowd</div>
         <div class="platform-badge"><i class="fas fa-shield-halved"></i> Synack Red Team</div>
-        <div class="platform-badge"><i class="fas fa-server"></i> Virtual Hacking Labs</div>
-        <div class="platform-badge"><i class="fas fa-lock"></i> Zero Point Security</div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-8">
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">Certified by OffSec, INE, and industry-recognized security bodies:</p>
           <div class="row g-3 justify-content-center">
             <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSWE</span></div>
             <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSCP</span></div>
@@ -1112,7 +1141,6 @@
             <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">EWPT</span></div>
             <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">VHL Advanced+</span></div>
           </div>
-          <p class="mt-4" style="color: var(--text-secondary); font-size: 0.95rem;">OffSec, INE, and Virtual Hacking Labs certified professionals with active presence on major bug bounty platforms.</p>
         </div>
       </div>
     </div>
