@@ -5,8 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GreyCore Labs | Offensive Security & Code Security Automation</title>
   <meta name="description" content="US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence. OSWE, OSCP, EWPTX certified.">
+  <meta name="keywords" content="penetration testing, pentest, SAST, Semgrep, source code review, security assessment, OSWE, OSCP, bug bounty, threat intelligence, web application security">
+  <meta property="og:title" content="GreyCore Labs | Offensive Security & Code Security Automation">
+  <meta property="og:description" content="We find vulnerabilities before attackers do. Penetration testing, source code review, SAST automation, and continuous security.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://greycorelabs.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GreyCore Labs | Offensive Security">
+  <meta name="twitter:description" content="US-incorporated offensive security firm. Pentest, SAST, code review.">
+  <link rel="canonical" href="https://greycorelabs.com">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
@@ -19,6 +28,7 @@
       --text-primary: #e8e8ed;
       --text-secondary: #8888a0;
       --border: #2a2a3a;
+      --danger: #ff4757;
     }
     * { box-sizing: border-box; }
     body {
@@ -36,6 +46,7 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 1rem 0;
+      z-index: 1000;
     }
     .navbar-brand {
       font-weight: 700;
@@ -54,30 +65,57 @@
     .nav-link:hover { color: var(--text-primary) !important; }
     .navbar-toggler { border-color: var(--border); }
     .navbar-toggler-icon { filter: invert(1); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #0a0a0f !important;
+      font-weight: 600 !important;
+      border-radius: 6px;
+      padding: 0.4rem 1rem !important;
+      margin-left: 0.5rem;
+    }
+    .nav-cta:hover { background: #00ffcc !important; }
 
     /* Hero */
     #hero {
-      padding: 140px 0 100px;
+      padding: 160px 0 100px;
       position: relative;
       overflow: hidden;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-video-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      z-index: 0;
     }
     #hero::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: radial-gradient(ellipse at 30% 50%, var(--accent-dim) 0%, transparent 60%);
       animation: pulse 8s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 200px;
+      background: linear-gradient(transparent, var(--bg-dark));
+      z-index: 1;
     }
     @keyframes pulse {
       0% { opacity: 0.4; transform: scale(1); }
       100% { opacity: 0.7; transform: scale(1.1); }
     }
-    #hero .container { position: relative; z-index: 1; }
+    #hero .container { position: relative; z-index: 2; }
     .hero-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       border: 1px solid var(--accent);
       color: var(--accent);
       font-size: 0.75rem;
@@ -88,13 +126,24 @@
       letter-spacing: 0.08em;
       margin-bottom: 1.5rem;
     }
+    .hero-badge .pulse-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: dotpulse 2s ease-in-out infinite;
+    }
+    @keyframes dotpulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
     #hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      line-height: 1.15;
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
       letter-spacing: -0.03em;
       max-width: 700px;
     }
+    #hero h1 .accent-text { color: var(--accent); }
     #hero p.lead {
       font-size: 1.15rem;
       color: var(--text-secondary);
@@ -125,6 +174,9 @@
       border-radius: 8px;
       font-size: 0.95rem;
       transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     .btn-accent:hover {
       background: #00ffcc;
@@ -141,10 +193,32 @@
       border-radius: 8px;
       font-size: 0.95rem;
       transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     .btn-outline-light-custom:hover {
       border-color: var(--accent);
       color: var(--accent);
+    }
+    .btn-danger-glow {
+      background: var(--danger);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-danger-glow:hover {
+      background: #ff6b81;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
     }
 
     /* Sections */
@@ -168,6 +242,80 @@
       font-size: 1rem;
       max-width: 560px;
     }
+
+    /* Stats Bar */
+    #stats {
+      padding: 60px 0;
+      background: linear-gradient(135deg, rgba(0, 212, 170, 0.05), transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Free Scan Section */
+    #free-scan {
+      background: linear-gradient(135deg, rgba(255, 71, 87, 0.05), rgba(0, 212, 170, 0.05));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .scan-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .scan-form-card input,
+    .scan-form-card select {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+    .scan-form-card input:focus,
+    .scan-form-card select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .scan-form-card input::placeholder { color: var(--text-secondary); }
+    .scan-form-card label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .scan-form-card select option {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+    }
+    .scan-benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .scan-benefit i { color: var(--accent); font-size: 0.8rem; min-width: 16px; }
 
     /* Service Cards */
     .service-card {
@@ -205,7 +353,7 @@
       margin-bottom: 0;
     }
 
-    /* New: Semgrep/SAST Section */
+    /* Semgrep/SAST Section */
     .sast-feature {
       display: flex;
       align-items: flex-start;
@@ -213,9 +361,7 @@
       margin-bottom: 1.5rem;
     }
     .sast-feature-icon {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
+      width: 36px; height: 36px; min-width: 36px;
       background: var(--accent-dim);
       border-radius: 8px;
       display: flex;
@@ -247,8 +393,7 @@
     }
     .plan-card .popular-tag {
       position: absolute;
-      top: -12px;
-      left: 50%;
+      top: -12px; left: 50%;
       transform: translateX(-50%);
       background: var(--accent);
       color: #0a0a0f;
@@ -292,6 +437,51 @@
     }
     .plan-features li i { color: var(--accent); font-size: 0.75rem; }
 
+    /* Testimonials */
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      height: 100%;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1rem; left: 1.5rem;
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      padding-top: 1rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .testimonial-name { font-size: 0.9rem; font-weight: 600; }
+    .testimonial-role { font-size: 0.8rem; color: var(--text-secondary); }
+    .testimonial-stars { color: #f9ca24; font-size: 0.75rem; margin-bottom: 0.5rem; }
+
     /* Platforms */
     .platform-row {
       display: flex;
@@ -320,9 +510,7 @@
       margin-bottom: 2rem;
     }
     .step-number {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
+      width: 40px; height: 40px; min-width: 40px;
       background: var(--accent-dim);
       border: 1px solid var(--accent);
       border-radius: 50%;
@@ -336,6 +524,82 @@
     .step-content h5 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
     .step-content p { color: var(--text-secondary); font-size: 0.88rem; margin: 0; }
 
+    /* Blog */
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      height: 100%;
+      transition: all 0.3s;
+    }
+    .blog-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .blog-card-body { padding: 1.5rem; }
+    .blog-tag {
+      display: inline-block;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .blog-card h5 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .blog-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+    .blog-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-question i { color: var(--accent); font-size: 0.8rem; transition: transform 0.3s; }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 1.5rem 1.25rem;
+    }
+    .faq-item.active .faq-question i { transform: rotate(45deg); }
+
     /* Footer */
     footer {
       background: var(--bg-card);
@@ -343,15 +607,45 @@
       padding: 3rem 0;
     }
     footer p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-secondary); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
       #hero h1 { font-size: 2.2rem; }
-      #hero { padding: 100px 0 70px; }
+      #hero { padding: 120px 0 70px; min-height: auto; }
       section { padding: 60px 0; }
       .section-title { font-size: 1.8rem; }
+      .stat-number { font-size: 2rem; }
+      .scan-form-card { padding: 1.5rem; }
     }
   </style>
+  <!-- JSON-LD for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GreyCore Labs",
+    "description": "US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence.",
+    "url": "https://greycorelabs.com",
+    "email": "contact@greycorelabs.com",
+    "areaServed": "Worldwide",
+    "serviceType": ["Penetration Testing", "Source Code Review", "SAST Automation", "Threat Intelligence"],
+    "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Semgrep", "Burp Suite"]
+  }
+  </script>
 </head>
 <body>
 
@@ -368,20 +662,25 @@
           <li class="nav-item"><a class="nav-link" href="#sast">Code Security</a></li>
           <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
           <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="#credentials">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link nav-cta" href="#free-scan">Free Scan</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO with Video Background -->
   <section id="hero">
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="hero-bg.mp4" type="video/mp4">
+    </video>
     <div class="container">
-      <div class="hero-badge">US-Incorporated &bull; OffSec Certified</div>
-      <h1>Offensive Security<br>& Code Security<br>Automation</h1>
-      <p class="lead">We find vulnerabilities before attackers do. Penetration testing, source code review, SAST automation, and continuous security for modern engineering teams.</p>
+      <div class="hero-badge"><span class="pulse-dot"></span> US-Incorporated &bull; OffSec Certified</div>
+      <h1>We Break Your Apps<br><span class="accent-text">Before Hackers Do</span></h1>
+      <p class="lead">Penetration testing, source code review, SAST automation, and continuous security for modern engineering teams. Results in days, not weeks.</p>
       <div class="d-flex flex-wrap gap-3 mt-4">
+        <a href="#free-scan" class="btn btn-danger-glow"><i class="fas fa-search"></i> Free Security Scan</a>
         <a href="#plans" class="btn btn-accent">View Plans</a>
         <a href="#contact" class="btn btn-outline-light-custom">Get in Touch</a>
       </div>
@@ -396,6 +695,104 @@
     </div>
   </section>
 
+  <!-- STATS BAR -->
+  <section id="stats">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-item fade-up">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Vulnerabilities Found</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item fade-up">
+            <div class="stat-number" data-target="40">0</div>
+            <div class="stat-label">Engagements Completed</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item fade-up">
+            <div class="stat-number" data-target="6">0</div>
+            <div class="stat-label">OffSec Certifications</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item fade-up">
+            <div class="stat-number" data-target="24">0</div>
+            <div class="stat-label">Hour Response Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE SECURITY SCAN -->
+  <section id="free-scan">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5 fade-up">
+          <div class="section-label" style="color: var(--danger);">Limited Offer</div>
+          <h2 class="section-title">Free External<br>Security Scan</h2>
+          <p class="section-desc mb-4">Get a complimentary security assessment of your domain. We run automated reconnaissance and deliver a 1-page report with real findings — no strings attached.</p>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Subdomain enumeration & exposure mapping</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Known vulnerability detection (CVEs)</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Technology fingerprinting & misconfiguration checks</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> 1-page PDF report delivered in 48 hours</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Zero obligation — keep the report either way</div>
+        </div>
+        <div class="col-lg-7 fade-up">
+          <div class="scan-form-card">
+            <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Request Your Free Scan</h4>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">We'll assess your external attack surface and send you a report.</p>
+            <form id="scanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label>Your Name</label>
+                  <input type="text" name="name" placeholder="John Smith" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Work Email</label>
+                  <input type="email" name="email" placeholder="john@company.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Domain to Scan</label>
+                  <input type="text" name="domain" placeholder="example.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Company Size</label>
+                  <select name="company_size">
+                    <option value="">Select...</option>
+                    <option value="1-10">1-10 employees</option>
+                    <option value="11-50">11-50 employees</option>
+                    <option value="51-200">51-200 employees</option>
+                    <option value="201-1000">201-1000 employees</option>
+                    <option value="1000+">1000+ employees</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label>What are you most concerned about? (optional)</label>
+                  <input type="text" name="concerns" placeholder="e.g., We just launched a new API, worried about exposed endpoints...">
+                </div>
+                <div class="col-12 mt-3">
+                  <button type="submit" class="btn btn-danger-glow w-100" style="padding: 1rem;">
+                    <i class="fas fa-shield-halved"></i> Request Free Scan
+                  </button>
+                  <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.75rem; text-align: center;">No credit card required. We only scan domains you own. Results in 48 hours.</p>
+                </div>
+              </div>
+            </form>
+            <div id="scanSuccess" style="display:none; text-align:center; padding: 2rem 0;">
+              <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+              <h4>Request Received!</h4>
+              <p style="color: var(--text-secondary);">We'll send your security scan report within 48 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section id="services">
     <div class="container">
@@ -403,28 +800,28 @@
       <h2 class="section-title">Security Services</h2>
       <p class="section-desc mb-5">End-to-end offensive security — from automated scanning to manual exploitation and source-level code review.</p>
       <div class="row g-4">
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-crosshairs"></i></div>
             <h5>Penetration Testing</h5>
             <p>Network, web application, API, and mobile penetration testing. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-code"></i></div>
             <h5>Source Code Review</h5>
             <p>Manual and automated review of your codebase. Auth flow mapping, input-to-sink tracing, IDOR detection, and business logic analysis.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-robot"></i></div>
             <h5>SAST Automation</h5>
             <p>Custom Semgrep rules tailored to your stack. CI/CD integration that blocks vulnerabilities in pull requests before they ship.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 fade-up">
           <div class="service-card">
             <div class="service-icon-wrap"><i class="fas fa-satellite-dish"></i></div>
             <h5>Threat Intelligence</h5>
@@ -439,13 +836,13 @@
   <section id="sast" style="background: var(--bg-card);">
     <div class="container">
       <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <div class="section-label">New: Productized Security</div>
+        <div class="col-lg-6 fade-up">
+          <div class="section-label">Productized Security</div>
           <h2 class="section-title">Code Security<br>Automation Packages</h2>
           <p class="section-desc mb-4">Stop vulnerabilities at the source. We build custom SAST rule sets for your exact stack and integrate them into your CI/CD pipeline — so your team catches security issues in every pull request.</p>
           <a href="#sast-plans" class="btn btn-accent">See Packages</a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 fade-up">
           <div class="sast-feature">
             <div class="sast-feature-icon"><i class="fas fa-fingerprint"></i></div>
             <div>
@@ -489,7 +886,7 @@
       <!-- Pentest Plans -->
       <h4 class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Penetration Testing</h4>
       <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card">
             <div class="plan-name">One-Time Assessment</div>
             <div class="plan-price">Custom</div>
@@ -504,7 +901,7 @@
             <a href="#contact" class="btn btn-outline-light-custom w-100">Request Quote</a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card featured">
             <span class="popular-tag">Most Popular</span>
             <div class="plan-name">Monthly Retainer</div>
@@ -521,7 +918,7 @@
             <a href="#contact" class="btn btn-accent w-100">Get Started</a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card">
             <div class="plan-name">Source Code Review</div>
             <div class="plan-price">$1,500<span>+</span></div>
@@ -541,7 +938,7 @@
       <!-- SAST Plans -->
       <h4 id="sast-plans" class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Code Security Automation (Semgrep)</h4>
       <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card">
             <div class="plan-name">Starter</div>
             <div class="plan-price">$500</div>
@@ -556,7 +953,7 @@
             <a href="#contact" class="btn btn-outline-light-custom w-100">Get Started</a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card featured">
             <span class="popular-tag">Best Value</span>
             <div class="plan-name">Professional</div>
@@ -573,7 +970,7 @@
             <a href="#contact" class="btn btn-accent w-100">Get Started</a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 fade-up">
           <div class="plan-card">
             <div class="plan-name">Enterprise</div>
             <div class="plan-price">$2,000</div>
@@ -594,16 +991,72 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-label">Client Results</div>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-desc mb-5">Real results from real engagements. Names anonymized to protect client confidentiality.</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"GreyCore found 3 critical auth bypass vulnerabilities that our previous vendor missed completely. Their manual testing depth is on another level."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">VP</div>
+              <div>
+                <div class="testimonial-name">VP of Engineering</div>
+                <div class="testimonial-role">Series B Fintech Startup</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"The Semgrep package paid for itself in the first week. We caught an IDOR in a PR review that would have exposed customer PII in production."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">CTO</div>
+              <div>
+                <div class="testimonial-name">CTO</div>
+                <div class="testimonial-role">SaaS Platform (50+ engineers)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Fast, thorough, and the reports are actually useful — not generic scanner output. Remediation guidance was specific enough for our devs to fix same-day."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">CISO</div>
+              <div>
+                <div class="testimonial-name">CISO</div>
+                <div class="testimonial-role">Healthcare SaaS Company</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PROCESS -->
-  <section id="process" style="background: var(--bg-card);">
+  <section id="process">
     <div class="container">
       <div class="row g-5">
-        <div class="col-lg-5">
+        <div class="col-lg-5 fade-up">
           <div class="section-label">How We Work</div>
           <h2 class="section-title">Our Process</h2>
           <p class="section-desc">Every engagement follows a structured methodology. No black boxes — you get full visibility into what we're testing and what we find.</p>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-7 fade-up">
           <div class="process-step">
             <div class="step-number">1</div>
             <div class="step-content">
@@ -638,7 +1091,7 @@
   </section>
 
   <!-- CREDENTIALS -->
-  <section id="credentials">
+  <section id="credentials" style="background: var(--bg-card);">
     <div class="container text-center">
       <div class="section-label">Credentials</div>
       <h2 class="section-title mb-5">Trusted on Top Platforms</h2>
@@ -665,18 +1118,96 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" style="background: var(--bg-card);">
+  <!-- FAQ -->
+  <section id="faq">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-8">
+          <div class="section-label text-center">Common Questions</div>
+          <h2 class="section-title text-center mb-5">FAQ</h2>
+          <div class="faq-item active">
+            <div class="faq-question">How long does a typical pentest take?<i class="fas fa-plus"></i></div>
+            <div class="faq-answer">Most web application assessments take 5-10 business days depending on scope. We provide preliminary findings within the first 48 hours so your team can start fixing critical issues immediately.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What's included in the free security scan?<i class="fas fa-plus"></i></div>
+            <div class="faq-answer">We run automated reconnaissance against your domain — subdomain enumeration, technology fingerprinting, known CVE detection, and misconfiguration checks. You receive a 1-page PDF report with findings and severity ratings. No obligation to purchase anything.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Do you sign NDAs?<i class="fas fa-plus"></i></div>
+            <div class="faq-answer">Yes. We're a US-incorporated entity and sign NDAs before every engagement. We also support MSAs, SOC 2 compliance reporting, and can work within your legal team's preferred framework.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What makes your Semgrep packages different from running stock rules?<i class="fas fa-plus"></i></div>
+            <div class="faq-answer">Stock Semgrep rules generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase — your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Can you test our API / mobile app / cloud infra?<i class="fas fa-plus"></i></div>
+            <div class="faq-answer">Yes to all. We test REST APIs, GraphQL, mobile apps (iOS/Android), cloud infrastructure (AWS/GCP/Azure), and internal networks. Our certifications (OSWE, OSCP) cover web, network, and application-layer security.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG / INSIGHTS -->
+  <section id="blog" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-label">Insights</div>
+      <h2 class="section-title">Security Research</h2>
+      <p class="section-desc mb-5">Technical deep dives on vulnerabilities, tooling, and offensive security methodology.</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="blog-card">
+            <div class="blog-card-body">
+              <div class="blog-tag">Web Security</div>
+              <h5>5 IDOR Patterns That Bypass Modern Frameworks</h5>
+              <p>Most frameworks handle SQLi and XSS. But IDOR? That's still on your developers. Here are the patterns we see in nearly every engagement.</p>
+              <div class="blog-meta">Coming soon</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="blog-card">
+            <div class="blog-card-body">
+              <div class="blog-tag">SAST</div>
+              <h5>Why Your Semgrep Rules Are Missing Real Bugs</h5>
+              <p>Generic SAST rulesets find generic bugs. Here's how custom rules tuned to your stack catch what automated scanners can't.</p>
+              <div class="blog-meta">Coming soon</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="blog-card">
+            <div class="blog-card-body">
+              <div class="blog-tag">Auth Security</div>
+              <h5>The Auth Bypass Checklist: 15 Tests Every App Needs</h5>
+              <p>From JWT none-algorithm to OAuth redirect manipulation — the authentication tests that should be in every pentest scope.</p>
+              <div class="blog-meta">Coming soon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center fade-up">
           <div class="section-label">Get Started</div>
           <h2 class="section-title mb-3">Ready to Secure Your Stack?</h2>
           <p class="section-desc mx-auto mb-4">Tell us about your application, infrastructure, or codebase. We'll scope the engagement and get back to you within 24 hours.</p>
-          <a href="mailto:contact@greycorelabs.com" class="btn btn-accent btn-lg">
-            <i class="fas fa-envelope me-2"></i>contact@greycorelabs.com
-          </a>
-          <p class="mt-4" style="color: var(--text-secondary); font-size: 0.85rem;">US-incorporated entity. NDAs and MSAs available. SOC 2 and compliance-friendly reporting.</p>
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <a href="mailto:contact@greycorelabs.com" class="btn btn-accent btn-lg">
+              <i class="fas fa-envelope"></i> contact@greycorelabs.com
+            </a>
+            <a href="#free-scan" class="btn btn-danger-glow btn-lg">
+              <i class="fas fa-search"></i> Free Scan Instead
+            </a>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">US-incorporated entity. NDAs and MSAs available. SOC 2 and compliance-friendly reporting.</p>
         </div>
       </div>
     </div>
@@ -686,11 +1217,21 @@
   <footer>
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-6">
-          <p>Grey<span style="color: var(--accent);">Core</span> Labs &copy; 2025. All rights reserved.</p>
+        <div class="col-md-4">
+          <p style="font-weight: 600;">Grey<span style="color: var(--accent);">Core</span> Labs</p>
+          <p>US-incorporated offensive security firm.</p>
         </div>
-        <div class="col-md-6 text-md-end">
-          <p>US-incorporated security firm.</p>
+        <div class="col-md-4">
+          <div class="footer-links justify-content-md-center">
+            <a href="#services">Services</a>
+            <a href="#plans">Pricing</a>
+            <a href="#free-scan">Free Scan</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <p>&copy; 2026 GreyCore Labs. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -705,7 +1246,6 @@
         const target = document.querySelector(a.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Close mobile nav
           const nav = document.getElementById('navMenu');
           if (nav.classList.contains('show')) {
             bootstrap.Collapse.getInstance(nav)?.hide();
@@ -719,6 +1259,80 @@
       const nav = document.querySelector('.navbar');
       nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border)' : 'transparent';
     });
+
+    // Animated counter
+    function animateCounters() {
+      document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        const tick = (now) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(target * eased) + (el.dataset.suffix || '+');
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }
+
+    // Scroll reveal + counter trigger
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.closest('#stats')) {
+            animateCounters();
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    // Form submission handler
+    const scanForm = document.getElementById('scanForm');
+    if (scanForm) {
+      scanForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = scanForm.querySelector('button[type="submit"]');
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        btn.disabled = true;
+        try {
+          const resp = await fetch(scanForm.action, {
+            method: 'POST',
+            body: new FormData(scanForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (resp.ok) {
+            scanForm.style.display = 'none';
+            document.getElementById('scanSuccess').style.display = 'block';
+          } else {
+            // Fallback: open mailto
+            const data = new FormData(scanForm);
+            const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
+            window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
+          }
+        } catch {
+          const data = new FormData(scanForm);
+          const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
+          window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
+        }
+        btn.innerHTML = origText;
+        btn.disabled = false;
+      });
+    }
   </script>
 </body>
 </html>
