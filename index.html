@@ -3,57 +3,372 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GreyCore Labs | Pentesting & Security Assessments</title>
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>GreyCore Labs | Offensive Security & Code Security Automation</title>
+  <meta name="description" content="US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence. OSWE, OSCP, EWPTX certified.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    :root {
+      --bg-dark: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a28;
+      --accent: #00d4aa;
+      --accent-dim: rgba(0, 212, 170, 0.1);
+      --accent-glow: rgba(0, 212, 170, 0.3);
+      --text-primary: #e8e8ed;
+      --text-secondary: #8888a0;
+      --border: #2a2a3a;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
     }
-    .navbar-brand { font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #00ffcc; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text-primary) !important;
+      letter-spacing: -0.02em;
+    }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text-primary) !important; }
+    .navbar-toggler { border-color: var(--border); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    /* Hero */
     #hero {
-      background: url('https://source.unsplash.com/1600x900/?cybersecurity,hacker') center/cover no-repeat;
-      color: #fff;
-      padding: 120px 0;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      padding: 140px 0 100px;
+      position: relative;
+      overflow: hidden;
     }
-    .service-icon {
-      font-size: 2rem;
-      color: #007bff;
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, var(--accent-dim) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite alternate;
     }
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(1); }
+      100% { opacity: 0.7; transform: scale(1.1); }
+    }
+    #hero .container { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+    #hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      max-width: 700px;
+    }
+    #hero p.lead {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-top: 1.5rem;
+    }
+    .hero-certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .cert-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+    }
+    .btn-accent {
+      background: var(--accent);
+      color: #0a0a0f;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-accent:hover {
+      background: #00ffcc;
+      color: #0a0a0f;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-outline-light-custom {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-outline-light-custom:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    .section-label {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 560px;
+    }
+
+    /* Service Cards */
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s;
+    }
+    .service-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .service-icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .service-icon-wrap i { color: var(--accent); font-size: 1.2rem; }
+    .service-card h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* New: Semgrep/SAST Section */
+    .sast-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sast-feature-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--accent-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    .sast-feature h6 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .sast-feature p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+
+    /* Plans */
     .plan-card {
-      border: 1px solid #e0e0e0;
-      transition: transform .3s, box-shadow .3s;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      height: 100%;
+      transition: all 0.3s;
+      position: relative;
     }
     .plan-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+      transform: translateY(-3px);
     }
+    .plan-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim);
+    }
+    .plan-card .popular-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #0a0a0f;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .plan-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .plan-price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0.75rem 0;
+    }
+    .plan-price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
+    .plan-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+    .plan-features li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .plan-features li i { color: var(--accent); font-size: 0.75rem; }
+
+    /* Platforms */
+    .platform-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .platform-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .platform-badge i { color: var(--accent); }
+
+    /* Process */
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .step-content h5 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .step-content p { color: var(--text-secondary); font-size: 0.88rem; margin: 0; }
+
+    /* Footer */
     footer {
-      background: #f8f9fa;
-      padding: 20px 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+    footer p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #hero h1 { font-size: 2.2rem; }
+      #hero { padding: 100px 0 70px; }
+      section { padding: 60px 0; }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">GreyCore Labs</a>
+      <a class="navbar-brand" href="#">Grey<span>Core</span> Labs</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sast">Code Security</a></li>
           <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
-          <li class="nav-item"><a class="nav-link" href="#talents">Talents</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link" href="#credentials">Team</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -61,68 +376,260 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero" class="text-center">
+  <section id="hero">
     <div class="container">
-      <h1 class="display-4 fw-bold">US-Incorporated Pentesting & Security Assessments</h1>
-      <p class="lead mt-4">Professional, reliable weekly & monthly engagements<br>powered by Nessus, Acunetix, Burp Suite & IntelX intelligence.</p>
-      <a href="#plans" class="btn btn-primary btn-lg mt-3">View Our Plans</a>
+      <div class="hero-badge">US-Incorporated &bull; OffSec Certified</div>
+      <h1>Offensive Security<br>& Code Security<br>Automation</h1>
+      <p class="lead">We find vulnerabilities before attackers do. Penetration testing, source code review, SAST automation, and continuous security for modern engineering teams.</p>
+      <div class="d-flex flex-wrap gap-3 mt-4">
+        <a href="#plans" class="btn btn-accent">View Plans</a>
+        <a href="#contact" class="btn btn-outline-light-custom">Get in Touch</a>
+      </div>
+      <div class="hero-certs">
+        <span class="cert-badge">OSWE</span>
+        <span class="cert-badge">OSCP</span>
+        <span class="cert-badge">OSWP</span>
+        <span class="cert-badge">EWPTX</span>
+        <span class="cert-badge">EWPT</span>
+        <span class="cert-badge">VHL Advanced+</span>
+      </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="py-5">
+  <section id="services">
     <div class="container">
-      <h2 class="text-center mb-4">Our Services</h2>
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Security Services</h2>
+      <p class="section-desc mb-5">End-to-end offensive security — from automated scanning to manual exploitation and source-level code review.</p>
       <div class="row g-4">
-        <div class="col-md-6 col-lg-3 text-center">
-          <i class="fas fa-shield-virus service-icon mb-3"></i>
-          <h5>Penetration Testing</h5>
-          <p>Thorough network, web & mobile tests to uncover vulnerabilities before attackers do.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-crosshairs"></i></div>
+            <h5>Penetration Testing</h5>
+            <p>Network, web application, API, and mobile penetration testing. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
+          </div>
         </div>
-        <div class="col-md-6 col-lg-3 text-center">
-          <i class="fas fa-search service-icon mb-3"></i>
-          <h5>Security Assessment</h5>
-          <p>Design reviews, configuration audits & risk analysis to harden your infrastructure.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-code"></i></div>
+            <h5>Source Code Review</h5>
+            <p>Manual and automated review of your codebase. Auth flow mapping, input-to-sink tracing, IDOR detection, and business logic analysis.</p>
+          </div>
         </div>
-        <div class="col-md-6 col-lg-3 text-center">
-          <i class="fas fa-tools service-icon mb-3"></i>
-          <h5>Tool-Driven Scans</h5>
-          <p>Automated scans with Nessus, Acunetix & Burp Suite for fast, accurate coverage.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-robot"></i></div>
+            <h5>SAST Automation</h5>
+            <p>Custom Semgrep rules tailored to your stack. CI/CD integration that blocks vulnerabilities in pull requests before they ship.</p>
+          </div>
         </div>
-        <div class="col-md-6 col-lg-3 text-center">
-          <i class="fas fa-globe service-icon mb-3"></i>
-          <h5>Threat Intelligence</h5>
-          <p>Deep info-hunting with IntelX to discover exposed data & emerging threats.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="service-icon-wrap"><i class="fas fa-satellite-dish"></i></div>
+            <h5>Threat Intelligence</h5>
+            <p>Credential leak monitoring, attack surface discovery, and exposed data detection with IntelX, Nessus, and Acunetix.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAST / SEMGREP SECTION -->
+  <section id="sast" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="section-label">New: Productized Security</div>
+          <h2 class="section-title">Code Security<br>Automation Packages</h2>
+          <p class="section-desc mb-4">Stop vulnerabilities at the source. We build custom SAST rule sets for your exact stack and integrate them into your CI/CD pipeline — so your team catches security issues in every pull request.</p>
+          <a href="#sast-plans" class="btn btn-accent">See Packages</a>
+        </div>
+        <div class="col-lg-6">
+          <div class="sast-feature">
+            <div class="sast-feature-icon"><i class="fas fa-fingerprint"></i></div>
+            <div>
+              <h6>Custom Rules for Your Stack</h6>
+              <p>Not generic rulesets. We write Semgrep rules that match your frameworks, libraries, and coding patterns. Django, Spring, Express, Rails, FastAPI, Go — all covered.</p>
+            </div>
+          </div>
+          <div class="sast-feature">
+            <div class="sast-feature-icon"><i class="fas fa-code-branch"></i></div>
+            <div>
+              <h6>CI/CD Integration</h6>
+              <p>GitHub Actions, GitLab CI, or Bitbucket Pipelines. PR blocking on high/critical findings. Inline comments on vulnerable lines. Zero developer friction.</p>
+            </div>
+          </div>
+          <div class="sast-feature">
+            <div class="sast-feature-icon"><i class="fas fa-filter"></i></div>
+            <div>
+              <h6>Baseline Triage</h6>
+              <p>We don't dump 500 alerts on your team. We triage the initial scan, classify false positives, and hand you a clean starting point with prioritized real findings.</p>
+            </div>
+          </div>
+          <div class="sast-feature">
+            <div class="sast-feature-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+              <h6>OWASP Top 10 Coverage</h6>
+              <p>SQLi, XSS, SSRF, IDOR, auth bypass, insecure deserialization, path traversal, and more. Rules mapped to OWASP categories with fix guidance.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PLANS -->
-  <section id="plans" class="py-5 bg-light">
+  <section id="plans">
     <div class="container">
-      <h2 class="text-center mb-4">Engagement Plans</h2>
-      <div class="row g-4 justify-content-center">
-        <!-- Weekly Plan -->
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Engagement Plans</h2>
+      <p class="section-desc mb-5">Choose the engagement model that fits. All plans include validated findings with proof-of-concept and remediation guidance.</p>
+
+      <!-- Pentest Plans -->
+      <h4 class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Penetration Testing</h4>
+      <div class="row g-4 mb-5">
         <div class="col-md-6 col-lg-4">
-          <div class="card plan-card h-100">
-            <div class="card-body text-center">
-              <h5 class="card-title">Weekly Pentest & Assessment</h5>
-              <p class="card-text">Regular, focused security checks every week.<br><strong>Custom Pricing</strong></p>
-              <a href="#contact" class="btn btn-outline-primary">Contact for Pricing</a>
-            </div>
+          <div class="plan-card">
+            <div class="plan-name">One-Time Assessment</div>
+            <div class="plan-price">Custom</div>
+            <p class="plan-desc">Scoped engagement for a specific application, network, or API.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Web, API, network, or mobile</li>
+              <li><i class="fas fa-check"></i> Manual + automated testing</li>
+              <li><i class="fas fa-check"></i> Executive summary + technical report</li>
+              <li><i class="fas fa-check"></i> Remediation guidance with code fixes</li>
+              <li><i class="fas fa-check"></i> 30-day retest included</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline-light-custom w-100">Request Quote</a>
           </div>
         </div>
-        <!-- Monthly Plan -->
         <div class="col-md-6 col-lg-4">
-          <div class="card plan-card h-100 border-primary">
-            <div class="card-body text-center">
-              <h5 class="card-title">Monthly Pentest & Assessment</h5>
-              <p class="card-text">
-                <span class="fs-1 fw-bold">$20</span>/month<br>
-                <small class="text-muted">First 2 months</small>
-              </p>
-              <a href="#contact" class="btn btn-primary">Get Started</a>
+          <div class="plan-card featured">
+            <span class="popular-tag">Most Popular</span>
+            <div class="plan-name">Monthly Retainer</div>
+            <div class="plan-price">$2,500<span>/mo</span></div>
+            <p class="plan-desc">Continuous security testing and monitoring.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Weekly vulnerability scanning</li>
+              <li><i class="fas fa-check"></i> Monthly manual pentest cycles</li>
+              <li><i class="fas fa-check"></i> New feature security review</li>
+              <li><i class="fas fa-check"></i> Dedicated Slack/Teams channel</li>
+              <li><i class="fas fa-check"></i> Priority response on critical findings</li>
+              <li><i class="fas fa-check"></i> Monthly security posture report</li>
+            </ul>
+            <a href="#contact" class="btn btn-accent w-100">Get Started</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="plan-card">
+            <div class="plan-name">Source Code Review</div>
+            <div class="plan-price">$1,500<span>+</span></div>
+            <p class="plan-desc">Deep manual review of your codebase for security flaws.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Auth flow & access control mapping</li>
+              <li><i class="fas fa-check"></i> Input-to-sink tracing</li>
+              <li><i class="fas fa-check"></i> IDOR & business logic analysis</li>
+              <li><i class="fas fa-check"></i> Framework-specific vulnerability patterns</li>
+              <li><i class="fas fa-check"></i> Annotated findings with line references</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline-light-custom w-100">Request Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAST Plans -->
+      <h4 id="sast-plans" class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Code Security Automation (Semgrep)</h4>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="plan-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">$500</div>
+            <p class="plan-desc">Single repo, single language. Get security guardrails fast.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 10-15 custom Semgrep rules</li>
+              <li><i class="fas fa-check"></i> CI/CD pipeline integration</li>
+              <li><i class="fas fa-check"></i> PR blocking on critical findings</li>
+              <li><i class="fas fa-check"></i> 30-minute walkthrough call</li>
+              <li><i class="fas fa-check"></i> 3-5 day delivery</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline-light-custom w-100">Get Started</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="plan-card featured">
+            <span class="popular-tag">Best Value</span>
+            <div class="plan-name">Professional</div>
+            <div class="plan-price">$1,000</div>
+            <p class="plan-desc">Up to 3 repos, 2 languages. Full OWASP Top 10 coverage.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 25-40 custom Semgrep rules</li>
+              <li><i class="fas fa-check"></i> Framework-specific rules</li>
+              <li><i class="fas fa-check"></i> Baseline triage & false positive tuning</li>
+              <li><i class="fas fa-check"></i> Developer documentation & fix guides</li>
+              <li><i class="fas fa-check"></i> 1-hour walkthrough + 2 weeks support</li>
+              <li><i class="fas fa-check"></i> 5-10 day delivery</li>
+            </ul>
+            <a href="#contact" class="btn btn-accent w-100">Get Started</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="plan-card">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">$2,000</div>
+            <p class="plan-desc">Up to 10 repos, any languages. Quarterly updates included.</p>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 50+ custom Semgrep rules</li>
+              <li><i class="fas fa-check"></i> Custom rules for internal frameworks</li>
+              <li><i class="fas fa-check"></i> Multi-repo centralized reporting</li>
+              <li><i class="fas fa-check"></i> Full severity classification</li>
+              <li><i class="fas fa-check"></i> Developer training documentation</li>
+              <li><i class="fas fa-check"></i> Quarterly rule updates (Q1 included)</li>
+              <li><i class="fas fa-check"></i> 2-hour walkthrough + 4 weeks support</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline-light-custom w-100">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="section-label">How We Work</div>
+          <h2 class="section-title">Our Process</h2>
+          <p class="section-desc">Every engagement follows a structured methodology. No black boxes — you get full visibility into what we're testing and what we find.</p>
+        </div>
+        <div class="col-lg-7">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h5>Scope & Reconnaissance</h5>
+              <p>Define targets, constraints, and rules of engagement. Automated asset discovery, subdomain enumeration, and technology fingerprinting.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h5>Enumeration & Scanning</h5>
+              <p>Deep enumeration of live services, endpoints, and attack surface. Automated vulnerability scanning with Nessus, Acunetix, and custom nuclei templates.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h5>Manual Testing & Exploitation</h5>
+              <p>Manual testing for business logic flaws, auth bypass, IDORs, and chained vulnerabilities that scanners miss. Proof-of-concept for every finding.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h5>Reporting & Remediation</h5>
+              <p>Executive summary for leadership. Technical report with CVSS scores, reproduction steps, and code-level fix recommendations for your engineering team.</p>
             </div>
           </div>
         </div>
@@ -130,44 +637,88 @@
     </div>
   </section>
 
-  <!-- TALENTS & CERTIFICATIONS -->
-  <section id="talents" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Our Team & Credentials</h2>
-      <p class="text-center">GreyCore Labs' experts are recognized on top platforms and hold industry-leading certifications:</p>
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="container text-center">
+      <div class="section-label">Credentials</div>
+      <h2 class="section-title mb-5">Trusted on Top Platforms</h2>
+      <div class="platform-row mb-5">
+        <div class="platform-badge"><i class="fas fa-bug"></i> HackerOne</div>
+        <div class="platform-badge"><i class="fas fa-bug"></i> Bugcrowd</div>
+        <div class="platform-badge"><i class="fas fa-shield-halved"></i> Synack Red Team</div>
+        <div class="platform-badge"><i class="fas fa-server"></i> Virtual Hacking Labs</div>
+        <div class="platform-badge"><i class="fas fa-lock"></i> Zero Point Security</div>
+      </div>
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Platform Presence:</strong> HackerOne, Bugcrowd, Synack, Virtual Hacking Labs, Zero Point Security</li>
-            <li class="list-group-item"><strong>Certifications:</strong> OSWE, OSCP, OSWP (OffSec); EWPTX, EWPT (INE); VHL Advanced+ (Virtual Hacking Labs)</li>
-          </ul>
+        <div class="col-lg-8">
+          <div class="row g-3 justify-content-center">
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSWE</span></div>
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSCP</span></div>
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSWP</span></div>
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">EWPTX</span></div>
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">EWPT</span></div>
+            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">VHL Advanced+</span></div>
+          </div>
+          <p class="mt-4" style="color: var(--text-secondary); font-size: 0.95rem;">OffSec, INE, and Virtual Hacking Labs certified professionals with active presence on major bug bounty platforms.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-5 bg-light">
+  <section id="contact" style="background: var(--bg-card);">
     <div class="container">
-      <h2 class="text-center mb-4">Get in Touch</h2>
-      <p class="text-center mb-4">Have a question or ready to start? Email us at <a href="mailto:contact@greycorelabs.com">contact@greycorelabs.com</a></p>
       <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <i class="fas fa-envelope fa-2x mb-3 text-primary"></i>
-          <p><a href="mailto:contact@greycorelabs.com" class="btn btn-primary">contact@greycorelabs.com</a></p>
+        <div class="col-lg-6 text-center">
+          <div class="section-label">Get Started</div>
+          <h2 class="section-title mb-3">Ready to Secure Your Stack?</h2>
+          <p class="section-desc mx-auto mb-4">Tell us about your application, infrastructure, or codebase. We'll scope the engagement and get back to you within 24 hours.</p>
+          <a href="mailto:contact@greycorelabs.com" class="btn btn-accent btn-lg">
+            <i class="fas fa-envelope me-2"></i>contact@greycorelabs.com
+          </a>
+          <p class="mt-4" style="color: var(--text-secondary); font-size: 0.85rem;">US-incorporated entity. NDAs and MSAs available. SOC 2 and compliance-friendly reporting.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="text-center">
+  <footer>
     <div class="container">
-      <small>GreyCore Labs is a US-incorporated company. © 2025 GreyCore Labs. All rights reserved.</small>
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p>Grey<span style="color: var(--accent);">Core</span> Labs &copy; 2025. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>US-incorporated security firm.</p>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile nav
+          const nav = document.getElementById('navMenu');
+          if (nav.classList.contains('show')) {
+            bootstrap.Collapse.getInstance(nav)?.hide();
+          }
+        }
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border)' : 'transparent';
+    });
+  </script>
 </body>
 </html>
