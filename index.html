@@ -14,6 +14,7 @@
   <meta name="twitter:title" content="GreyCore Labs | Offensive Security">
   <meta name="twitter:description" content="US-incorporated offensive security firm. Pentest, SAST, code review.">
   <link rel="canonical" href="https://greycorelabs.com">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,11 +130,8 @@
       font-weight: 900; font-size: 1.18rem; letter-spacing: -0.04em; color: var(--paper);
       display: inline-flex; align-items: center; gap: 0.6rem;
     }
-    .brand .mark {
-      width: 11px; height: 11px; background: var(--hazard);
-      box-shadow: 0 0 0 4px var(--hazard-dim);
-      display: inline-block; transform: rotate(45deg);
-    }
+    .logo-mark { display: block; width: 26px; height: 26px; flex-shrink: 0;
+      filter: drop-shadow(0 2px 7px oklch(0 0 0 / 0.45)); }
     .brand b { color: var(--hazard); font-weight: 900; }
     .nav-links { display: flex; align-items: center; gap: 0.3rem; }
     .nav-links a {
@@ -286,9 +284,9 @@
     .spec-row { display: grid; grid-template-columns: repeat(4, 1fr); }
     .spec-cell { padding: 36px 28px; border-right: 1px solid var(--line); }
     .spec-cell:last-child { border-right: 0; }
-    .spec-num { font-size: clamp(2rem, 3.4vw, 2.9rem); font-weight: 900; color: var(--paper);
-      letter-spacing: -0.04em; line-height: 1; }
-    .spec-num .u { color: var(--hazard); }
+    .spec-num { font-size: clamp(2rem, 3.4vw, 2.9rem); font-weight: 900; color: var(--hazard);
+      letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .spec-num .u { color: var(--paper-faint); }
     .spec-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--paper-faint); margin-top: 0.55rem; }
     @media (max-width: 760px) { .spec-row { grid-template-columns: repeat(2, 1fr); }
@@ -353,6 +351,7 @@
       color: var(--paper); }
     .plan-price span { font-size: 0.95rem; font-weight: 500; color: var(--paper-faint);
       font-family: 'JetBrains Mono', monospace; letter-spacing: 0; }
+    .plan-price.quote { font-size: 1.55rem; letter-spacing: -0.02em; color: var(--hazard); }
     .plan-desc { color: var(--paper-dim); font-size: 0.88rem; margin: 0.5rem 0 1.4rem; line-height: 1.55; }
     .plan-feats { list-style: none; padding: 0; margin: 0 0 1.8rem; flex: 1; }
     .plan-feats li { font-size: 0.86rem; color: var(--paper-dim); padding: 0.42rem 0; display: flex;
@@ -467,7 +466,9 @@
       .reveal.in { opacity: 1; transform: translateY(0); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .stagger > *, .redact::after, .hero-tag .dot, .cap-bar { animation: none !important; }
+      .stagger > *, .float-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero-tag .dot, .cap-bar, .marquee-track { animation: none !important; }
       .redact::after { display: none; }
       * { scroll-behavior: auto; }
     }
@@ -496,7 +497,13 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#"><span class="mark"></span>Grey<b>Core</b> Labs</a>
+      <a class="brand" href="#">
+        <svg class="logo-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M13.63 29 L50 50 L50 92 L13.63 71 Z" fill="#11d3a3"/>
+          <path d="M50 8 L86.37 29 L50 50 L13.63 29 Z" fill="#9aa3ad"/>
+          <path d="M86.37 29 L86.37 71 L50 92 L50 50 Z" fill="#586069"/>
+          <path d="M50 8 L86.37 29 L86.37 71 L50 92 L13.63 71 L13.63 29 Z M50 50 L50 92 M50 50 L13.63 29 M50 50 L86.37 29" stroke="#0c0f13" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>Grey<b>Core</b> Labs</a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
       <div class="nav-links" id="navLinks">
         <a href="#services">Services</a>
@@ -529,7 +536,7 @@
         <p class="lead" style="margin-left: auto; margin-right: auto;">Penetration testing, source-code review, and SAST automation for engineering teams that ship fast. Every finding is manually validated with a working proof-of-concept, not scanner noise.</p>
         <div class="hero-actions" style="justify-content: center;">
           <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Request a scope</a>
-          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-radar"></i> Free external scan</a>
+          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free external scan</a>
           <a href="#plans" class="btn-ghost">View pricing</a>
         </div>
         <div class="hero-certs" style="justify-content: center;">
@@ -573,7 +580,7 @@
       <div class="spec-cell"><div class="spec-num" data-target="500">0</div><div class="spec-label">Vulnerabilities found</div></div>
       <div class="spec-cell"><div class="spec-num" data-target="40">0</div><div class="spec-label">Engagements completed</div></div>
       <div class="spec-cell"><div class="spec-num" data-target="6">0</div><div class="spec-label">OffSec certifications</div></div>
-      <div class="spec-cell"><div class="spec-num"><span data-target="24">0</span><span class="u">h</span></div><div class="spec-label">Response time</div></div>
+      <div class="spec-cell"><div class="spec-num"><span data-target="24" data-suffix="">0</span><span class="u">h</span></div><div class="spec-label">Response time</div></div>
     </div>
   </section>
 
@@ -706,8 +713,8 @@
         </div>
         <div class="plan">
           <div class="plan-name">Source Code Review</div>
-          <div class="plan-price">$1,500<span> +</span></div>
-          <p class="plan-desc">Deep manual review of your codebase for security flaws scanners miss.</p>
+          <div class="plan-price quote">Request quote</div>
+          <p class="plan-desc">Deep manual review of your codebase for security flaws scanners miss. Scoped per request.</p>
           <ul class="plan-feats">
             <li><i class="fas fa-check"></i> Auth flow &amp; access control mapping</li>
             <li><i class="fas fa-check"></i> Input-to-sink tracing</li>
@@ -992,7 +999,7 @@
         <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. We scope the engagement and get back to you within 24 hours.</p>
         <div class="contact-actions">
           <a href="mailto:contact@greycorelabs.com" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
-          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-radar"></i> Free scan instead</a>
+          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free scan instead</a>
         </div>
         <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-INCORPORATED ENTITY &middot; NDAS &amp; MSAS AVAILABLE &middot; SOC 2 &amp; COMPLIANCE-FRIENDLY REPORTING</p>
       </div>
@@ -1004,7 +1011,13 @@
     <div class="wrap">
       <div class="foot-grid">
         <div>
-          <div class="foot-brand"><span class="brand"><span class="mark"></span></span>Grey<b>Core</b> Labs</div>
+          <div class="foot-brand">
+            <svg class="logo-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true" style="width:24px;height:24px;">
+              <path d="M13.63 29 L50 50 L50 92 L13.63 71 Z" fill="#11d3a3"/>
+              <path d="M50 8 L86.37 29 L50 50 L13.63 29 Z" fill="#9aa3ad"/>
+              <path d="M86.37 29 L86.37 71 L50 92 L50 50 Z" fill="#586069"/>
+              <path d="M50 8 L86.37 29 L86.37 71 L50 92 L13.63 71 L13.63 29 Z M50 50 L50 92 M50 50 L13.63 29 M50 50 L86.37 29" stroke="#0c0f13" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>Grey<b>Core</b> Labs</div>
           <p>US-incorporated offensive security firm. We find the flaw before the breach.</p>
         </div>
         <div>
@@ -1065,7 +1078,7 @@
       if (countersDone) return; countersDone = true;
       document.querySelectorAll('[data-target]').forEach(el => {
         const target = parseInt(el.dataset.target, 10);
-        const suffix = el.dataset.suffix || '+';
+        const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
         const duration = 1800;
         const start = performance.now();
         const tick = (now) => {
