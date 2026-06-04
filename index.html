@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GreyCore Labs | Offensive Security & Code Security Automation</title>
+  <title>GreyCore Labs | Offensive Security &amp; Code Security Automation</title>
   <meta name="description" content="US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence. OSWE, OSCP, EWPTX certified.">
   <meta name="keywords" content="penetration testing, pentest, SAST, Semgrep, source code review, security assessment, OSWE, OSCP, bug bounty, threat intelligence, web application security">
-  <meta property="og:title" content="GreyCore Labs | Offensive Security & Code Security Automation">
-  <meta property="og:description" content="We find vulnerabilities before attackers do. Penetration testing, source code review, SAST automation, and continuous security.">
+  <meta property="og:title" content="GreyCore Labs | Offensive Security &amp; Code Security Automation">
+  <meta property="og:description" content="We find the flaw before the breach. Penetration testing, source code review, SAST automation, and continuous security.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://greycorelabs.com">
   <meta name="twitter:card" content="summary_large_image">
@@ -15,624 +15,463 @@
   <meta name="twitter:description" content="US-incorporated offensive security firm. Pentest, SAST, code review.">
   <link rel="canonical" href="https://greycorelabs.com">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
-      --bg-dark: #0a0a0f;
-      --bg-card: #12121a;
-      --bg-card-hover: #1a1a28;
-      --accent: #00d4aa;
-      --accent-dim: rgba(0, 212, 170, 0.1);
-      --accent-glow: rgba(0, 212, 170, 0.3);
-      --text-primary: #e8e8ed;
-      --text-secondary: #8888a0;
-      --border: #2a2a3a;
-      --danger: #ff4757;
+      /* Cool near-neutral dark. No #000 / #fff anywhere. */
+      --ink:        oklch(0.155 0.012 220);
+      --ink-2:      oklch(0.190 0.014 220);
+      --ink-3:      oklch(0.230 0.016 220);
+      --line:       oklch(0.30 0.013 220);
+      --line-2:     oklch(0.42 0.014 215);
+      --paper:      oklch(0.965 0.005 200);
+      --paper-dim:  oklch(0.75 0.011 210);
+      --paper-faint:oklch(0.56 0.012 215);
+      /* Single committed accent: GreyCore green (#00d4aa family). */
+      --hazard:       oklch(0.785 0.142 173);
+      --hazard-bright:oklch(0.885 0.155 172);
+      --hazard-dim:   oklch(0.785 0.142 173 / 0.13);
+      --hazard-line:  oklch(0.785 0.142 173 / 0.36);
+      --hazard-glow:  oklch(0.785 0.142 173 / 0.30);
+      --danger:       oklch(0.635 0.205 22);
+      --display: 'Bricolage Grotesque', 'Archivo', system-ui, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --maxw: 1180px;
+    }
+    /* Film-grain noise overlay (buguard-style texture) */
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
+      font-family: 'Archivo', system-ui, sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+      line-height: 1.62;
+      font-size: 1.02rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: #00ffcc; }
+    a { color: var(--hazard); text-decoration: none; }
+    a:hover { color: var(--hazard-bright); }
+    ::selection { background: var(--hazard); color: var(--ink); }
 
-    /* Navbar */
-    .navbar {
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
-      z-index: 1000;
-    }
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--text-primary) !important;
-      letter-spacing: -0.02em;
-    }
-    .navbar-brand span { color: var(--accent); }
-    .nav-link {
-      color: var(--text-secondary) !important;
-      font-size: 0.9rem;
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Kicker: monospace section index, real labelling not decoration */
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
       font-weight: 500;
-      padding: 0.5rem 1rem !important;
-      transition: color 0.2s;
-    }
-    .nav-link:hover { color: var(--text-primary) !important; }
-    .navbar-toggler { border-color: var(--border); }
-    .navbar-toggler-icon { filter: invert(1); }
-    .nav-cta {
-      background: var(--accent) !important;
-      color: #0a0a0f !important;
-      font-weight: 600 !important;
-      border-radius: 6px;
-      padding: 0.4rem 1rem !important;
-      margin-left: 0.5rem;
-    }
-    .nav-cta:hover { background: #00ffcc !important; }
-
-    /* Hero */
-    #hero {
-      padding: 160px 0 100px;
-      position: relative;
-      overflow: hidden;
-      min-height: 90vh;
-      display: flex;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--paper-faint);
+      display: inline-flex;
       align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
     }
+    .kicker b { color: var(--hazard); font-weight: 700; }
+    .kicker::before {
+      content: '';
+      width: 26px; height: 1px;
+      background: var(--hazard);
+      display: inline-block;
+    }
+
+    h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; }
+    .display {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(2.9rem, 7vw, 5.8rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.94;
+    }
+    .display .dim { color: var(--paper-faint); }
+    .display .hot { color: var(--hazard); }
+    .sect-title {
+      font-size: clamp(1.95rem, 3.6vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+      margin: 0 0 1rem;
+    }
+    .lead {
+      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      color: var(--paper-dim);
+      max-width: 60ch;
+      line-height: 1.65;
+    }
+    .sect-desc { color: var(--paper-dim); max-width: 62ch; font-size: 1.04rem; }
+
+    section { padding: clamp(72px, 9vw, 128px) 0; position: relative; }
+    .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+    .panel { background: var(--ink-2); }
+
+    /* ---------- NAV ---------- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: oklch(0.155 0.012 220 / 0.72);
+      backdrop-filter: blur(14px) saturate(1.2);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .nav.scrolled { border-bottom-color: var(--line); background: oklch(0.155 0.012 220 / 0.9); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand {
+      font-weight: 900; font-size: 1.18rem; letter-spacing: -0.04em; color: var(--paper);
+      display: inline-flex; align-items: center; gap: 0.6rem;
+    }
+    .brand .mark {
+      width: 11px; height: 11px; background: var(--hazard);
+      box-shadow: 0 0 0 4px var(--hazard-dim);
+      display: inline-block; transform: rotate(45deg);
+    }
+    .brand b { color: var(--hazard); font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 0.3rem; }
+    .nav-links a {
+      color: var(--paper-dim); font-size: 0.86rem; font-weight: 500;
+      padding: 0.5rem 0.85rem; border-radius: 7px; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--paper); background: var(--ink-3); }
+    .nav-cta {
+      color: var(--ink) !important; background: var(--hazard);
+      font-weight: 700 !important; margin-left: 0.5rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem !important;
+      letter-spacing: 0.02em;
+    }
+    .nav-cta:hover { background: var(--hazard-bright) !important; color: var(--ink) !important; }
+    .nav-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--paper);
+      width: 42px; height: 38px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+    @media (max-width: 900px) {
+      .nav-links { position: fixed; inset: 68px 0 auto 0; flex-direction: column; align-items: stretch;
+        background: var(--ink-2); border-bottom: 1px solid var(--line); padding: 12px;
+        gap: 2px; transform: translateY(-130%); transition: transform 0.4s var(--ease); }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding: 0.85rem 1rem; }
+      .nav-cta { margin: 6px 0 0; text-align: center; }
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn-h, .btn-ghost, .btn-danger-glow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.84rem;
+      letter-spacing: 0.01em; padding: 0.85rem 1.5rem; border-radius: 9px;
+      border: 1px solid transparent; cursor: pointer; transition: all 0.25s var(--ease);
+    }
+    .btn-h { background: var(--hazard); color: var(--ink); font-weight: 700; }
+    .btn-h:hover { background: var(--hazard-bright); color: var(--ink); transform: translateY(-2px);
+      box-shadow: 0 10px 34px var(--hazard-glow); }
+    .btn-ghost { background: transparent; color: var(--paper); border-color: var(--line-2); }
+    .btn-ghost:hover { border-color: var(--hazard); color: var(--hazard); }
+    .btn-danger-glow { background: var(--danger); color: var(--paper); font-weight: 700; }
+    .btn-danger-glow:hover { transform: translateY(-2px); box-shadow: 0 10px 34px oklch(0.64 0.2 22 / 0.35);
+      color: var(--paper); }
+    .btn-block { width: 100%; justify-content: center; }
+
+    /* ---------- HERO ---------- */
+    #hero { padding: 168px 0 96px; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
     .hero-video-bg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0.15;
-      z-index: 0;
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.10; filter: grayscale(1) contrast(1.15) sepia(0.25); z-index: 0;
     }
     #hero::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(ellipse at 30% 50%, var(--accent-dim) 0%, transparent 60%);
-      animation: pulse 8s ease-in-out infinite alternate;
-      z-index: 1;
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse 80% 60% at 78% 12%, var(--hazard-dim) 0%, transparent 55%),
+        linear-gradient(transparent 60%, var(--ink) 100%);
     }
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; width: 100%; height: 200px;
-      background: linear-gradient(transparent, var(--bg-dark));
-      z-index: 1;
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.5;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 20%, oklch(0 0 0 / 0.5), transparent 75%);
+              mask-image: radial-gradient(ellipse 70% 70% at 70% 20%, oklch(0 0 0 / 0.5), transparent 75%);
     }
-    @keyframes pulse {
-      0% { opacity: 0.4; transform: scale(1); }
-      100% { opacity: 0.7; transform: scale(1.1); }
+    #hero .wrap { position: relative; z-index: 2; }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.14em;
+      color: var(--paper-faint); text-transform: uppercase; margin-bottom: 1.6rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
     }
-    #hero .container { position: relative; z-index: 2; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.35rem 0.9rem;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.5rem;
+    .hero-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--hazard);
+      box-shadow: 0 0 0 4px var(--hazard-dim); animation: ping 2.4s var(--ease) infinite; }
+    @keyframes ping { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .hero h1 { max-width: 16ch; margin: 0; }
+    .hero h1 .l2 { color: var(--paper); }
+    .redact { position: relative; color: var(--hazard); white-space: nowrap; display: inline-block; }
+    .redact::after {
+      content: ''; position: absolute; inset: -2px -4px; background: var(--hazard);
+      transform-origin: right center; transform: scaleX(1);
+      animation: unredact 0.85s 1.05s var(--ease) forwards;
     }
-    .hero-badge .pulse-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: dotpulse 2s ease-in-out infinite;
+    @keyframes unredact { to { transform: scaleX(0); } }
+    .hero .lead { margin-top: 1.7rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.2rem; }
+    .hero-certs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.6rem; }
+    .chip {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500;
+      color: var(--paper-dim); border: 1px solid var(--line); padding: 0.35rem 0.7rem;
+      border-radius: 6px; background: var(--ink-2); letter-spacing: 0.03em;
     }
-    @keyframes dotpulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    /* hero load choreography */
+    .stagger > * { opacity: 0; transform: translateY(22px); animation: rise 0.9s var(--ease) forwards; }
+    .stagger > *:nth-child(1) { animation-delay: 0.05s; }
+    .stagger > *:nth-child(2) { animation-delay: 0.16s; }
+    .stagger > *:nth-child(3) { animation-delay: 0.27s; }
+    .stagger > *:nth-child(4) { animation-delay: 0.38s; }
+    .stagger > *:nth-child(5) { animation-delay: 0.49s; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    /* hero floating feature pills (buguard-style) */
+    .float-card {
+      position: absolute; z-index: 2; display: flex; align-items: center; gap: 0.7rem;
+      background: oklch(0.205 0.014 220 / 0.72); backdrop-filter: blur(10px);
+      border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.95rem;
+      box-shadow: 0 18px 50px oklch(0 0 0 / 0.4); max-width: 230px;
+      opacity: 0; transform: translateY(14px) scale(0.96); animation: floatin 1s var(--ease) forwards;
     }
-    #hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      max-width: 700px;
-    }
-    #hero h1 .accent-text { color: var(--accent); }
-    #hero p.lead {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 560px;
-      margin-top: 1.5rem;
-    }
-    .hero-certs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-    .cert-badge {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-    }
-    .btn-accent {
-      background: var(--accent);
-      color: #0a0a0f;
-      font-weight: 600;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-accent:hover {
-      background: #00ffcc;
-      color: #0a0a0f;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px var(--accent-glow);
-    }
-    .btn-outline-light-custom {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      font-weight: 500;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-outline-light-custom:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .btn-danger-glow {
-      background: var(--danger);
-      color: #fff;
-      font-weight: 600;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-danger-glow:hover {
-      background: #ff6b81;
-      color: #fff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+    @keyframes floatin { to { opacity: 1; transform: translateY(0) scale(1); } }
+    .float-card .fc-ico { width: 34px; height: 34px; min-width: 34px; border-radius: 9px;
+      background: var(--hazard-dim); color: var(--hazard); display: flex; align-items: center;
+      justify-content: center; font-size: 0.85rem; }
+    .float-card .fc-t { font-size: 0.82rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+    .float-card .fc-s { font-size: 0.7rem; color: var(--paper-faint); font-family: 'JetBrains Mono', monospace; }
+    .fc-1 { top: 20%; left: 1%; animation-delay: 0.7s; }
+    .fc-2 { top: 13%; right: 2%; animation-delay: 0.95s; }
+    .fc-3 { bottom: 16%; left: 4%; animation-delay: 1.15s; }
+    .fc-4 { bottom: 10%; right: 1%; animation-delay: 1.35s; }
+    @media (max-width: 1100px) { .float-card { display: none; } }
+
+    /* faded crest watermark */
+    .crest-wm {
+      position: absolute; z-index: 0; pointer-events: none; opacity: 0.04;
+      font-size: clamp(16rem, 38vw, 34rem); line-height: 0.8; color: var(--paper);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 900;
+      font-family: var(--display); font-style: italic; letter-spacing: -0.06em;
     }
 
-    /* Sections */
-    section { padding: 100px 0; }
-    .section-label {
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
+    /* corner registration ticks */
+    .ticked { position: relative; }
+    .ticked::before, .ticked::after {
+      content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--hazard-line);
     }
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .section-desc {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      max-width: 560px;
-    }
+    .ticked::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .ticked::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
-    /* Stats Bar */
-    #stats {
-      padding: 60px 0;
-      background: linear-gradient(135deg, rgba(0, 212, 170, 0.05), transparent);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item { text-align: center; }
-    .stat-number {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
+    /* ---------- TRUST MARQUEE ---------- */
+    .marquee { overflow: hidden; padding: 18px 0 26px; -webkit-mask-image: linear-gradient(90deg, transparent, oklch(0 0 0 / 1) 12%, oklch(0 0 0 / 1) 88%, transparent); mask-image: linear-gradient(90deg, transparent, oklch(0 0 0 / 1) 12%, oklch(0 0 0 / 1) 88%, transparent); }
+    .marquee-track { display: flex; gap: 3rem; width: max-content; animation: scrollx 38s linear infinite; }
+    .m-item { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 1rem;
+      color: var(--paper-faint); white-space: nowrap; letter-spacing: -0.01em; transition: color 0.2s; }
+    .m-item i { color: var(--hazard); opacity: 0.9; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .m-item:hover { color: var(--paper); }
+    @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; } }
 
-    /* Free Scan Section */
-    #free-scan {
-      background: linear-gradient(135deg, rgba(255, 71, 87, 0.05), rgba(0, 212, 170, 0.05));
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .scan-form-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-    }
-    .scan-form-card input,
-    .scan-form-card select {
-      background: var(--bg-dark);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-    }
-    .scan-form-card input:focus,
-    .scan-form-card select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-dim);
-    }
-    .scan-form-card input::placeholder { color: var(--text-secondary); }
-    .scan-form-card label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
-      display: block;
-    }
-    .scan-form-card select option {
-      background: var(--bg-dark);
-      color: var(--text-primary);
-    }
-    .scan-benefit {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-    .scan-benefit i { color: var(--accent); font-size: 0.8rem; min-width: 16px; }
+    /* ---------- SPEC STRIP (stats) ---------- */
+    #stats { padding: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      background: var(--ink-2); }
+    .spec-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .spec-cell { padding: 36px 28px; border-right: 1px solid var(--line); }
+    .spec-cell:last-child { border-right: 0; }
+    .spec-num { font-size: clamp(2rem, 3.4vw, 2.9rem); font-weight: 900; color: var(--paper);
+      letter-spacing: -0.04em; line-height: 1; }
+    .spec-num .u { color: var(--hazard); }
+    .spec-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--paper-faint); margin-top: 0.55rem; }
+    @media (max-width: 760px) { .spec-row { grid-template-columns: repeat(2, 1fr); }
+      .spec-cell:nth-child(2n) { border-right: 0; }
+      .spec-cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); } }
 
-    /* Service Cards */
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      height: 100%;
-      transition: all 0.3s;
-    }
-    .service-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .service-icon-wrap {
-      width: 48px;
-      height: 48px;
-      background: var(--accent-dim);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-    .service-icon-wrap i { color: var(--accent); font-size: 1.2rem; }
-    .service-card h5 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .service-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 0;
-    }
+    /* ---------- SECTION HEAD ---------- */
+    .sect-head { display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-bottom: 3.2rem; }
+    .sect-head.split { grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: end; }
+    @media (max-width: 860px) { .sect-head.split { grid-template-columns: 1fr; gap: 1rem; align-items: start; } }
 
-    /* Semgrep/SAST Section */
-    .sast-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+    /* ---------- CAPABILITIES (services) ---------- */
+    .cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line); }
+    @media (min-width: 980px) { .cap-grid { grid-template-columns: repeat(4, 1fr); } }
+    .cap {
+      border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      padding: 30px 26px 34px; position: relative; transition: background 0.3s; min-height: 230px;
+      display: flex; flex-direction: column;
     }
-    .sast-feature-icon {
-      width: 36px; height: 36px; min-width: 36px;
-      background: var(--accent-dim);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-    .sast-feature h6 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .sast-feature p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+    .cap:hover { background: var(--ink-2); }
+    .cap:hover .cap-idx { color: var(--hazard); }
+    .cap:hover .cap-bar { transform: scaleX(1); }
+    .cap-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--hazard);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+    .cap-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; }
+    .cap-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--paper-faint);
+      letter-spacing: 0.06em; transition: color 0.3s; }
+    .cap-ico { color: var(--hazard); font-size: 1.05rem; }
+    .cap h5 { font-size: 1.06rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.6rem; line-height: 1.2; }
+    .cap p { color: var(--paper-dim); font-size: 0.9rem; margin: 0; line-height: 1.55; }
 
-    /* Plans */
-    .plan-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
-      height: 100%;
-      transition: all 0.3s;
-      position: relative;
-    }
-    .plan-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-    .plan-card.featured {
-      border-color: var(--accent);
-      box-shadow: 0 0 40px var(--accent-dim);
-    }
-    .plan-card .popular-tag {
-      position: absolute;
-      top: -12px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: #0a0a0f;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.25rem 1rem;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .plan-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .plan-price {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin: 0.75rem 0;
-    }
-    .plan-price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
-    .plan-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-    .plan-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2rem;
-    }
-    .plan-features li {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      padding: 0.4rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .plan-features li i { color: var(--accent); font-size: 0.75rem; }
+    /* ---------- SAST split ---------- */
+    .feat { display: flex; gap: 1.1rem; padding: 1.3rem 0; border-top: 1px solid var(--line); }
+    .feat:last-child { border-bottom: 1px solid var(--line); }
+    .feat-n { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--hazard);
+      font-weight: 700; min-width: 32px; padding-top: 2px; }
+    .feat h6 { font-size: 0.98rem; font-weight: 700; margin: 0 0 0.3rem; letter-spacing: -0.01em; }
+    .feat p { color: var(--paper-dim); font-size: 0.88rem; margin: 0; }
 
-    /* Testimonials */
-    .testimonial-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      height: 100%;
-      position: relative;
+    /* ---------- PLANS ---------- */
+    .plan-group-label { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--paper-faint); margin: 0 0 1.4rem;
+      display: flex; align-items: center; gap: 0.8rem; }
+    .plan-group-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .plans { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    .plan {
+      border: 1px solid var(--line); border-radius: 14px; padding: 30px 28px; background: var(--ink-2);
+      position: relative; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s;
     }
-    .testimonial-card::before {
-      content: '\201C';
-      position: absolute;
-      top: 1rem; left: 1.5rem;
-      font-size: 3rem;
-      color: var(--accent);
-      opacity: 0.3;
-      line-height: 1;
+    .plan:hover { border-color: var(--line-2); transform: translateY(-3px); }
+    .plan.featured { border-color: var(--hazard); box-shadow: 0 0 0 1px var(--hazard), 0 24px 60px var(--hazard-glow); background: var(--ink-3); }
+    .plan-tag {
+      position: absolute; top: -11px; left: 28px; background: var(--hazard); color: var(--ink);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 5px;
     }
-    .testimonial-text {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      font-style: italic;
-      margin-bottom: 1.25rem;
-      padding-top: 1rem;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .testimonial-avatar {
-      width: 40px; height: 40px;
-      background: var(--accent-dim);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-    .testimonial-name { font-size: 0.9rem; font-weight: 600; }
-    .testimonial-role { font-size: 0.8rem; color: var(--text-secondary); }
-    .testimonial-stars { color: #f9ca24; font-size: 0.75rem; margin-bottom: 0.5rem; }
+    .plan-name { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--paper-faint); }
+    .plan-price { font-size: 2.7rem; font-weight: 900; letter-spacing: -0.04em; margin: 0.6rem 0 0.1rem;
+      color: var(--paper); }
+    .plan-price span { font-size: 0.95rem; font-weight: 500; color: var(--paper-faint);
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 0; }
+    .plan-desc { color: var(--paper-dim); font-size: 0.88rem; margin: 0.5rem 0 1.4rem; line-height: 1.55; }
+    .plan-feats { list-style: none; padding: 0; margin: 0 0 1.8rem; flex: 1; }
+    .plan-feats li { font-size: 0.86rem; color: var(--paper-dim); padding: 0.42rem 0; display: flex;
+      gap: 0.65rem; align-items: flex-start; border-top: 1px solid var(--line); }
+    .plan-feats li:first-child { border-top: 0; }
+    .plan-feats li i { color: var(--hazard); font-size: 0.72rem; margin-top: 0.32rem; }
 
-    /* Platforms */
-    .platform-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
+    /* ---------- FREE SCAN ---------- */
+    #free-scan { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .scan-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 3.4rem; align-items: start; }
+    @media (max-width: 920px) { .scan-grid { grid-template-columns: 1fr; gap: 2.4rem; } }
+    .scan-benefit { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.55rem 0;
+      font-size: 0.92rem; color: var(--paper-dim); }
+    .scan-benefit i { color: var(--hazard); font-size: 0.8rem; margin-top: 0.32rem; }
+    .scan-card { background: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 2.3rem; }
+    .scan-card h4 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.3rem; letter-spacing: -0.02em; }
+    .field-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--paper-faint); margin-bottom: 0.4rem; display: block; }
+    .scan-card input, .scan-card select {
+      width: 100%; background: var(--ink-2); border: 1px solid var(--line); color: var(--paper);
+      padding: 0.78rem 0.95rem; border-radius: 9px; font-size: 0.92rem; font-family: 'Archivo', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .platform-badge {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.5rem;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .platform-badge i { color: var(--accent); }
+    .scan-card input::placeholder { color: var(--paper-faint); }
+    .scan-card input:focus, .scan-card select:focus { outline: none; border-color: var(--hazard);
+      box-shadow: 0 0 0 3px var(--hazard-dim); }
+    .scan-card select option { background: var(--ink-2); color: var(--paper); }
 
-    /* Process */
-    .process-step {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .step-number {
-      width: 40px; height: 40px; min-width: 40px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-    .step-content h5 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .step-content p { color: var(--text-secondary); font-size: 0.88rem; margin: 0; }
+    /* ---------- PROCESS ---------- */
+    .proc { display: flex; gap: 1.4rem; padding: 1.6rem 0; border-top: 1px solid var(--line); }
+    .proc:last-child { border-bottom: 1px solid var(--line); }
+    .proc-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.82rem;
+      color: var(--hazard); min-width: 46px; }
+    .proc h5 { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.3rem; letter-spacing: -0.02em; }
+    .proc p { color: var(--paper-dim); font-size: 0.9rem; margin: 0; }
 
-    /* Blog */
-    .blog-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      height: 100%;
-      transition: all 0.3s;
-    }
-    .blog-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .blog-card-body { padding: 1.5rem; }
-    .blog-tag {
-      display: inline-block;
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-    .blog-card h5 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-    .blog-card p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-    }
-    .blog-meta {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-    }
+    /* ---------- TESTIMONIALS ---------- */
+    .quotes { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 860px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+    .quote { border: 1px solid var(--line); border-radius: 14px; padding: 28px; background: var(--ink-2);
+      display: flex; flex-direction: column; transition: border-color 0.3s; }
+    .quote:hover { border-color: var(--line-2); }
+    .stars { color: var(--hazard); font-size: 0.74rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .quote p { font-size: 0.95rem; color: var(--paper); line-height: 1.6; margin: 0 0 1.5rem; flex: 1; }
+    .q-author { display: flex; align-items: center; gap: 0.8rem; padding-top: 1.2rem;
+      border-top: 1px solid var(--line); }
+    .q-mark { width: 40px; height: 40px; border: 1px solid var(--hazard-line); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; color: var(--hazard); font-weight: 800;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+    .q-name { font-size: 0.9rem; font-weight: 700; }
+    .q-role { font-size: 0.8rem; color: var(--paper-faint); font-family: 'JetBrains Mono', monospace; }
 
-    /* FAQ */
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-    }
-    .faq-question {
-      padding: 1.25rem 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .faq-question:hover { color: var(--accent); }
-    .faq-question i { color: var(--accent); font-size: 0.8rem; transition: transform 0.3s; }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 1.5rem;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-    .faq-item.active .faq-answer {
-      max-height: 300px;
-      padding: 0 1.5rem 1.25rem;
-    }
-    .faq-item.active .faq-question i { transform: rotate(45deg); }
+    /* ---------- HACKERS ---------- */
+    .platforms { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .platform { display: flex; align-items: center; gap: 0.6rem; border: 1px solid var(--line);
+      background: var(--ink-2); border-radius: 10px; padding: 0.85rem 1.2rem; font-weight: 600;
+      font-size: 0.92rem; color: var(--paper); }
+    .platform i { color: var(--hazard); }
 
-    /* Footer */
-    footer {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 3rem 0;
-    }
-    footer p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a { color: var(--text-secondary); font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
+    /* ---------- FAQ ---------- */
+    .faq { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-q { padding: 1.4rem 0.2rem; cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; font-weight: 700; font-size: 1rem; letter-spacing: -0.01em;
+      transition: color 0.2s; }
+    .faq-q:hover { color: var(--hazard); }
+    .faq-q .pm { color: var(--hazard); font-size: 0.85rem; transition: transform 0.35s var(--ease); flex-shrink: 0; }
+    .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s var(--ease); }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p { color: var(--paper-dim); font-size: 0.94rem; margin: 0; padding: 0 2rem 1.5rem 0.2rem; }
+    .faq-item.active .faq-a { grid-template-rows: 1fr; }
+    .faq-item.active .pm { transform: rotate(45deg); }
 
-    /* Animations */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ---------- BLOG ---------- */
+    .posts { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 820px) { .posts { grid-template-columns: repeat(3, 1fr); } }
+    .post { border: 1px solid var(--line); border-radius: 14px; padding: 26px; background: var(--ink-2);
+      transition: border-color 0.3s, transform 0.3s; display: flex; flex-direction: column; min-height: 200px; }
+    .post:hover { border-color: var(--hazard); transform: translateY(-3px); }
+    .post-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--hazard); margin-bottom: 1rem; }
+    .post h5 { font-size: 1.02rem; font-weight: 700; line-height: 1.32; margin: 0 0 0.6rem; letter-spacing: -0.02em; }
+    .post p { font-size: 0.87rem; color: var(--paper-dim); margin: 0 0 1rem; flex: 1; }
+    .post-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--paper-faint); }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      #hero h1 { font-size: 2.2rem; }
-      #hero { padding: 120px 0 70px; min-height: auto; }
-      section { padding: 60px 0; }
-      .section-title { font-size: 1.8rem; }
-      .stat-number { font-size: 2rem; }
-      .scan-form-card { padding: 1.5rem; }
+    /* ---------- CONTACT ---------- */
+    #contact { text-align: center; }
+    .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem;
+      margin: 2rem 0 1.4rem; }
+
+    /* ---------- FOOTER ---------- */
+    footer { background: var(--ink-2); border-top: 1px solid var(--line); padding: 3.4rem 0 2.4rem; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; gap: 1.6rem; } }
+    footer p { color: var(--paper-dim); font-size: 0.86rem; margin: 0; }
+    .foot-brand { font-weight: 900; letter-spacing: -0.03em; font-size: 1.1rem; color: var(--paper);
+      margin-bottom: 0.5rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .foot-brand b { color: var(--hazard); }
+    .foot-col-h { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--paper-faint); margin-bottom: 0.9rem; }
+    .foot-links { display: flex; flex-direction: column; gap: 0.55rem; }
+    .foot-links a { color: var(--paper-dim); font-size: 0.88rem; }
+    .foot-links a:hover { color: var(--hazard); }
+    .foot-bottom { border-top: 1px solid var(--line); margin-top: 2.6rem; padding-top: 1.6rem;
+      display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; justify-content: space-between; align-items: center; }
+    .foot-bottom p { font-size: 0.82rem; color: var(--paper-faint); }
+    .foot-bottom .mono { color: var(--paper-faint); }
+
+    /* ---------- SCROLL REVEAL (motion-safe only) ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+      .reveal.in { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .stagger > *, .redact::after, .hero-tag .dot, .cap-bar { animation: none !important; }
+      .redact::after { display: none; }
+      * { scroll-behavior: auto; }
     }
   </style>
-  <!-- JSON-LD for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -642,6 +481,11 @@
     "url": "https://greycorelabs.com",
     "email": "contact@greycorelabs.com",
     "areaServed": "Worldwide",
+    "founder": [
+      { "@type": "Person", "name": "Ahmed Bahgat" },
+      { "@type": "Person", "name": "Moamen Basel" }
+    ],
+    "address": { "@type": "PostalAddress", "addressRegion": "Wyoming", "addressCountry": "US" },
     "serviceType": ["Penetration Testing", "Cloud Pentesting", "AI Security Testing", "Source Code Review", "SAST Automation", "DFIR", "Incident Response", "AI-Automated SOC", "Threat Hunting", "Compromise Assessment", "Configuration Review"],
     "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Semgrep", "Burp Suite", "AWS Security", "Azure Security", "GCP Security"]
   }
@@ -649,117 +493,314 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Grey<span>Core</span> Labs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navMenu" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#sast">Code Security</a></li>
-          <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
-          <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link nav-cta" href="#free-scan">Free Scan</a></li>
-        </ul>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#"><span class="mark"></span>Grey<b>Core</b> Labs</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#sast">Code Security</a>
+        <a href="#plans">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#testimonials">Clients</a>
+        <a href="#free-scan" class="nav-cta">Free Scan</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO with Video Background -->
-  <section id="hero">
+  <!-- HERO -->
+  <section id="hero" class="hero">
     <video class="hero-video-bg" autoplay muted loop playsinline>
       <source src="hero-bg.mp4" type="video/mp4">
     </video>
-    <div class="container">
-      <div class="hero-badge"><span class="pulse-dot"></span> US-Incorporated &bull; OffSec Certified</div>
-      <h1>We Break Your Apps<br><span class="accent-text">Before Hackers Do</span></h1>
-      <p class="lead">Penetration testing, source code review, SAST automation, and continuous security for modern engineering teams. Results in days, not weeks.</p>
-      <div class="d-flex flex-wrap gap-3 mt-4">
-        <a href="#free-scan" class="btn btn-danger-glow"><i class="fas fa-search"></i> Free Security Scan</a>
-        <a href="#plans" class="btn btn-accent">View Plans</a>
-        <a href="#contact" class="btn btn-outline-light-custom">Get in Touch</a>
-      </div>
-      <div class="hero-certs">
-        <span class="cert-badge">OSWE</span>
-        <span class="cert-badge">OSCP</span>
-        <span class="cert-badge">OSWP</span>
-        <span class="cert-badge">EWPTX</span>
-        <span class="cert-badge">EWPT</span>
-        <span class="cert-badge">VHL Advanced+</span>
+    <div class="hero-grid"></div>
+
+    <!-- floating capability pills -->
+    <div class="float-card fc-1"><span class="fc-ico"><i class="fas fa-crosshairs"></i></span><div><div class="fc-t">Manual Exploitation</div><div class="fc-s">depth scanners miss</div></div></div>
+    <div class="float-card fc-2"><span class="fc-ico"><i class="fas fa-flask"></i></span><div><div class="fc-t">Validated PoCs</div><div class="fc-s">every finding proven</div></div></div>
+    <div class="float-card fc-3"><span class="fc-ico"><i class="fas fa-code"></i></span><div><div class="fc-t">Source Review</div><div class="fc-s">input-to-sink tracing</div></div></div>
+    <div class="float-card fc-4"><span class="fc-ico"><i class="fas fa-code-branch"></i></span><div><div class="fc-t">CI/CD SAST</div><div class="fc-s">caught in the PR</div></div></div>
+
+    <div class="wrap" style="text-align: center;">
+      <div class="stagger" style="max-width: 920px; margin: 0 auto;">
+        <div class="hero-tag" style="justify-content: center;"><span class="dot"></span> OFFENSIVE SECURITY FIRM &middot; INCORPORATED IN WYOMING, USA</div>
+        <h1 class="display">We find the flaw<br>before the <span class="hot">breach</span><span class="dim">.</span></h1>
+        <p class="lead" style="margin-left: auto; margin-right: auto;">Penetration testing, source-code review, and SAST automation for engineering teams that ship fast. Every finding is manually validated with a working proof-of-concept, not scanner noise.</p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Request a scope</a>
+          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-radar"></i> Free external scan</a>
+          <a href="#plans" class="btn-ghost">View pricing</a>
+        </div>
+        <div class="hero-certs" style="justify-content: center;">
+          <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
+          <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS BAR -->
+  <!-- TRUST / SOCIAL PROOF MARQUEE -->
+  <section id="trust" style="padding: 0; border-bottom: 1px solid var(--line); background: var(--ink-2);">
+    <div class="wrap" style="padding-top: 34px; padding-bottom: 14px;">
+      <p class="mono" style="text-align: center; color: var(--paper-faint); font-size: 0.72rem; letter-spacing: 0.16em; margin: 0;">RANKED &amp; TRUSTED ACROSS THE PLATFORMS THAT MATTER</p>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="m-item"><i class="fas fa-bug"></i> HackerOne</span>
+        <span class="m-item"><i class="fas fa-bug"></i> Bugcrowd</span>
+        <span class="m-item"><i class="fas fa-shield-halved"></i> Synack Red Team</span>
+        <span class="m-item"><i class="fas fa-certificate"></i> OffSec</span>
+        <span class="m-item"><i class="fas fa-certificate"></i> INE</span>
+        <span class="m-item"><i class="fas fa-cloud"></i> AWS</span>
+        <span class="m-item"><i class="fab fa-microsoft"></i> Azure</span>
+        <span class="m-item"><i class="fab fa-google"></i> GCP</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-bug"></i> HackerOne</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-bug"></i> Bugcrowd</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-shield-halved"></i> Synack Red Team</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-certificate"></i> OffSec</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-certificate"></i> INE</span>
+        <span class="m-item" aria-hidden="true"><i class="fas fa-cloud"></i> AWS</span>
+        <span class="m-item" aria-hidden="true"><i class="fab fa-microsoft"></i> Azure</span>
+        <span class="m-item" aria-hidden="true"><i class="fab fa-google"></i> GCP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC STRIP -->
   <section id="stats">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-6 col-md-3">
-          <div class="stat-item fade-up">
-            <div class="stat-number" data-target="500">0</div>
-            <div class="stat-label">Vulnerabilities Found</div>
-          </div>
+    <div class="spec-row">
+      <div class="spec-cell"><div class="spec-num" data-target="500">0</div><div class="spec-label">Vulnerabilities found</div></div>
+      <div class="spec-cell"><div class="spec-num" data-target="40">0</div><div class="spec-label">Engagements completed</div></div>
+      <div class="spec-cell"><div class="spec-num" data-target="6">0</div><div class="spec-label">OffSec certifications</div></div>
+      <div class="spec-cell"><div class="spec-num"><span data-target="24">0</span><span class="u">h</span></div><div class="spec-label">Response time</div></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>01</b> CAPABILITIES</div>
+          <h2 class="sect-title">Offensive security,<br>end to end.</h2>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-item fade-up">
-            <div class="stat-number" data-target="40">0</div>
-            <div class="stat-label">Engagements Completed</div>
-          </div>
+        <p class="sect-desc">From automated reconnaissance to manual exploitation, incident response, and source-level review. One firm across your entire attack surface.</p>
+      </div>
+      <div class="cap-grid reveal">
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">01</span><i class="fas fa-crosshairs cap-ico"></i></div>
+          <h5>Penetration Testing</h5>
+          <p>Web, API, mobile, backend, frontend, and cloud. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-item fade-up">
-            <div class="stat-number" data-target="6">0</div>
-            <div class="stat-label">OffSec Certifications</div>
-          </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">02</span><i class="fas fa-cloud cap-ico"></i></div>
+          <h5>Cloud &amp; AI Pentesting</h5>
+          <p>AWS, GCP, and Azure assessments. AI/ML model testing, LLM prompt injection, and cloud misconfiguration audits.</p>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-item fade-up">
-            <div class="stat-number" data-target="24">0</div>
-            <div class="stat-label">Hour Response Time</div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">03</span><i class="fas fa-code cap-ico"></i></div>
+          <h5>Source Code Review</h5>
+          <p>Deep manual review of your codebase. Auth-flow mapping, input-to-sink tracing, IDOR detection, business logic analysis.</p>
+        </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">04</span><i class="fas fa-robot cap-ico"></i></div>
+          <h5>SAST Automation</h5>
+          <p>Custom Semgrep rules tuned to your stack. CI/CD integration that catches vulnerabilities in pull requests before they ship.</p>
+        </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">05</span><i class="fas fa-brain cap-ico"></i></div>
+          <h5>AI-Automated SOC</h5>
+          <p>AI-powered Security Operations Center setup. Automated alert triage, threat correlation, and intelligent incident prioritization.</p>
+        </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">06</span><i class="fas fa-fire-extinguisher cap-ico"></i></div>
+          <h5>DFIR &amp; Incident Response</h5>
+          <p>Digital forensics and incident response. Breach investigation, evidence collection, root cause analysis, containment strategy.</p>
+        </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">07</span><i class="fas fa-magnifying-glass cap-ico"></i></div>
+          <h5>Threat Hunting</h5>
+          <p>Proactive hunting and compromise assessment. Detect active or past compromise, lateral movement, and persistent access.</p>
+        </div>
+        <div class="cap"><span class="cap-bar"></span>
+          <div class="cap-top"><span class="cap-idx">08</span><i class="fas fa-sliders cap-ico"></i></div>
+          <h5>Configuration Review</h5>
+          <p>Hardening audits for servers, cloud resources, firewalls, and network devices against CIS benchmarks and best practice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAST -->
+  <section id="sast" class="panel">
+    <div class="wrap">
+      <div class="scan-grid">
+        <div class="reveal">
+          <div class="kicker"><b>02</b> PRODUCTIZED SECURITY</div>
+          <h2 class="sect-title">Code security<br>automation.</h2>
+          <p class="sect-desc" style="margin-bottom: 1.8rem;">Stop vulnerabilities at the source. We build custom SAST rule sets for your exact stack and wire them into CI/CD, so your team catches security issues in every pull request.</p>
+          <a href="#sast-plans" class="btn-h"><i class="fas fa-arrow-down"></i> See packages</a>
+        </div>
+        <div class="reveal">
+          <div class="feat">
+            <span class="feat-n">A1</span>
+            <div><h6>Custom rules for your stack</h6><p>Not generic rulesets. Semgrep rules that match your frameworks, libraries, and patterns. Django, Spring, Express, Rails, FastAPI, Go, all covered.</p></div>
+          </div>
+          <div class="feat">
+            <span class="feat-n">A2</span>
+            <div><h6>CI/CD integration</h6><p>GitHub Actions, GitLab CI, or Bitbucket Pipelines. PR blocking on high/critical findings. Inline comments on vulnerable lines. Zero developer friction.</p></div>
+          </div>
+          <div class="feat">
+            <span class="feat-n">A3</span>
+            <div><h6>Baseline triage</h6><p>We do not dump 500 alerts on your team. We triage the initial scan, classify false positives, and hand you a clean prioritized starting point.</p></div>
+          </div>
+          <div class="feat">
+            <span class="feat-n">A4</span>
+            <div><h6>OWASP Top 10 coverage</h6><p>SQLi, XSS, SSRF, IDOR, auth bypass, insecure deserialization, path traversal, and more. Rules mapped to OWASP categories with fix guidance.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FREE SECURITY SCAN -->
-  <section id="free-scan">
-    <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-5 fade-up">
-          <div class="section-label" style="color: var(--danger);">Limited Offer</div>
-          <h2 class="section-title">Free External<br>Security Scan</h2>
-          <p class="section-desc mb-4">Get a complimentary security assessment of your domain. We run automated reconnaissance and deliver a 1-page report with real findings — no strings attached.</p>
-          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Subdomain enumeration & exposure mapping</div>
-          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Known vulnerability detection (CVEs)</div>
-          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Technology fingerprinting & misconfiguration checks</div>
-          <div class="scan-benefit"><i class="fas fa-check-circle"></i> 1-page PDF report delivered in 48 hours</div>
-          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Zero obligation — keep the report either way</div>
+  <!-- PLANS -->
+  <section id="plans">
+    <div class="wrap">
+      <div class="sect-head reveal">
+        <div class="kicker"><b>03</b> PRICING</div>
+        <h2 class="sect-title">Engagement plans.</h2>
+        <p class="sect-desc">Every plan ships validated findings with proof-of-concept and remediation guidance. Pentests are priced per man-day; scoping is done per request.</p>
+      </div>
+
+      <p class="plan-group-label reveal">Penetration Testing</p>
+      <div class="plans reveal" style="margin-bottom: 3.2rem;">
+        <div class="plan">
+          <div class="plan-name">One-Time Assessment</div>
+          <div class="plan-price">$100<span> / man-day</span></div>
+          <p class="plan-desc">Scoped engagement for a specific application, network, API, or cloud environment. Scoping is done per request: share your target and we size the effort in man-days.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Web, API, mobile, backend, frontend, or cloud</li>
+            <li><i class="fas fa-check"></i> AI/ML security &amp; cloud infrastructure testing</li>
+            <li><i class="fas fa-check"></i> Manual + automated testing</li>
+            <li><i class="fas fa-check"></i> Executive summary + technical report</li>
+            <li><i class="fas fa-check"></i> Remediation guidance with code fixes</li>
+            <li><i class="fas fa-check"></i> 30-day retest included</li>
+          </ul>
+          <a href="#contact" class="btn-ghost btn-block">Request scope</a>
         </div>
-        <div class="col-lg-7 fade-up">
-          <div class="scan-form-card">
-            <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Request Your Free Scan</h4>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">We'll assess your external attack surface and send you a report.</p>
+        <div class="plan featured">
+          <span class="plan-tag">Most popular</span>
+          <div class="plan-name">Monthly Retainer</div>
+          <div class="plan-price">$2,500<span> / mo</span></div>
+          <p class="plan-desc">Continuous security testing and monitoring for teams shipping every week.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Weekly vulnerability scanning</li>
+            <li><i class="fas fa-check"></i> Monthly manual pentest cycles</li>
+            <li><i class="fas fa-check"></i> New feature security review</li>
+            <li><i class="fas fa-check"></i> Dedicated Slack/Teams channel</li>
+            <li><i class="fas fa-check"></i> Priority response on critical findings</li>
+            <li><i class="fas fa-check"></i> Monthly security posture report</li>
+          </ul>
+          <a href="#contact" class="btn-h btn-block">Get started</a>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Source Code Review</div>
+          <div class="plan-price">$1,500<span> +</span></div>
+          <p class="plan-desc">Deep manual review of your codebase for security flaws scanners miss.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Auth flow &amp; access control mapping</li>
+            <li><i class="fas fa-check"></i> Input-to-sink tracing</li>
+            <li><i class="fas fa-check"></i> IDOR &amp; business logic analysis</li>
+            <li><i class="fas fa-check"></i> Framework-specific vulnerability patterns</li>
+            <li><i class="fas fa-check"></i> Annotated findings with line references</li>
+          </ul>
+          <a href="#contact" class="btn-ghost btn-block">Request quote</a>
+        </div>
+      </div>
+
+      <p class="plan-group-label reveal" id="sast-plans">Code Security Automation &middot; Semgrep</p>
+      <div class="plans reveal">
+        <div class="plan">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">$500</div>
+          <p class="plan-desc">Single repo, single language. Security guardrails, fast.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules for your stack</li>
+            <li><i class="fas fa-check"></i> CI/CD pipeline integration</li>
+            <li><i class="fas fa-check"></i> 30-minute walkthrough call</li>
+            <li><i class="fas fa-check"></i> 3-5 day delivery</li>
+          </ul>
+          <a href="#contact" class="btn-ghost btn-block">Get started</a>
+        </div>
+        <div class="plan featured">
+          <span class="plan-tag">Best value</span>
+          <div class="plan-name">Professional</div>
+          <div class="plan-price">$1,000</div>
+          <p class="plan-desc">Up to 3 repos, 2 languages. Full OWASP Top 10 coverage.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules</li>
+            <li><i class="fas fa-check"></i> Framework-specific rules</li>
+            <li><i class="fas fa-check"></i> Baseline triage &amp; false positive tuning</li>
+            <li><i class="fas fa-check"></i> Developer documentation &amp; fix guides</li>
+            <li><i class="fas fa-check"></i> 1-hour walkthrough + 2 weeks support</li>
+            <li><i class="fas fa-check"></i> 5-10 day delivery</li>
+          </ul>
+          <a href="#contact" class="btn-h btn-block">Get started</a>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">$2,000</div>
+          <p class="plan-desc">Up to 10 repos, any languages. Quarterly updates included.</p>
+          <ul class="plan-feats">
+            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules at scale</li>
+            <li><i class="fas fa-check"></i> Rules for internal frameworks &amp; libraries</li>
+            <li><i class="fas fa-check"></i> Multi-repo centralized reporting</li>
+            <li><i class="fas fa-check"></i> Full severity classification</li>
+            <li><i class="fas fa-check"></i> Developer training documentation</li>
+            <li><i class="fas fa-check"></i> Quarterly rule updates (Q1 included)</li>
+            <li><i class="fas fa-check"></i> 2-hour walkthrough + 4 weeks support</li>
+          </ul>
+          <a href="#contact" class="btn-ghost btn-block">Get started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE SCAN -->
+  <section id="free-scan">
+    <div class="wrap">
+      <div class="scan-grid">
+        <div class="reveal">
+          <div class="kicker" style="color: var(--danger);"><b style="color: var(--danger);">04</b> LIMITED OFFER</div>
+          <h2 class="sect-title">Free external<br>security scan.</h2>
+          <p class="sect-desc" style="margin-bottom: 1.8rem;">A complimentary assessment of your domain. We run automated reconnaissance and deliver a one-page report with real findings, no strings attached.</p>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Subdomain enumeration &amp; exposure mapping</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Known vulnerability detection (CVEs)</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Technology fingerprinting &amp; misconfiguration checks</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> One-page PDF report delivered in 48 hours</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Zero obligation, keep the report either way</div>
+        </div>
+        <div class="reveal">
+          <div class="scan-card ticked">
+            <h4>Request your free scan</h4>
+            <p style="color: var(--paper-faint); font-size: 0.86rem; margin: 0 0 1.6rem;">We assess your external attack surface and send you a report.</p>
             <form id="scanForm" action="https://formspree.io/f/xyknaopq" method="POST">
               <div class="row g-3">
                 <div class="col-md-6">
-                  <label>Your Name</label>
+                  <label class="field-label">Your name</label>
                   <input type="text" name="name" placeholder="John Smith" required>
                 </div>
                 <div class="col-md-6">
-                  <label>Work Email</label>
+                  <label class="field-label">Work email</label>
                   <input type="email" name="email" placeholder="john@company.com" required>
                 </div>
                 <div class="col-md-6">
-                  <label>Domain to Scan</label>
+                  <label class="field-label">Domain to scan</label>
                   <input type="text" name="domain" placeholder="example.com" required>
                 </div>
                 <div class="col-md-6">
-                  <label>Company Size</label>
+                  <label class="field-label">Company size</label>
                   <select name="company_size">
                     <option value="">Select...</option>
                     <option value="1-10">1-10 employees</option>
@@ -770,305 +811,21 @@
                   </select>
                 </div>
                 <div class="col-12">
-                  <label>What are you most concerned about? (optional)</label>
-                  <input type="text" name="concerns" placeholder="e.g., We just launched a new API, worried about exposed endpoints...">
+                  <label class="field-label">What are you most concerned about? (optional)</label>
+                  <input type="text" name="concerns" placeholder="e.g. we just launched a new API, worried about exposed endpoints">
                 </div>
-                <div class="col-12 mt-3">
-                  <button type="submit" class="btn btn-danger-glow w-100" style="padding: 1rem;">
-                    <i class="fas fa-shield-halved"></i> Request Free Scan
+                <div class="col-12 mt-2">
+                  <button type="submit" class="btn-danger-glow btn-block" style="padding: 1rem;">
+                    <i class="fas fa-shield-halved"></i> Request free scan
                   </button>
-                  <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.75rem; text-align: center;">No credit card required. We only scan domains you own. Results in 48 hours.</p>
+                  <p style="font-size: 0.74rem; color: var(--paper-faint); margin-top: 0.8rem; text-align: center;">No credit card required. We only scan domains you own. Results in 48 hours.</p>
                 </div>
               </div>
             </form>
             <div id="scanSuccess" style="display:none; text-align:center; padding: 2rem 0;">
-              <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-              <h4>Request Received!</h4>
-              <p style="color: var(--text-secondary);">We'll send your security scan report within 48 hours.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="container">
-      <div class="section-label">What We Do</div>
-      <h2 class="section-title">Security Services</h2>
-      <p class="section-desc mb-5">End-to-end offensive security — from automated scanning to manual exploitation, incident response, and source-level code review.</p>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-crosshairs"></i></div>
-            <h5>Penetration Testing</h5>
-            <p>Web, API, mobile, backend, frontend, and cloud penetration testing. Manual exploitation with Burp Suite, custom tooling, and validated PoCs.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-cloud"></i></div>
-            <h5>Cloud & AI Pentesting</h5>
-            <p>AWS, GCP, and Azure security assessments. AI/ML model testing, LLM prompt injection, and cloud infrastructure misconfiguration audits.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-code"></i></div>
-            <h5>Source Code Review</h5>
-            <p>Deep manual review of your codebase. Auth flow mapping, input-to-sink tracing, IDOR detection, and business logic analysis.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-robot"></i></div>
-            <h5>SAST Automation</h5>
-            <p>Custom Semgrep rules tailored to your stack. CI/CD integration that catches vulnerabilities in pull requests before they ship.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row g-4 mt-0">
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-brain"></i></div>
-            <h5>AI-Automated SOC</h5>
-            <p>AI-powered Security Operations Center setup. Automated alert triage, threat correlation, and intelligent incident prioritization for your team.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-fire-extinguisher"></i></div>
-            <h5>DFIR & Incident Response</h5>
-            <p>Digital forensics and incident response. Breach investigation, evidence collection, root cause analysis, and containment strategy.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-magnifying-glass"></i></div>
-            <h5>Threat Hunting & Compromise Assessment</h5>
-            <p>Proactive threat hunting across your environment. Detect active or past compromise, lateral movement, and persistent access.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 fade-up">
-          <div class="service-card">
-            <div class="service-icon-wrap"><i class="fas fa-sliders"></i></div>
-            <h5>Configuration Review</h5>
-            <p>Security configuration audits for servers, cloud resources, firewalls, and network devices against CIS benchmarks and best practices.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SAST / SEMGREP SECTION -->
-  <section id="sast" style="background: var(--bg-card);">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6 fade-up">
-          <div class="section-label">Productized Security</div>
-          <h2 class="section-title">Code Security<br>Automation Packages</h2>
-          <p class="section-desc mb-4">Stop vulnerabilities at the source. We build custom SAST rule sets for your exact stack and integrate them into your CI/CD pipeline — so your team catches security issues in every pull request.</p>
-          <a href="#sast-plans" class="btn btn-accent">See Packages</a>
-        </div>
-        <div class="col-lg-6 fade-up">
-          <div class="sast-feature">
-            <div class="sast-feature-icon"><i class="fas fa-fingerprint"></i></div>
-            <div>
-              <h6>Custom Rules for Your Stack</h6>
-              <p>Not generic rulesets. We write Semgrep rules that match your frameworks, libraries, and coding patterns. Django, Spring, Express, Rails, FastAPI, Go — all covered.</p>
-            </div>
-          </div>
-          <div class="sast-feature">
-            <div class="sast-feature-icon"><i class="fas fa-code-branch"></i></div>
-            <div>
-              <h6>CI/CD Integration</h6>
-              <p>GitHub Actions, GitLab CI, or Bitbucket Pipelines. PR blocking on high/critical findings. Inline comments on vulnerable lines. Zero developer friction.</p>
-            </div>
-          </div>
-          <div class="sast-feature">
-            <div class="sast-feature-icon"><i class="fas fa-filter"></i></div>
-            <div>
-              <h6>Baseline Triage</h6>
-              <p>We don't dump 500 alerts on your team. We triage the initial scan, classify false positives, and hand you a clean starting point with prioritized real findings.</p>
-            </div>
-          </div>
-          <div class="sast-feature">
-            <div class="sast-feature-icon"><i class="fas fa-shield-halved"></i></div>
-            <div>
-              <h6>OWASP Top 10 Coverage</h6>
-              <p>SQLi, XSS, SSRF, IDOR, auth bypass, insecure deserialization, path traversal, and more. Rules mapped to OWASP categories with fix guidance.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLANS -->
-  <section id="plans">
-    <div class="container">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">Engagement Plans</h2>
-      <p class="section-desc mb-5">Choose the engagement model that fits. All plans include validated findings with proof-of-concept and remediation guidance.</p>
-
-      <!-- Pentest Plans -->
-      <h4 class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Penetration Testing</h4>
-      <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card">
-            <div class="plan-name">One-Time Assessment</div>
-            <div class="plan-price">Custom</div>
-            <p class="plan-desc">Scoped engagement for a specific application, network, API, or cloud environment.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Web, API, mobile, backend, frontend, or cloud</li>
-              <li><i class="fas fa-check"></i> AI/ML security & cloud infrastructure testing</li>
-              <li><i class="fas fa-check"></i> Manual + automated testing</li>
-              <li><i class="fas fa-check"></i> Executive summary + technical report</li>
-              <li><i class="fas fa-check"></i> Remediation guidance with code fixes</li>
-              <li><i class="fas fa-check"></i> 30-day retest included</li>
-            </ul>
-            <a href="#contact" class="btn btn-outline-light-custom w-100">Request Quote</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card featured">
-            <span class="popular-tag">Most Popular</span>
-            <div class="plan-name">Monthly Retainer</div>
-            <div class="plan-price">$2,500<span>/mo</span></div>
-            <p class="plan-desc">Continuous security testing and monitoring.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Weekly vulnerability scanning</li>
-              <li><i class="fas fa-check"></i> Monthly manual pentest cycles</li>
-              <li><i class="fas fa-check"></i> New feature security review</li>
-              <li><i class="fas fa-check"></i> Dedicated Slack/Teams channel</li>
-              <li><i class="fas fa-check"></i> Priority response on critical findings</li>
-              <li><i class="fas fa-check"></i> Monthly security posture report</li>
-            </ul>
-            <a href="#contact" class="btn btn-accent w-100">Get Started</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card">
-            <div class="plan-name">Source Code Review</div>
-            <div class="plan-price">$1,500<span>+</span></div>
-            <p class="plan-desc">Deep manual review of your codebase for security flaws.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Auth flow & access control mapping</li>
-              <li><i class="fas fa-check"></i> Input-to-sink tracing</li>
-              <li><i class="fas fa-check"></i> IDOR & business logic analysis</li>
-              <li><i class="fas fa-check"></i> Framework-specific vulnerability patterns</li>
-              <li><i class="fas fa-check"></i> Annotated findings with line references</li>
-            </ul>
-            <a href="#contact" class="btn btn-outline-light-custom w-100">Request Quote</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- SAST Plans -->
-      <h4 id="sast-plans" class="mb-4" style="color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Code Security Automation (Semgrep)</h4>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card">
-            <div class="plan-name">Starter</div>
-            <div class="plan-price">$500</div>
-            <p class="plan-desc">Single repo, single language. Get security guardrails fast.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules for your stack</li>
-              <li><i class="fas fa-check"></i> CI/CD pipeline integration</li>
-              <li><i class="fas fa-check"></i> 30-minute walkthrough call</li>
-              <li><i class="fas fa-check"></i> 3-5 day delivery</li>
-            </ul>
-            <a href="#contact" class="btn btn-outline-light-custom w-100">Get Started</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card featured">
-            <span class="popular-tag">Best Value</span>
-            <div class="plan-name">Professional</div>
-            <div class="plan-price">$1,000</div>
-            <p class="plan-desc">Up to 3 repos, 2 languages. Full OWASP Top 10 coverage.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules</li>
-              <li><i class="fas fa-check"></i> Framework-specific rules</li>
-              <li><i class="fas fa-check"></i> Baseline triage & false positive tuning</li>
-              <li><i class="fas fa-check"></i> Developer documentation & fix guides</li>
-              <li><i class="fas fa-check"></i> 1-hour walkthrough + 2 weeks support</li>
-              <li><i class="fas fa-check"></i> 5-10 day delivery</li>
-            </ul>
-            <a href="#contact" class="btn btn-accent w-100">Get Started</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="plan-card">
-            <div class="plan-name">Enterprise</div>
-            <div class="plan-price">$2,000</div>
-            <p class="plan-desc">Up to 10 repos, any languages. Quarterly updates included.</p>
-            <ul class="plan-features">
-              <li><i class="fas fa-check"></i> Custom + curated Semgrep rules at scale</li>
-              <li><i class="fas fa-check"></i> Rules for internal frameworks & libraries</li>
-              <li><i class="fas fa-check"></i> Multi-repo centralized reporting</li>
-              <li><i class="fas fa-check"></i> Full severity classification</li>
-              <li><i class="fas fa-check"></i> Developer training documentation</li>
-              <li><i class="fas fa-check"></i> Quarterly rule updates (Q1 included)</li>
-              <li><i class="fas fa-check"></i> 2-hour walkthrough + 4 weeks support</li>
-            </ul>
-            <a href="#contact" class="btn btn-outline-light-custom w-100">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" style="background: var(--bg-card);">
-    <div class="container">
-      <div class="section-label">Client Results</div>
-      <h2 class="section-title">What Our Clients Say</h2>
-      <p class="section-desc mb-5">Real results from real engagements. Names anonymized to protect client confidentiality.</p>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="testimonial-card">
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial-text">"GreyCore found 3 critical auth bypass vulnerabilities that our previous vendor missed completely. Their manual testing depth is on another level."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">VP</div>
-              <div>
-                <div class="testimonial-name">VP of Engineering</div>
-                <div class="testimonial-role">Series B Fintech Startup</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="testimonial-card">
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial-text">"The Semgrep package paid for itself in the first week. We caught an IDOR in a PR review that would have exposed customer PII in production."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">CTO</div>
-              <div>
-                <div class="testimonial-name">CTO</div>
-                <div class="testimonial-role">SaaS Platform (50+ engineers)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="testimonial-card">
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial-text">"Fast, thorough, and the reports are actually useful — not generic scanner output. Remediation guidance was specific enough for our devs to fix same-day."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">CISO</div>
-              <div>
-                <div class="testimonial-name">CISO</div>
-                <div class="testimonial-role">Healthcare SaaS Company</div>
-              </div>
+              <i class="fas fa-check-circle" style="font-size: 2.6rem; color: var(--hazard); margin-bottom: 1rem;"></i>
+              <h4>Request received</h4>
+              <p style="color: var(--paper-dim);">We will send your security scan report within 48 hours.</p>
             </div>
           </div>
         </div>
@@ -1077,249 +834,274 @@
   </section>
 
   <!-- PROCESS -->
-  <section id="process">
-    <div class="container">
-      <div class="row g-5">
-        <div class="col-lg-5 fade-up">
-          <div class="section-label">How We Work</div>
-          <h2 class="section-title">Our Process</h2>
-          <p class="section-desc">Every engagement follows a structured methodology. No black boxes — you get full visibility into what we're testing and what we find.</p>
+  <section id="process" class="panel">
+    <div class="wrap">
+      <div class="scan-grid">
+        <div class="reveal">
+          <div class="kicker"><b>05</b> METHODOLOGY</div>
+          <h2 class="sect-title">Our process.</h2>
+          <p class="sect-desc">Every engagement follows a structured methodology. No black boxes: you get full visibility into what we test and what we find.</p>
         </div>
-        <div class="col-lg-7 fade-up">
-          <div class="process-step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h5>Scope & Reconnaissance</h5>
-              <p>Define targets, constraints, and rules of engagement. Automated asset discovery, subdomain enumeration, and technology fingerprinting.</p>
-            </div>
+        <div class="reveal">
+          <div class="proc">
+            <span class="proc-n">01</span>
+            <div><h5>Scope &amp; reconnaissance</h5><p>Define targets, constraints, and rules of engagement. Automated asset discovery, subdomain enumeration, and technology fingerprinting.</p></div>
           </div>
-          <div class="process-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h5>Enumeration & Scanning</h5>
-              <p>Deep enumeration of live services, endpoints, and attack surface. Automated vulnerability scanning with Nessus, Acunetix, and custom nuclei templates.</p>
-            </div>
+          <div class="proc">
+            <span class="proc-n">02</span>
+            <div><h5>Enumeration &amp; scanning</h5><p>Deep enumeration of live services, endpoints, and attack surface. Automated scanning with Nessus, Acunetix, and custom nuclei templates.</p></div>
           </div>
-          <div class="process-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h5>Manual Testing & Exploitation</h5>
-              <p>Manual testing for business logic flaws, auth bypass, IDORs, and chained vulnerabilities that scanners miss. Proof-of-concept for every finding.</p>
-            </div>
+          <div class="proc">
+            <span class="proc-n">03</span>
+            <div><h5>Manual testing &amp; exploitation</h5><p>Manual testing for business logic flaws, auth bypass, IDORs, and chained vulnerabilities scanners miss. Proof-of-concept for every finding.</p></div>
           </div>
-          <div class="process-step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h5>Reporting & Remediation</h5>
-              <p>Executive summary for leadership. Technical report with CVSS scores, reproduction steps, and code-level fix recommendations for your engineering team.</p>
-            </div>
+          <div class="proc">
+            <span class="proc-n">04</span>
+            <div><h5>Reporting &amp; remediation</h5><p>Executive summary for leadership. Technical report with CVSS scores, reproduction steps, and code-level fix recommendations for engineering.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OUR HACKERS -->
-  <section id="hackers" style="background: var(--bg-card);">
-    <div class="container text-center">
-      <div class="section-label">Our Team</div>
-      <h2 class="section-title mb-3">Top-Ranked Bug Bounty Hackers</h2>
-      <p class="section-desc mx-auto mb-5">Our hackers are ranked on the world's top bug bounty platforms — finding real vulnerabilities in production systems every day.</p>
-      <div class="platform-row mb-5">
-        <div class="platform-badge"><i class="fas fa-bug"></i> HackerOne</div>
-        <div class="platform-badge"><i class="fas fa-bug"></i> Bugcrowd</div>
-        <div class="platform-badge"><i class="fas fa-shield-halved"></i> Synack Red Team</div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">Certified by OffSec, INE, and industry-recognized security bodies:</p>
-          <div class="row g-3 justify-content-center">
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSWE</span></div>
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSCP</span></div>
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">OSWP</span></div>
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">EWPTX</span></div>
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">EWPT</span></div>
-            <div class="col-auto"><span class="cert-badge" style="font-size: 0.85rem; padding: 0.5rem 1rem;">VHL Advanced+</span></div>
-          </div>
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>06</b> CLIENT RESULTS</div>
+          <h2 class="sect-title">What clients say.</h2>
         </div>
+        <p class="sect-desc">Real results from real engagements. Names anonymized to protect client confidentiality.</p>
+      </div>
+      <div class="quotes reveal">
+        <div class="quote">
+          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>GreyCore found 3 critical auth bypass vulnerabilities our previous vendor missed completely. Their manual testing depth is on another level.</p>
+          <div class="q-author"><div class="q-mark">VP</div><div><div class="q-name">VP of Engineering</div><div class="q-role">Series B Fintech</div></div></div>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>The Semgrep package paid for itself in the first week. We caught an IDOR in a PR review that would have exposed customer PII in production.</p>
+          <div class="q-author"><div class="q-mark">CTO</div><div><div class="q-name">CTO</div><div class="q-role">SaaS Platform, 50+ engineers</div></div></div>
+        </div>
+        <div class="quote">
+          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>Fast, thorough, and the reports are actually useful, not generic scanner output. Remediation guidance was specific enough for our devs to fix same-day.</p>
+          <div class="q-author"><div class="q-mark">CSO</div><div><div class="q-name">CISO</div><div class="q-role">Healthcare SaaS</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HACKERS -->
+  <section id="hackers" class="panel">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>07</b> THE TEAM</div>
+          <h2 class="sect-title">Top-ranked bug<br>bounty hackers.</h2>
+        </div>
+        <p class="sect-desc">Our hackers are ranked on the world's top bug bounty platforms, finding real vulnerabilities in production systems every day.</p>
+      </div>
+      <div class="platforms reveal" style="margin-bottom: 2.2rem;">
+        <div class="platform"><i class="fas fa-bug"></i> HackerOne</div>
+        <div class="platform"><i class="fas fa-bug"></i> Bugcrowd</div>
+        <div class="platform"><i class="fas fa-shield-halved"></i> Synack Red Team</div>
+      </div>
+      <p class="mono reveal" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.06em; margin-bottom: 1rem;">CERTIFIED BY OFFSEC, INE, AND INDUSTRY-RECOGNIZED BODIES</p>
+      <div class="hero-certs reveal">
+        <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
+        <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
   <section id="faq">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="section-label text-center">Common Questions</div>
-          <h2 class="section-title text-center mb-5">FAQ</h2>
-          <div class="faq-item active">
-            <div class="faq-question">How long does a typical pentest take?<i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Most web application assessments take 5-10 business days depending on scope. We provide preliminary findings within the first 48 hours so your team can start fixing critical issues immediately.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">What's included in the free security scan?<i class="fas fa-plus"></i></div>
-            <div class="faq-answer">We run automated reconnaissance against your domain — subdomain enumeration, technology fingerprinting, known CVE detection, and misconfiguration checks. You receive a 1-page PDF report with findings and severity ratings. No obligation to purchase anything.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Do you sign NDAs?<i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Yes. We're a US-incorporated entity and sign NDAs before every engagement. We also support MSAs, SOC 2 compliance reporting, and can work within your legal team's preferred framework.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">What makes your Semgrep packages different from running stock rules?<i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Stock Semgrep rules generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase — your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Can you test our API / mobile app / cloud infra?<i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Yes to all. We test REST APIs, GraphQL, mobile apps (iOS/Android), cloud infrastructure (AWS/GCP/Azure), and internal networks. Our certifications (OSWE, OSCP) cover web, network, and application-layer security.</div>
-          </div>
+    <div class="wrap" style="max-width: 820px;">
+      <div class="sect-head reveal" style="text-align: center; align-items: center;">
+        <div class="kicker" style="justify-content: center;"><b>08</b> FAQ</div>
+        <h2 class="sect-title">Common questions.</h2>
+      </div>
+      <div class="faq reveal">
+        <div class="faq-item active">
+          <div class="faq-q">How long does a typical pentest take?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Most web application assessments take 5-10 business days depending on scope. We provide preliminary findings within the first 48 hours so your team can start fixing critical issues immediately.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is included in the free security scan?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>We run automated reconnaissance against your domain: subdomain enumeration, technology fingerprinting, known CVE detection, and misconfiguration checks. You receive a one-page PDF report with findings and severity ratings. No obligation to purchase anything.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you sign NDAs?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Yes. We are a US-incorporated entity and sign NDAs before every engagement. We also support MSAs, SOC 2 compliance reporting, and can work within your legal team's preferred framework.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What makes your Semgrep packages different from stock rules?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Stock Semgrep rules generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase: your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can you test our API, mobile app, or cloud infra?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Yes to all. We test REST APIs, GraphQL, mobile apps (iOS/Android), cloud infrastructure (AWS/GCP/Azure), and internal networks. Our certifications (OSWE, OSCP) cover web, network, and application-layer security.</p></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BLOG / INSIGHTS -->
-  <section id="blog" style="background: var(--bg-card);">
-    <div class="container">
-      <div class="section-label">Insights</div>
-      <h2 class="section-title">Security Research</h2>
-      <p class="section-desc mb-5">Technical deep dives on vulnerabilities, tooling, and offensive security methodology.</p>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="blog-card">
-            <div class="blog-card-body">
-              <div class="blog-tag">Web Security</div>
-              <h5>5 IDOR Patterns That Bypass Modern Frameworks</h5>
-              <p>Most frameworks handle SQLi and XSS. But IDOR? That's still on your developers. Here are the patterns we see in nearly every engagement.</p>
-              <div class="blog-meta">Coming soon</div>
-            </div>
-          </div>
+  <!-- BLOG -->
+  <section id="blog" class="panel">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>09</b> INSIGHTS</div>
+          <h2 class="sect-title">Security research.</h2>
         </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="blog-card">
-            <div class="blog-card-body">
-              <div class="blog-tag">SAST</div>
-              <h5>Why Your Semgrep Rules Are Missing Real Bugs</h5>
-              <p>Generic SAST rulesets find generic bugs. Here's how custom rules tuned to your stack catch what automated scanners can't.</p>
-              <div class="blog-meta">Coming soon</div>
-            </div>
-          </div>
+        <p class="sect-desc">Technical deep dives on vulnerabilities, tooling, and offensive security methodology.</p>
+      </div>
+      <div class="posts reveal">
+        <div class="post">
+          <div class="post-tag">Web Security</div>
+          <h5>5 IDOR patterns that bypass modern frameworks</h5>
+          <p>Most frameworks handle SQLi and XSS. But IDOR? That is still on your developers. Here are the patterns we see in nearly every engagement.</p>
+          <div class="post-meta">// COMING SOON</div>
         </div>
-        <div class="col-md-6 col-lg-4 fade-up">
-          <div class="blog-card">
-            <div class="blog-card-body">
-              <div class="blog-tag">Auth Security</div>
-              <h5>The Auth Bypass Checklist: 15 Tests Every App Needs</h5>
-              <p>From JWT none-algorithm to OAuth redirect manipulation — the authentication tests that should be in every pentest scope.</p>
-              <div class="blog-meta">Coming soon</div>
-            </div>
-          </div>
+        <div class="post">
+          <div class="post-tag">SAST</div>
+          <h5>Why your Semgrep rules are missing real bugs</h5>
+          <p>Generic SAST rulesets find generic bugs. Here is how custom rules tuned to your stack catch what automated scanners cannot.</p>
+          <div class="post-meta">// COMING SOON</div>
+        </div>
+        <div class="post">
+          <div class="post-tag">Auth Security</div>
+          <h5>The auth bypass checklist: 15 tests every app needs</h5>
+          <p>From JWT none-algorithm to OAuth redirect manipulation, the authentication tests that should be in every pentest scope.</p>
+          <div class="post-meta">// COMING SOON</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 text-center fade-up">
-          <div class="section-label">Get Started</div>
-          <h2 class="section-title mb-3">Ready to Secure Your Stack?</h2>
-          <p class="section-desc mx-auto mb-4">Tell us about your application, infrastructure, or codebase. We'll scope the engagement and get back to you within 24 hours.</p>
-          <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-            <a href="mailto:contact@greycorelabs.com" class="btn btn-accent btn-lg">
-              <i class="fas fa-envelope"></i> contact@greycorelabs.com
-            </a>
-            <a href="#free-scan" class="btn btn-danger-glow btn-lg">
-              <i class="fas fa-search"></i> Free Scan Instead
-            </a>
-          </div>
-          <p style="color: var(--text-secondary); font-size: 0.85rem;">US-incorporated entity. NDAs and MSAs available. SOC 2 and compliance-friendly reporting.</p>
+  <section id="contact" style="overflow: hidden;">
+    <div class="crest-wm" aria-hidden="true">GC</div>
+    <div class="wrap" style="max-width: 760px; position: relative; z-index: 1;">
+      <div class="reveal">
+        <div class="kicker" style="justify-content: center;"><b>10</b> GET STARTED</div>
+        <h2 class="sect-title">Ready to secure your stack?</h2>
+        <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. We scope the engagement and get back to you within 24 hours.</p>
+        <div class="contact-actions">
+          <a href="mailto:contact@greycorelabs.com" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
+          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-radar"></i> Free scan instead</a>
         </div>
+        <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-INCORPORATED ENTITY &middot; NDAS &amp; MSAS AVAILABLE &middot; SOC 2 &amp; COMPLIANCE-FRIENDLY REPORTING</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <p style="font-weight: 600;">Grey<span style="color: var(--accent);">Core</span> Labs</p>
-          <p>US-incorporated offensive security firm.</p>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="brand"><span class="mark"></span></span>Grey<b>Core</b> Labs</div>
+          <p>US-incorporated offensive security firm. We find the flaw before the breach.</p>
         </div>
-        <div class="col-md-4">
-          <div class="footer-links justify-content-md-center">
+        <div>
+          <div class="foot-col-h">Navigate</div>
+          <div class="foot-links">
             <a href="#services">Services</a>
             <a href="#plans">Pricing</a>
             <a href="#free-scan">Free Scan</a>
             <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
           </div>
         </div>
-        <div class="col-md-4 text-md-end mt-3 mt-md-0">
-          <p>&copy; 2026 GreyCore Labs. All rights reserved.</p>
+        <div>
+          <div class="foot-col-h">Contact</div>
+          <div class="foot-links">
+            <a href="mailto:contact@greycorelabs.com">contact@greycorelabs.com</a>
+            <a href="#contact">Request a scope</a>
+            <a href="#process">Our process</a>
+          </div>
         </div>
+      </div>
+      <div class="foot-bottom">
+        <p>&copy; 2026 GreyCore Labs. All rights reserved.</p>
+        <p class="mono">Owned by Ahmed Bahgat &amp; Moamen Basel &middot; Incorporated in Wyoming, USA</p>
       </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Smooth scroll for nav links
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Smooth scroll + close mobile nav
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
+          e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          const nav = document.getElementById('navMenu');
-          if (nav.classList.contains('show')) {
-            bootstrap.Collapse.getInstance(nav)?.hide();
-          }
+          navLinks.classList.remove('open');
         }
       });
     });
 
-    // Navbar background on scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border)' : 'transparent';
-    });
+    // Nav scrolled state
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Animated counter
+    // Animated counters
+    let countersDone = false;
     function animateCounters() {
-      document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-        const target = parseInt(el.dataset.target);
-        const duration = 2000;
+      if (countersDone) return; countersDone = true;
+      document.querySelectorAll('[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '+';
+        const duration = 1800;
         const start = performance.now();
         const tick = (now) => {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.floor(target * eased) + (el.dataset.suffix || '+');
-          if (progress < 1) requestAnimationFrame(tick);
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.floor(target * eased) + (p === 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
       });
     }
 
-    // Scroll reveal + counter trigger
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          if (entry.target.closest('#stats')) {
-            animateCounters();
-          }
-        }
+    // Scroll reveal (staggered) + counter trigger
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('in');
+          if (entry.target.id === 'stats' || entry.target.closest('#stats')) animateCounters();
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach((el, i) => {
+        el.style.transitionDelay = ((i % 4) * 0.07) + 's';
+        io.observe(el);
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      const statsEl = document.getElementById('stats');
+      if (statsEl) io.observe(statsEl);
+    } else {
+      animateCounters();
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
 
     // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(q => {
+    document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.parentElement;
         const wasActive = item.classList.contains('active');
@@ -1328,36 +1110,28 @@
       });
     });
 
-    // Form submission handler
+    // Free scan form submit
     const scanForm = document.getElementById('scanForm');
     if (scanForm) {
       scanForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = scanForm.querySelector('button[type="submit"]');
-        const origText = btn.innerHTML;
+        const orig = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
         btn.disabled = true;
+        const data = new FormData(scanForm);
+        const mailto = () => {
+          const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
+          window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
+        };
         try {
-          const resp = await fetch(scanForm.action, {
-            method: 'POST',
-            body: new FormData(scanForm),
-            headers: { 'Accept': 'application/json' }
-          });
+          const resp = await fetch(scanForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
           if (resp.ok) {
             scanForm.style.display = 'none';
             document.getElementById('scanSuccess').style.display = 'block';
-          } else {
-            // Fallback: open mailto
-            const data = new FormData(scanForm);
-            const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
-            window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
-          }
-        } catch {
-          const data = new FormData(scanForm);
-          const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
-          window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
-        }
-        btn.innerHTML = origText;
+          } else { mailto(); }
+        } catch { mailto(); }
+        btn.innerHTML = orig;
         btn.disabled = false;
       });
     }
