@@ -278,6 +278,73 @@
     @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; } }
 
+    /* ---------- COMPLIANCE SLIDER ---------- */
+    .cc-cap { text-align: center; color: var(--paper-faint); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.2em; margin: 0 0 1.5rem; }
+    .cslide { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, oklch(0 0 0 / 1) 9%, oklch(0 0 0 / 1) 91%, transparent); mask-image: linear-gradient(90deg, transparent, oklch(0 0 0 / 1) 9%, oklch(0 0 0 / 1) 91%, transparent); }
+    .cslide-track { display: flex; gap: 0.8rem; width: max-content; animation: scrollx 52s linear infinite; }
+    .cslide:hover .cslide-track { animation-play-state: paused; }
+    .cc { display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap;
+      border: 1px solid var(--line); background: var(--ink-2); border-radius: 11px; padding: 0.6rem 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.01em;
+      color: var(--paper-dim); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .cc:hover { border-color: var(--hazard-line); color: var(--paper); background: var(--ink-3); }
+    .cc svg { width: 22px; height: 22px; flex-shrink: 0; display: block; color: var(--hazard); }
+    @media (prefers-reduced-motion: reduce) { .cslide-track { animation: none; flex-wrap: wrap; justify-content: center; } }
+
+    /* ---------- ABOUT / WHO WE ARE ---------- */
+    .about-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 2.6rem; align-items: start; }
+    @media (max-width: 920px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .founder { border: 1px solid var(--line); border-radius: 16px; background: var(--ink); padding: 1.9rem; }
+    .founder-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.3rem; }
+    .founder-av { width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--hazard-line);
+      background: var(--ink-3); display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--hazard); font-size: 1.15rem; flex-shrink: 0; }
+    .founder-name { font-size: 1.18rem; font-weight: 800; letter-spacing: -0.02em; }
+    .founder-role { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--hazard);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.15rem; }
+    .founder p { color: var(--paper-dim); font-size: 0.93rem; line-height: 1.62; margin: 0 0 1.3rem; }
+    .founder-certs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.4rem; }
+    .founder-soc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .founder-soc a { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--line);
+      border-radius: 8px; padding: 0.5rem 0.9rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      color: var(--paper-dim); transition: border-color 0.2s, color 0.2s; }
+    .founder-soc a:hover { border-color: var(--hazard); color: var(--hazard); }
+    .roster-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--paper-faint); margin: 0 0 1.1rem; display: flex; align-items: center; gap: 0.8rem; }
+    .roster-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .roster-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .rc { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--paper-dim);
+      border: 1px solid var(--line); background: var(--ink-2); border-radius: 8px; padding: 0.38rem 0.72rem;
+      transition: border-color 0.2s, color 0.2s; }
+    .rc:hover { border-color: var(--hazard-line); color: var(--paper); }
+    .rc.more { color: var(--hazard); border-color: var(--hazard-line); }
+
+    /* ---------- OPEN SOURCE / REPOS ---------- */
+    .repo-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(256px, 1fr)); }
+    .repo { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 14px;
+      background: var(--ink); padding: 1.5rem; transition: border-color 0.25s, transform 0.25s; }
+    .repo:hover { border-color: var(--hazard); transform: translateY(-3px); }
+    .repo-top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 1rem; }
+    .repo-gh { font-size: 1.25rem; color: var(--paper); }
+    .repo-metric { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--paper-dim);
+      display: inline-flex; align-items: center; gap: 0.35rem; }
+    .repo-metric i { color: var(--hazard); }
+    .repo h5 { font-size: 1.08rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 0.45rem; }
+    .repo p { color: var(--paper-dim); font-size: 0.85rem; line-height: 1.5; margin: 0 0 1.25rem; flex: 1; }
+    .repo-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--paper-faint);
+      border-top: 1px solid var(--line); padding-top: 0.9rem; }
+    .repo-lang { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
+    .lang-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .lang-js { background: #d6c95a; } .lang-py { background: #4b8bbe; }
+    .repo-foot a { color: var(--paper-faint); display: inline-flex; align-items: center; gap: 0.35rem; }
+    .repo-foot a:hover { color: var(--hazard); }
+    .repo-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--hazard); border: 1px solid var(--hazard-line); border-radius: 5px;
+      padding: 0.18rem 0.45rem; white-space: nowrap; }
+    .repo-badge:hover { background: var(--hazard-dim); }
+
     /* ---------- SPEC STRIP (stats) ---------- */
     #stats { padding: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
       background: var(--ink-2); }
@@ -472,6 +539,45 @@
       .redact::after { display: none; }
       * { scroll-behavior: auto; }
     }
+
+    /* ---------- workflow polish pass ---------- */
+    .btn-h:focus-visible, .btn-ghost:focus-visible, .btn-danger-glow:focus-visible,
+    .nav-links a:focus-visible, .nav-cta:focus-visible, .faq-q:focus-visible {
+      outline: none; box-shadow: 0 0 0 3px var(--hazard-dim); border-radius: 9px; }
+    .faq-q { outline: none; }
+    body { font-feature-settings: 'zero' 1; }
+    .mono, .kicker, .plan-price, .plan-price span, .spec-num, .spec-label, .chip, .cap-idx,
+    .feat-n, .proc-n, .post-meta, .q-role, .cc, .field-label, .repo-metric, .repo-foot {
+      font-variant-numeric: tabular-nums slashed-zero; }
+    .spec-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em;
+      color: var(--paper-faint); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .spec-idx::before { content: ''; width: 5px; height: 5px; background: var(--hazard); border-radius: 1px; }
+    .btn-h { position: relative; overflow: hidden; }
+    .btn-h > *, .btn-h i { position: relative; z-index: 1; }
+    .btn-h::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 45%;
+      background: linear-gradient(100deg, transparent, oklch(0.98 0.02 172 / 0.45), transparent);
+      transform: translateX(-180%); pointer-events: none; z-index: 0; }
+    .title-em { font-family: var(--display); font-style: italic; font-weight: 800; color: var(--paper); letter-spacing: -0.04em; }
+    #services .sect-title, #plans .sect-title { font-size: clamp(2.2rem, 4.1vw, 3.4rem); }
+    .spec-cell { position: relative; }
+    .spec-num { position: relative; display: inline-block; padding-bottom: 0.35rem; }
+    .spec-num::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+      background: var(--hazard); transform: scaleX(0); transform-origin: left; }
+    .plan-feats li { border-top: 1px dotted var(--line-2); }
+    .plan-feats li:first-child { border-top: 0; }
+    .feat { border-top: 1px dotted var(--line-2); }
+    .feat:first-child { border-top: 1px solid var(--line); }
+    .feat:last-child { border-bottom: 1px solid var(--line); }
+    @media (prefers-reduced-motion: no-preference) {
+      .stagger > *:nth-child(6) { animation-delay: 0.6s; }
+      .btn-h:hover::before { transition: transform 0.7s var(--ease); transform: translateX(320%); }
+      .float-card { animation: floatin 1s var(--ease) forwards, drift 7s var(--ease) infinite; }
+      @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+      .fc-1 { animation-delay: 0.7s, 1.9s; } .fc-2 { animation-delay: 0.95s, 2.6s; }
+      .fc-3 { animation-delay: 1.15s, 2.2s; } .fc-4 { animation-delay: 1.35s, 3.0s; }
+      #stats.in .spec-num::after { transition: transform 1.6s var(--ease) 0.2s; transform: scaleX(1); }
+    }
+    @media (prefers-reduced-motion: reduce) { .spec-num::after { transform: scaleX(1); } }
   </style>
   <script type="application/ld+json">
   {
@@ -507,11 +613,11 @@
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
       <div class="nav-links" id="navLinks">
         <a href="#services">Services</a>
-        <a href="#sast">Code Security</a>
+        <a href="#work">Work</a>
         <a href="#plans">Pricing</a>
-        <a href="#process">Process</a>
-        <a href="#testimonials">Clients</a>
-        <a href="#free-scan" class="nav-cta">Free Scan</a>
+        <a href="#about">About</a>
+        <a href="#free-scan">Free Scan</a>
+        <a href="#contact" class="nav-cta">Request a scope</a>
       </div>
     </div>
   </nav>
@@ -534,11 +640,12 @@
         <div class="hero-tag" style="justify-content: center;"><span class="dot"></span> OFFENSIVE SECURITY FIRM &middot; INCORPORATED IN WYOMING, USA</div>
         <h1 class="display">We find the flaw<br>before the <span class="hot">breach</span><span class="dim">.</span></h1>
         <p class="lead" style="margin-left: auto; margin-right: auto;">Penetration testing, source-code review, and SAST automation for engineering teams that ship fast. Every finding is manually validated with a working proof-of-concept, not scanner noise.</p>
-        <div class="hero-actions" style="justify-content: center;">
+        <div class="hero-actions" style="justify-content: center; align-items: center;">
           <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Request a scope</a>
-          <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free external scan</a>
-          <a href="#plans" class="btn-ghost">View pricing</a>
+          <a href="#free-scan" class="btn-ghost"><i class="fas fa-satellite-dish"></i> Free external scan</a>
+          <a href="#plans" class="mono" style="color: var(--paper-dim); font-size: 0.8rem; letter-spacing: 0.02em; padding: 0.85rem 0.4rem;">View pricing &rarr;</a>
         </div>
+        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; SCOPED REPLY IN 24H &middot; NO SALES CALL REQUIRED</div>
         <div class="hero-certs" style="justify-content: center;">
           <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
           <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
@@ -577,10 +684,10 @@
   <!-- SPEC STRIP -->
   <section id="stats">
     <div class="spec-row">
-      <div class="spec-cell"><div class="spec-num" data-target="500">0</div><div class="spec-label">Vulnerabilities found</div></div>
-      <div class="spec-cell"><div class="spec-num" data-target="40">0</div><div class="spec-label">Engagements completed</div></div>
-      <div class="spec-cell"><div class="spec-num" data-target="6">0</div><div class="spec-label">OffSec certifications</div></div>
-      <div class="spec-cell"><div class="spec-num"><span data-target="24" data-suffix="">0</span><span class="u">h</span></div><div class="spec-label">Response time</div></div>
+      <div class="spec-cell"><div class="spec-idx">001 // FINDINGS</div><div class="spec-num" data-target="500">0</div><div class="spec-label">Vulnerabilities found</div></div>
+      <div class="spec-cell"><div class="spec-idx">002 // DELIVERED</div><div class="spec-num" data-target="40">0</div><div class="spec-label">Engagements completed</div></div>
+      <div class="spec-cell"><div class="spec-idx">003 // OFFSEC</div><div class="spec-num" data-target="6">0</div><div class="spec-label">OffSec certifications</div></div>
+      <div class="spec-cell"><div class="spec-idx">004 // SLA</div><div class="spec-num"><span data-target="24" data-suffix="">0</span><span class="u">h</span></div><div class="spec-label">Response time</div></div>
     </div>
   </section>
 
@@ -590,7 +697,7 @@
       <div class="sect-head split reveal">
         <div>
           <div class="kicker"><b>01</b> CAPABILITIES</div>
-          <h2 class="sect-title">Offensive security,<br>end to end.</h2>
+          <h2 class="sect-title">Offensive security,<br><span class="title-em">end to end.</span></h2>
         </div>
         <p class="sect-desc">From automated reconnaissance to manual exploitation, incident response, and source-level review. One firm across your entire attack surface.</p>
       </div>
@@ -676,7 +783,7 @@
     <div class="wrap">
       <div class="sect-head reveal">
         <div class="kicker"><b>03</b> PRICING</div>
-        <h2 class="sect-title">Engagement plans.</h2>
+        <h2 class="sect-title"><span class="title-em">Engagement</span> plans.</h2>
         <p class="sect-desc">Every plan ships validated findings with proof-of-concept and remediation guidance. Pentests are priced per man-day; scoping is done per request.</p>
       </div>
 
@@ -901,12 +1008,50 @@
     </div>
   </section>
 
-  <!-- HACKERS -->
-  <section id="hackers" class="panel">
+  <!-- ABOUT -->
+  <section id="about" class="panel">
     <div class="wrap">
       <div class="sect-head split reveal">
         <div>
-          <div class="kicker"><b>07</b> THE TEAM</div>
+          <div class="kicker"><b>07</b> WHO WE ARE</div>
+          <h2 class="sect-title">Operators,<br>not r&eacute;sum&eacute; padders.</h2>
+        </div>
+        <p class="sect-desc">GreyCore Labs is a US-incorporated offensive security firm founded by Ahmed Bahgat and Moamen Basel. We have spent a decade breaking production systems for some of the largest companies on the internet, and we bring that same adversary mindset to every engagement.</p>
+      </div>
+      <div class="about-grid reveal">
+        <div class="founder">
+          <div class="founder-top">
+            <div class="founder-av">MB</div>
+            <div>
+              <div class="founder-name">Moamen Basel</div>
+              <div class="founder-role">Co-founder &middot; Offensive Security</div>
+            </div>
+          </div>
+          <p>Moamen has worked both sides of security since 2014, from defensive engineering to offensive testing across web, host, and mobile. He holds the OSWE, OSCP, OSWP, and EWPTX certifications and has reported vulnerabilities to dozens of major companies through their bug bounty programs.</p>
+          <div class="founder-certs">
+            <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span><span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">CRTO</span>
+          </div>
+          <div class="founder-soc">
+            <a href="https://linkedin.com/in/momenbasel" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/momenbasel" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+        <div class="roster">
+          <p class="roster-label">Responsibly disclosed vulnerabilities to</p>
+          <div class="roster-cloud">
+            <span class="rc">Facebook</span><span class="rc">Google</span><span class="rc">Apple</span><span class="rc">Microsoft</span><span class="rc">Twitter</span><span class="rc">Adobe</span><span class="rc">Sony</span><span class="rc">PayPal</span><span class="rc">Netflix</span><span class="rc">Coinbase</span><span class="rc">LinkedIn</span><span class="rc">Dropbox</span><span class="rc">Snapchat</span><span class="rc">Yahoo</span><span class="rc">GitHub</span><span class="rc">Twitch</span><span class="rc">Vimeo</span><span class="rc">Tumblr</span><span class="rc">SoundCloud</span><span class="rc">WordPress</span><span class="rc">AT&amp;T</span><span class="rc">United</span><span class="rc">DuckDuckGo</span><span class="rc">Zendesk</span><span class="rc">ESET</span><span class="rc">99designs</span><span class="rc">Mediafire</span><span class="rc">Freelancer</span><span class="rc">Bugcrowd</span><span class="rc">HackerOne</span><span class="rc more">+ more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HACKERS -->
+  <section id="hackers">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>08</b> THE TEAM</div>
           <h2 class="sect-title">Top-ranked bug<br>bounty hackers.</h2>
         </div>
         <p class="sect-desc">Our hackers are ranked on the world's top bug bounty platforms, finding real vulnerabilities in production systems every day.</p>
@@ -924,32 +1069,71 @@
     </div>
   </section>
 
+  <!-- OPEN SOURCE -->
+  <section id="work" class="panel">
+    <div class="wrap">
+      <div class="sect-head split reveal">
+        <div>
+          <div class="kicker"><b>09</b> OPEN SOURCE</div>
+          <h2 class="sect-title">Tools we build<br>in the open.</h2>
+        </div>
+        <p class="sect-desc">We ship the tooling we use on engagements. Battle-tested, used by thousands of engineers, free and open source.</p>
+      </div>
+      <div class="repo-grid reveal">
+        <div class="repo">
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> 673</span></div>
+          <h5>keyFinder</h5>
+          <p>Passive API key and secret discovery browser extension for Chrome and Firefox. 80+ detection patterns, zero config, Manifest V3.</p>
+          <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-js"></span> JavaScript</span><a href="https://github.com/momenbasel/keyFinder" target="_blank" rel="noopener">momenbasel/keyFinder <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+        </div>
+        <div class="repo">
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><a class="repo-badge" href="https://x.com/Dinosn/status/2042655694592037163" target="_blank" rel="noopener">Featured on X</a><span class="repo-metric"><i class="fas fa-star"></i> 61</span></div>
+          <h5>VulnHawk</h5>
+          <p>AI-powered SAST scanner that finds auth bypass, IDOR, and logic bugs Semgrep and CodeQL miss. Framework-aware, SARIF, GitHub Action.</p>
+          <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-py"></span> Python</span><a href="https://github.com/momenbasel/vulnhawk" target="_blank" rel="noopener">momenbasel/vulnhawk <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+        </div>
+        <div class="repo">
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-layer-group"></i> 500+ writeups</span></div>
+          <h5>HTB Writeups</h5>
+          <p>The most comprehensive collection of Hack The Box writeups, walkthroughs, and cheatsheets on GitHub. 500+ machines, interactive browser.</p>
+          <div class="repo-foot"><span class="repo-lang"><span class="lang-dot" style="background: var(--hazard);"></span> Live site</span><a href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener">htb-writeups <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+        </div>
+        <div class="repo">
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> 5</span></div>
+          <h5>AgentGuard</h5>
+          <p>AI agent supply-chain security. Intercepts and validates every package install, git clone, and script download an AI coding agent triggers, before it runs.</p>
+          <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-py"></span> Python</span><a href="https://github.com/momenbasel/AgentGuard" target="_blank" rel="noopener">momenbasel/AgentGuard <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="faq">
     <div class="wrap" style="max-width: 820px;">
       <div class="sect-head reveal" style="text-align: center; align-items: center;">
-        <div class="kicker" style="justify-content: center;"><b>08</b> FAQ</div>
+        <div class="kicker" style="justify-content: center;"><b>10</b> FAQ</div>
         <h2 class="sect-title">Common questions.</h2>
       </div>
       <div class="faq reveal">
         <div class="faq-item active">
-          <div class="faq-q">How long does a typical pentest take?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-q" role="button" tabindex="0">How long does a typical pentest take?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>Most web application assessments take 5-10 business days depending on scope. We provide preliminary findings within the first 48 hours so your team can start fixing critical issues immediately.</p></div></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What is included in the free security scan?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-q" role="button" tabindex="0">What is included in the free security scan?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>We run automated reconnaissance against your domain: subdomain enumeration, technology fingerprinting, known CVE detection, and misconfiguration checks. You receive a one-page PDF report with findings and severity ratings. No obligation to purchase anything.</p></div></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Do you sign NDAs?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-q" role="button" tabindex="0">Do you sign NDAs?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>Yes. We are a US-incorporated entity and sign NDAs before every engagement. We also support MSAs, SOC 2 compliance reporting, and can work within your legal team's preferred framework.</p></div></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What makes your Semgrep packages different from stock rules?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-q" role="button" tabindex="0">What makes your Semgrep packages different from stock rules?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>Stock Semgrep rules generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase: your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</p></div></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Can you test our API, mobile app, or cloud infra?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-q" role="button" tabindex="0">Can you test our API, mobile app, or cloud infra?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>Yes to all. We test REST APIs, GraphQL, mobile apps (iOS/Android), cloud infrastructure (AWS/GCP/Azure), and internal networks. Our certifications (OSWE, OSCP) cover web, network, and application-layer security.</p></div></div>
         </div>
       </div>
@@ -961,7 +1145,7 @@
     <div class="wrap">
       <div class="sect-head split reveal">
         <div>
-          <div class="kicker"><b>09</b> INSIGHTS</div>
+          <div class="kicker"><b>11</b> INSIGHTS</div>
           <h2 class="sect-title">Security research.</h2>
         </div>
         <p class="sect-desc">Technical deep dives on vulnerabilities, tooling, and offensive security methodology.</p>
@@ -994,14 +1178,20 @@
     <div class="crest-wm" aria-hidden="true">GC</div>
     <div class="wrap" style="max-width: 760px; position: relative; z-index: 1;">
       <div class="reveal">
-        <div class="kicker" style="justify-content: center;"><b>10</b> GET STARTED</div>
+        <div class="kicker" style="justify-content: center;"><b>12</b> GET STARTED</div>
         <h2 class="sect-title">Ready to secure your stack?</h2>
         <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. We scope the engagement and get back to you within 24 hours.</p>
         <div class="contact-actions">
           <a href="mailto:contact@greycorelabs.com" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
           <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free scan instead</a>
         </div>
-        <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-INCORPORATED ENTITY &middot; NDAS &amp; MSAS AVAILABLE &middot; SOC 2 &amp; COMPLIANCE-FRIENDLY REPORTING</p>
+        <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-incorporated entity. NDAs and MSAs signed before every engagement.</p>
+      </div>
+    </div>
+    <div class="wrap" style="position: relative; z-index: 1; margin-top: 2.8rem;">
+      <p class="cc-cap">TRUSTED &amp; COMPLIANCE-ALIGNED</p>
+      <div class="cslide">
+        <div class="cslide-track"><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_a"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_a)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2 Type II</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>CREST</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_b"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_b)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2 Type II</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>CREST</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span></div>
       </div>
     </div>
   </section>
@@ -1115,12 +1305,14 @@
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
+      const toggle = () => {
         const item = q.parentElement;
         const wasActive = item.classList.contains('active');
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
         if (!wasActive) item.classList.add('active');
-      });
+      };
+      q.addEventListener('click', toggle);
+      q.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
     });
 
     // Free scan form submit
