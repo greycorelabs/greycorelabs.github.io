@@ -13,15 +13,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GreyCore Labs | Offensive Security &amp; Code Security Automation</title>
-  <meta name="description" content="US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence. OSWE, OSCP, EWPTX certified.">
-  <meta name="keywords" content="penetration testing, pentest, SAST, Semgrep, source code review, security assessment, OSWE, OSCP, bug bounty, threat intelligence, web application security">
+  <meta name="description" content="US-incorporated offensive security firm. Penetration testing, code review automation, source code review, and threat intelligence. OSWE, OSCP, EWPTX certified.">
+  <meta name="keywords" content="penetration testing, pentest, SAST, code review, source code review, security assessment, OSWE, OSCP, bug bounty, threat intelligence, web application security">
   <meta property="og:title" content="GreyCore Labs | Offensive Security &amp; Code Security Automation">
   <meta property="og:description" content="We find the flaw before the breach. Penetration testing, source code review, SAST automation, and continuous security.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://greycorelabs.com">
+  <meta property="og:image" content="https://greycorelabs.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GreyCore Labs | Offensive Security">
   <meta name="twitter:description" content="US-incorporated offensive security firm. Pentest, SAST, code review.">
+  <meta name="twitter:image" content="https://greycorelabs.com/og.png">
+  <meta name="author" content="Moamen Basel">
+  <meta name="theme-color" content="#11181f">
   <link rel="canonical" href="https://greycorelabs.com">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -328,6 +334,22 @@
       transition: border-color 0.2s, color 0.2s; }
     .rc:hover { border-color: var(--hazard-line); color: var(--paper); }
     .rc.more { color: var(--hazard); border-color: var(--hazard-line); }
+    .rc { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .rc-logo { width: 15px; height: 15px; display: block; opacity: 0.85; flex-shrink: 0; }
+    svg.rc-logo { fill: #9aa3ad; }
+    .rc i.rc-fa { color: #9aa3ad; font-size: 0.85rem; width: 15px; text-align: center; opacity: 0.85; flex-shrink: 0; }
+    .rc:hover .rc-logo, .rc:hover i.rc-fa { opacity: 1; }
+    .founder-av.has-photo { overflow: hidden; padding: 0; }
+    .founder-av.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ---------- PROOF CARDS ---------- */
+    .proof-num { font-size: 2.1rem; font-weight: 900; letter-spacing: -0.04em; color: var(--hazard); line-height: 1; font-variant-numeric: tabular-nums; }
+    .proof-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-faint); margin-top: 0.55rem; }
+    .quote .proof-body { font-size: 0.9rem; color: var(--paper-dim); margin: 0.9rem 0 0; flex: 1; }
+    .quote a.proof-link { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; margin-top: 1.2rem; display: inline-flex; gap: 0.45rem; align-items: center; }
+    a.post { color: inherit; }
+    a.post:hover { color: inherit; }
+    .post .post-meta { color: var(--hazard); }
 
     /* ---------- OPEN SOURCE / REPOS ---------- */
     .repo-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(256px, 1fr)); }
@@ -591,18 +613,39 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
     "name": "GreyCore Labs",
-    "description": "US-incorporated offensive security firm. Penetration testing, SAST/Semgrep automation, source code review, and threat intelligence.",
+    "legalName": "GreyCore Labs LLC",
+    "description": "US-incorporated offensive security firm. Penetration testing, code review automation, source code review, and threat intelligence.",
     "url": "https://greycorelabs.com",
+    "logo": "https://greycorelabs.com/logo.svg",
+    "image": "https://greycorelabs.com/og.png",
     "email": "contact@greycorelabs.com",
-    "areaServed": "Worldwide",
-    "founder": [
-      { "@type": "Person", "name": "Moamen Basel" }
+    "sameAs": [
+      "https://github.com/greycorelabs",
+      "https://github.com/momenbasel",
+      "https://linkedin.com/in/momenbasel",
+      "https://moamenbasel.com"
     ],
+    "founder": {
+      "@type": "Person",
+      "name": "Moamen Basel",
+      "jobTitle": "Founder",
+      "url": "https://moamenbasel.com",
+      "sameAs": [
+        "https://linkedin.com/in/momenbasel",
+        "https://github.com/momenbasel",
+        "https://moamenbasel.com"
+      ]
+    },
     "address": { "@type": "PostalAddress", "addressRegion": "Wyoming", "addressCountry": "US" },
-    "serviceType": ["Penetration Testing", "Cloud Pentesting", "AI Security Testing", "Source Code Review", "SAST Automation", "DFIR", "Incident Response", "AI-Automated SOC", "Threat Hunting", "Compromise Assessment", "Configuration Review"],
-    "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Semgrep", "Burp Suite", "AWS Security", "Azure Security", "GCP Security"]
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Penetration Testing", "serviceType": "Web, API, mobile, and cloud penetration testing", "areaServed": "Worldwide" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Source Code Review", "serviceType": "Manual security code review", "areaServed": "Worldwide" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Code Review Automation", "serviceType": "Custom SAST rules and CI/CD security integration", "areaServed": "Worldwide" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DFIR & Incident Response", "serviceType": "Digital forensics and incident response", "areaServed": "Worldwide" } }
+    ],
+    "knowsAbout": ["OSWE", "OSCP", "EWPTX", "OWASP", "Secure Code Review", "Burp Suite", "AWS Security", "Azure Security", "GCP Security", "AI Security", "LLM Security"]
   }
   </script>
 </head>
@@ -647,13 +690,13 @@
       <div class="stagger" style="max-width: 920px; margin: 0 auto;">
         <div class="hero-tag" style="justify-content: center;"><span class="dot"></span> OFFENSIVE SECURITY FIRM &middot; INCORPORATED IN WYOMING, USA</div>
         <h1 class="display">We find the flaw<br>before the <span class="hot">breach</span><span class="dim">.</span></h1>
-        <p class="lead" style="margin-left: auto; margin-right: auto;">Penetration testing, source-code review, and SAST automation for engineering teams that ship fast. Every finding is manually validated with a working proof-of-concept, not scanner noise.</p>
+        <p class="lead" style="margin-left: auto; margin-right: auto;">Manual penetration testing, source-code review, and SAST automation for teams that ship fast. Every finding validated with a working proof-of-concept &mdash; and a report that satisfies SOC 2 auditors, vendor questionnaires, and enterprise procurement.</p>
         <div class="hero-actions" style="justify-content: center; align-items: center;">
-          <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Request a scope</a>
+          <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Get my scoped quote</a>
           <a href="#free-scan" class="btn-ghost"><i class="fas fa-satellite-dish"></i> Free external scan</a>
           <a href="#plans" class="mono" style="color: var(--paper-dim); font-size: 0.8rem; letter-spacing: 0.02em; padding: 0.85rem 0.4rem;">View pricing &rarr;</a>
         </div>
-        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; SCOPED REPLY IN 24H &middot; NO SALES CALL REQUIRED</div>
+        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; SCOPED REPLY IN 24H &middot; SAMPLE REPORT ON REQUEST</div>
         <div class="hero-certs" style="justify-content: center;">
           <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
           <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
@@ -728,7 +771,7 @@
         <div class="cap"><span class="cap-bar"></span>
           <div class="cap-top"><span class="cap-idx">04</span><i class="fas fa-robot cap-ico"></i></div>
           <h5>SAST Automation</h5>
-          <p>Custom Semgrep rules tuned to your stack. CI/CD integration that catches vulnerabilities in pull requests before they ship.</p>
+          <p>Custom code-review rules tuned to your stack. CI/CD integration that catches vulnerabilities in pull requests before they ship.</p>
         </div>
         <div class="cap"><span class="cap-bar"></span>
           <div class="cap-top"><span class="cap-idx">05</span><i class="fas fa-brain cap-ico"></i></div>
@@ -767,7 +810,7 @@
         <div class="reveal">
           <div class="feat">
             <span class="feat-n">A1</span>
-            <div><h6>Custom rules for your stack</h6><p>Not generic rulesets. Semgrep rules that match your frameworks, libraries, and patterns. Django, Spring, Express, Rails, FastAPI, Go, all covered.</p></div>
+            <div><h6>Custom rules for your stack</h6><p>Not generic rulesets. Code-review rules that match your frameworks, libraries, and patterns. Django, Spring, Express, Rails, FastAPI, Go, all covered.</p></div>
           </div>
           <div class="feat">
             <span class="feat-n">A2</span>
@@ -792,24 +835,26 @@
       <div class="sect-head reveal">
         <div class="kicker"><b>03</b> PRICING</div>
         <h2 class="sect-title"><span class="title-em">Engagement</span> plans.</h2>
-        <p class="sect-desc">Every plan ships validated findings with proof-of-concept and remediation guidance. Pentests are priced per man-day; scoping is done per request.</p>
+        <p class="sect-desc">Every plan ships validated findings with proof-of-concept and remediation guidance. Pentests are fixed-price per assessment: tell us the target, get a quote within 24 hours, no surprises after.</p>
       </div>
 
       <p class="plan-group-label reveal">Penetration Testing</p>
       <div class="plans reveal" style="margin-bottom: 3.2rem;">
         <div class="plan">
           <div class="plan-name">One-Time Assessment</div>
-          <div class="plan-price">$100<span> / man-day</span></div>
-          <p class="plan-desc">Scoped engagement for a specific application, network, API, or cloud environment. Scoping is done per request: share your target and we size the effort in man-days.</p>
+          <div class="plan-price">from $3,500<span> / assessment</span></div>
+          <p class="plan-desc">Fixed-scope pentest of a web app, API, mobile app, or cloud environment. Sized in man-days and quoted up front &mdash; typically 5-8 days for a web application. Senior-only delivery at roughly half typical US rates.</p>
           <ul class="plan-feats">
             <li><i class="fas fa-check"></i> Web, API, mobile, backend, frontend, or cloud</li>
             <li><i class="fas fa-check"></i> AI/ML security &amp; cloud infrastructure testing</li>
             <li><i class="fas fa-check"></i> Manual + automated testing</li>
             <li><i class="fas fa-check"></i> Executive summary + technical report</li>
+            <li><i class="fas fa-check"></i> Letter of attestation for auditors &amp; customers</li>
             <li><i class="fas fa-check"></i> Remediation guidance with code fixes</li>
             <li><i class="fas fa-check"></i> 30-day retest included</li>
           </ul>
-          <a href="#contact" class="btn-ghost btn-block">Request scope</a>
+          <a href="#contact" class="btn-ghost btn-block">Get my scoped quote</a>
+          <a href="mailto:contact@greycorelabs.com?subject=Sample%20pentest%20report%20request" class="mono" style="display:block; text-align:center; margin-top:0.8rem; font-size:0.74rem; color:var(--paper-faint);">Request a redacted sample report &rarr;</a>
         </div>
         <div class="plan featured">
           <span class="plan-tag">Most popular</span>
@@ -841,14 +886,14 @@
         </div>
       </div>
 
-      <p class="plan-group-label reveal" id="sast-plans">Code Security Automation &middot; Semgrep</p>
+      <p class="plan-group-label reveal" id="sast-plans">Code Review &amp; SAST Automation</p>
       <div class="plans reveal">
         <div class="plan">
           <div class="plan-name">Starter</div>
           <div class="plan-price">$500</div>
           <p class="plan-desc">Single repo, single language. Security guardrails, fast.</p>
           <ul class="plan-feats">
-            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules for your stack</li>
+            <li><i class="fas fa-check"></i> Custom + curated code-review rules for your stack</li>
             <li><i class="fas fa-check"></i> CI/CD pipeline integration</li>
             <li><i class="fas fa-check"></i> 30-minute walkthrough call</li>
             <li><i class="fas fa-check"></i> 3-5 day delivery</li>
@@ -861,7 +906,7 @@
           <div class="plan-price">$1,000</div>
           <p class="plan-desc">Up to 3 repos, 2 languages. Full OWASP Top 10 coverage.</p>
           <ul class="plan-feats">
-            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules</li>
+            <li><i class="fas fa-check"></i> Custom + curated code-review rules</li>
             <li><i class="fas fa-check"></i> Framework-specific rules</li>
             <li><i class="fas fa-check"></i> Baseline triage &amp; false positive tuning</li>
             <li><i class="fas fa-check"></i> Developer documentation &amp; fix guides</li>
@@ -875,7 +920,7 @@
           <div class="plan-price">$2,000</div>
           <p class="plan-desc">Up to 10 repos, any languages. Quarterly updates included.</p>
           <ul class="plan-feats">
-            <li><i class="fas fa-check"></i> Custom + curated Semgrep rules at scale</li>
+            <li><i class="fas fa-check"></i> Custom + curated code-review rules at scale</li>
             <li><i class="fas fa-check"></i> Rules for internal frameworks &amp; libraries</li>
             <li><i class="fas fa-check"></i> Multi-repo centralized reporting</li>
             <li><i class="fas fa-check"></i> Full severity classification</li>
@@ -917,20 +962,9 @@
                   <label class="field-label">Work email</label>
                   <input type="email" name="email" placeholder="john@company.com" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                   <label class="field-label">Domain to scan</label>
                   <input type="text" name="domain" placeholder="example.com" required>
-                </div>
-                <div class="col-md-6">
-                  <label class="field-label">Company size</label>
-                  <select name="company_size">
-                    <option value="">Select...</option>
-                    <option value="1-10">1-10 employees</option>
-                    <option value="11-50">11-50 employees</option>
-                    <option value="51-200">51-200 employees</option>
-                    <option value="201-1000">201-1000 employees</option>
-                    <option value="1000+">1000+ employees</option>
-                  </select>
                 </div>
                 <div class="col-12">
                   <label class="field-label">What are you most concerned about? (optional)</label>
@@ -986,31 +1020,40 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
+  <!-- TRACK RECORD -->
+  <section id="track-record">
     <div class="wrap">
       <div class="sect-head split reveal">
         <div>
-          <div class="kicker"><b>06</b> CLIENT RESULTS</div>
-          <h2 class="sect-title">What clients say.</h2>
+          <div class="kicker"><b>06</b> TRACK RECORD</div>
+          <h2 class="sect-title">Proof,<br><span class="title-em">not promises.</span></h2>
         </div>
-        <p class="sect-desc">Real results from real engagements. Names anonymized to protect client confidentiality.</p>
+        <p class="sect-desc">No fabricated quotes, no stock-photo testimonials. Just verifiable work: companies that accepted our vulnerability reports, open-source tools engineers run every day, and research you can read right now.</p>
+      </div>
+      <div class="reveal" style="margin-bottom: 2.6rem;">
+        <p class="roster-label">Responsibly disclosed vulnerabilities to</p>
+        <div class="roster-cloud">
+          <span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/facebook/9aa3ad" alt="">Facebook</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/google/9aa3ad" alt="">Google</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/apple/9aa3ad" alt="">Apple</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9.3" height="9.3"/><rect x="12.7" y="2" width="9.3" height="9.3"/><rect x="2" y="12.7" width="9.3" height="9.3"/><rect x="12.7" y="12.7" width="9.3" height="9.3"/></svg>Microsoft</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/x/9aa3ad" alt="">Twitter</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624z"/></svg>Adobe</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/sony/9aa3ad" alt="">Sony</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/paypal/9aa3ad" alt="">PayPal</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/netflix/9aa3ad" alt="">Netflix</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/coinbase/9aa3ad" alt="">Coinbase</span><span class="rc"><i class="fab fa-linkedin-in rc-fa"></i>LinkedIn</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/dropbox/9aa3ad" alt="">Dropbox</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/snapchat/9aa3ad" alt="">Snapchat</span><span class="rc"><i class="fab fa-yahoo rc-fa"></i>Yahoo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/github/9aa3ad" alt="">GitHub</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/twitch/9aa3ad" alt="">Twitch</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/vimeo/9aa3ad" alt="">Vimeo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/tumblr/9aa3ad" alt="">Tumblr</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/soundcloud/9aa3ad" alt="">SoundCloud</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/wordpress/9aa3ad" alt="">WordPress</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#9aa3ad;stroke-width:1.6"><circle cx="12" cy="12" r="9.2"/><path d="M3.4 9h17.2M2.8 12.6h18.4M3.8 16.2h16.4" stroke-width="1.3"/></svg>AT&amp;T</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/unitedairlines/9aa3ad" alt="">United</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/duckduckgo/9aa3ad" alt="">DuckDuckGo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/zendesk/9aa3ad" alt="">Zendesk</span><span class="rc">ESET</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/99designs/9aa3ad" alt="">99designs</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/mediafire/9aa3ad" alt="">Mediafire</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/freelancer/9aa3ad" alt="">Freelancer</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/bugcrowd/9aa3ad" alt="">Bugcrowd</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/hackerone/9aa3ad" alt="">HackerOne</span><span class="rc more">+ more</span>
+        </div>
       </div>
       <div class="quotes reveal">
         <div class="quote">
-          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p>GreyCore found 3 critical auth bypass vulnerabilities our previous vendor missed completely. Their manual testing depth is on another level.</p>
-          <div class="q-author"><div class="q-mark">VP</div><div><div class="q-name">VP of Engineering</div><div class="q-role">Series B Fintech</div></div></div>
+          <div class="proof-num" id="oss-total">860+</div>
+          <div class="proof-label">GitHub stars on our tools</div>
+          <p class="proof-body">keyFinder, VulnHawk, AgentGuard, and our writeups &mdash; open source, in engineers' daily workflows. Star counts update live from GitHub.</p>
+          <a class="proof-link" href="#work">Explore the tools <i class="fas fa-arrow-down"></i></a>
         </div>
         <div class="quote">
-          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p>The Semgrep package paid for itself in the first week. We caught an IDOR in a PR review that would have exposed customer PII in production.</p>
-          <div class="q-author"><div class="q-mark">CTO</div><div><div class="q-name">CTO</div><div class="q-role">SaaS Platform, 50+ engineers</div></div></div>
+          <div class="proof-num">Featured</div>
+          <div class="proof-label">By the security community on X</div>
+          <p class="proof-body">Our tooling has been picked up and shared by the security community, including coverage of VulnHawk's AI-assisted SAST approach.</p>
+          <a class="proof-link" href="https://x.com/Dinosn/status/2042655694592037163" target="_blank" rel="noopener">See the post <i class="fas fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="quote">
-          <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p>Fast, thorough, and the reports are actually useful, not generic scanner output. Remediation guidance was specific enough for our devs to fix same-day.</p>
-          <div class="q-author"><div class="q-mark">CSO</div><div><div class="q-name">CISO</div><div class="q-role">Healthcare SaaS</div></div></div>
+          <div class="proof-num">500+</div>
+          <div class="proof-label">Published HTB writeups</div>
+          <p class="proof-body">The most comprehensive Hack The Box writeup collection on GitHub: machines, challenges, attack-path diagrams, exam prep.</p>
+          <a class="proof-link" href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener">Read the research <i class="fas fa-arrow-up-right-from-square"></i></a>
         </div>
       </div>
     </div>
@@ -1029,10 +1072,10 @@
       <div class="about-grid reveal">
         <div class="founder">
           <div class="founder-top">
-            <div class="founder-av">MB</div>
+            <div class="founder-av has-photo"><img src="founder.jpg" alt="Moamen Basel, founder of GreyCore Labs" width="56" height="56"></div>
             <div>
               <div class="founder-name">Moamen Basel</div>
-              <div class="founder-role">Co-founder &middot; Offensive Security</div>
+              <div class="founder-role">Founder &middot; Offensive Security</div>
             </div>
           </div>
           <p>Moamen has worked both sides of security since 2014, from defensive engineering to offensive testing across web, host, and mobile. He holds the OSWE, OSCP, OSWP, and EWPTX certifications and has reported vulnerabilities to dozens of major companies through their bug bounty programs.</p>
@@ -1042,13 +1085,17 @@
           <div class="founder-soc">
             <a href="https://linkedin.com/in/momenbasel" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a href="https://github.com/momenbasel" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://moamenbasel.com" target="_blank" rel="noopener"><i class="fas fa-globe"></i> moamenbasel.com</a>
           </div>
         </div>
         <div class="roster">
-          <p class="roster-label">Responsibly disclosed vulnerabilities to</p>
-          <div class="roster-cloud">
-            <span class="rc">Facebook</span><span class="rc">Google</span><span class="rc">Apple</span><span class="rc">Microsoft</span><span class="rc">Twitter</span><span class="rc">Adobe</span><span class="rc">Sony</span><span class="rc">PayPal</span><span class="rc">Netflix</span><span class="rc">Coinbase</span><span class="rc">LinkedIn</span><span class="rc">Dropbox</span><span class="rc">Snapchat</span><span class="rc">Yahoo</span><span class="rc">GitHub</span><span class="rc">Twitch</span><span class="rc">Vimeo</span><span class="rc">Tumblr</span><span class="rc">SoundCloud</span><span class="rc">WordPress</span><span class="rc">AT&amp;T</span><span class="rc">United</span><span class="rc">DuckDuckGo</span><span class="rc">Zendesk</span><span class="rc">ESET</span><span class="rc">99designs</span><span class="rc">Mediafire</span><span class="rc">Freelancer</span><span class="rc">Bugcrowd</span><span class="rc">HackerOne</span><span class="rc more">+ more</span>
-          </div>
+          <p class="roster-label">Why teams pick GreyCore</p>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Senior-only delivery: the person quoted is the person testing. No bait-and-switch to junior staff.</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> A working proof-of-concept behind every finding. Zero copy-pasted scanner noise.</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Direct line to the tester during and after the engagement, not an account manager.</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Fixed quote up front. Scope creep is our problem, not your invoice's.</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> Reports built for SOC 2 and ISO 27001 audits, vendor questionnaires, and enterprise procurement reviews.</div>
+          <div class="scan-benefit"><i class="fas fa-check-circle"></i> We publish our tooling and research in the open, so you can judge the work before you buy it.</div>
         </div>
       </div>
     </div>
@@ -1089,15 +1136,15 @@
       </div>
       <div class="repo-grid reveal">
         <div class="repo">
-          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> 673</span></div>
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> <span data-stars="momenbasel/keyFinder">675</span></span></div>
           <h5>keyFinder</h5>
           <p>Passive API key and secret discovery browser extension for Chrome and Firefox. 80+ detection patterns, zero config, Manifest V3.</p>
           <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-js"></span> JavaScript</span><a href="https://github.com/momenbasel/keyFinder" target="_blank" rel="noopener">momenbasel/keyFinder <i class="fas fa-arrow-up-right-from-square"></i></a></div>
         </div>
         <div class="repo">
-          <div class="repo-top"><i class="fab fa-github repo-gh"></i><a class="repo-badge" href="https://x.com/Dinosn/status/2042655694592037163" target="_blank" rel="noopener">Featured on X</a><span class="repo-metric"><i class="fas fa-star"></i> 61</span></div>
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><a class="repo-badge" href="https://x.com/Dinosn/status/2042655694592037163" target="_blank" rel="noopener">Featured on X</a><span class="repo-metric"><i class="fas fa-star"></i> <span data-stars="momenbasel/vulnhawk">64</span></span></div>
           <h5>VulnHawk</h5>
-          <p>AI-powered SAST scanner that finds auth bypass, IDOR, and logic bugs Semgrep and CodeQL miss. Framework-aware, SARIF, GitHub Action.</p>
+          <p>AI-powered SAST scanner that finds auth bypass, IDOR, and logic bugs traditional scanners miss. Framework-aware, SARIF, GitHub Action.</p>
           <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-py"></span> Python</span><a href="https://github.com/momenbasel/vulnhawk" target="_blank" rel="noopener">momenbasel/vulnhawk <i class="fas fa-arrow-up-right-from-square"></i></a></div>
         </div>
         <div class="repo">
@@ -1107,7 +1154,7 @@
           <div class="repo-foot"><span class="repo-lang"><span class="lang-dot" style="background: var(--hazard);"></span> Live site</span><a href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener">htb-writeups <i class="fas fa-arrow-up-right-from-square"></i></a></div>
         </div>
         <div class="repo">
-          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> 5</span></div>
+          <div class="repo-top"><i class="fab fa-github repo-gh"></i><span class="repo-metric"><i class="fas fa-star"></i> <span data-stars="momenbasel/AgentGuard">6</span></span></div>
           <h5>AgentGuard</h5>
           <p>AI agent supply-chain security. Intercepts and validates every package install, git clone, and script download an AI coding agent triggers, before it runs.</p>
           <div class="repo-foot"><span class="repo-lang"><span class="lang-dot lang-py"></span> Python</span><a href="https://github.com/momenbasel/AgentGuard" target="_blank" rel="noopener">momenbasel/AgentGuard <i class="fas fa-arrow-up-right-from-square"></i></a></div>
@@ -1137,12 +1184,28 @@
           <div class="faq-a"><div><p>Yes. We are a US-incorporated entity and sign NDAs before every engagement. We also support MSAs, SOC 2 compliance reporting, and can work within your legal team's preferred framework.</p></div></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q" role="button" tabindex="0">What makes your Semgrep packages different from stock rules?<span class="pm"><i class="fas fa-plus"></i></span></div>
-          <div class="faq-a"><div><p>Stock Semgrep rules generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase: your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</p></div></div>
+          <div class="faq-q" role="button" tabindex="0">What makes your code-review automation different from stock SAST rules?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Stock SAST rulesets generate hundreds of false positives and miss framework-specific patterns. We write rules tailored to your exact codebase: your ORM, your auth middleware, your API patterns. The result is fewer alerts that are actually actionable, integrated directly into your PR workflow.</p></div></div>
         </div>
         <div class="faq-item">
           <div class="faq-q" role="button" tabindex="0">Can you test our API, mobile app, or cloud infra?<span class="pm"><i class="fas fa-plus"></i></span></div>
           <div class="faq-a"><div><p>Yes to all. We test REST APIs, GraphQL, mobile apps (iOS/Android), cloud infrastructure (AWS/GCP/Azure), and internal networks. Our certifications (OSWE, OSCP) cover web, network, and application-layer security.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">Can I see a sample report before buying?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Yes. Email us and we will send a redacted sample report so you can judge the depth of testing, the quality of reproduction steps, and the remediation guidance before you spend anything. If a vendor will not show you a sample report, walk away.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">Will the report work for SOC 2, ISO 27001, or a customer security review?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Yes. You receive a full technical report plus a letter of attestation you can hand to auditors, enterprise customers, and vendor-risk teams. Findings are mapped to OWASP and CWE, and the 30-day retest gives you a clean closure letter once fixes land.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">Why are your prices below typical US rates?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>No sales team, no account managers, no office. GreyCore is a senior-only boutique: the person who scopes your engagement is the person who tests your application. You pay for testing hours, not overhead. The work itself is public - check our open-source tools and research before you commit.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">How fast can you start?<span class="pm"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-a"><div><p>Scoping replies go out within 24 hours and most engagements start within 1-2 weeks. If you are blocked on a deal or an audit deadline, say so - we keep room for urgent compliance-driven timelines.</p></div></div>
         </div>
       </div>
     </div>
@@ -1159,24 +1222,24 @@
         <p class="sect-desc">Technical deep dives on vulnerabilities, tooling, and offensive security methodology.</p>
       </div>
       <div class="posts reveal">
-        <div class="post">
-          <div class="post-tag">Web Security</div>
-          <h5>5 IDOR patterns that bypass modern frameworks</h5>
-          <p>Most frameworks handle SQLi and XSS. But IDOR? That is still on your developers. Here are the patterns we see in nearly every engagement.</p>
-          <div class="post-meta">// COMING SOON</div>
-        </div>
-        <div class="post">
-          <div class="post-tag">SAST</div>
-          <h5>Why your Semgrep rules are missing real bugs</h5>
-          <p>Generic SAST rulesets find generic bugs. Here is how custom rules tuned to your stack catch what automated scanners cannot.</p>
-          <div class="post-meta">// COMING SOON</div>
-        </div>
-        <div class="post">
-          <div class="post-tag">Auth Security</div>
-          <h5>The auth bypass checklist: 15 tests every app needs</h5>
-          <p>From JWT none-algorithm to OAuth redirect manipulation, the authentication tests that should be in every pentest scope.</p>
-          <div class="post-meta">// COMING SOON</div>
-        </div>
+        <a class="post" href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener">
+          <div class="post-tag">Writeups</div>
+          <h5>500+ Hack The Box writeups, walkthroughs &amp; cheatsheets</h5>
+          <p>Machines, challenges, ProLabs, and attack-path diagrams. The same methodology we bring to engagements, documented in public.</p>
+          <div class="post-meta">READ THE COLLECTION &rarr;</div>
+        </a>
+        <a class="post" href="https://github.com/momenbasel/vulnhawk" target="_blank" rel="noopener">
+          <div class="post-tag">AI &times; SAST</div>
+          <h5>VulnHawk: finding the bugs traditional SAST scanners miss</h5>
+          <p>How framework-aware, AI-assisted static analysis catches auth bypass, IDOR, and logic flaws that pattern-based scanners cannot.</p>
+          <div class="post-meta">READ ON GITHUB &rarr;</div>
+        </a>
+        <a class="post" href="https://github.com/momenbasel/keyFinder" target="_blank" rel="noopener">
+          <div class="post-tag">Tooling</div>
+          <h5>keyFinder: passive secret discovery in the browser</h5>
+          <p>80+ detection patterns for API keys and secrets leaking through frontend code - the same exposure class we find on real engagements.</p>
+          <div class="post-meta">READ ON GITHUB &rarr;</div>
+        </a>
       </div>
     </div>
   </section>
@@ -1190,16 +1253,16 @@
         <h2 class="sect-title">Ready to secure your stack?</h2>
         <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. We scope the engagement and get back to you within 24 hours.</p>
         <div class="contact-actions">
-          <a href="mailto:contact@greycorelabs.com" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
+          <a href="mailto:contact@greycorelabs.com?subject=Pentest%20scoping%20request" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
           <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free scan instead</a>
         </div>
-        <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-incorporated entity. NDAs and MSAs signed before every engagement.</p>
+        <p class="mono" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.04em;">US-incorporated entity. NDAs and MSAs signed before every engagement.<br>Want to see the work first? <a href="mailto:contact@greycorelabs.com?subject=Sample%20pentest%20report%20request">Request a redacted sample report</a>.</p>
       </div>
     </div>
     <div class="wrap" style="position: relative; z-index: 1; margin-top: 2.8rem;">
-      <p class="cc-cap">TRUSTED &amp; COMPLIANCE-ALIGNED</p>
+      <p class="cc-cap">ASSESSMENTS &amp; REPORTS ALIGNED TO THE FRAMEWORKS YOUR AUDITORS USE</p>
       <div class="cslide">
-        <div class="cslide-track"><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_a"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_a)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2 Type II</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>CREST</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_b"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_b)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2 Type II</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>CREST</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span></div>
+        <div class="cslide-track"><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_a"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_a)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>MITRE ATT&amp;CK</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="b_b"><rect x="2" y="4.5" width="20" height="15" rx="2.2"/></clipPath></defs><g clip-path="url(#b_b)"><rect x="2" y="4.5" width="20" height="15" fill="#b22234"/><g fill="#f2f2f4"><rect x="2" y="5.654" width="20" height="1.154"/><rect x="2" y="7.962" width="20" height="1.154"/><rect x="2" y="10.269" width="20" height="1.154"/><rect x="2" y="12.577" width="20" height="1.154"/><rect x="2" y="14.885" width="20" height="1.154"/><rect x="2" y="17.192" width="20" height="1.154"/></g><rect x="2" y="4.5" width="9.5" height="8.077" fill="#3c3b6e"/><g fill="#f2f2f4"><circle cx="4.1" cy="6.0" r="0.62"/><circle cx="6.5" cy="6.0" r="0.62"/><circle cx="8.9" cy="6.0" r="0.62"/><circle cx="4.1" cy="8.05" r="0.62"/><circle cx="6.5" cy="8.05" r="0.62"/><circle cx="8.9" cy="8.05" r="0.62"/><circle cx="4.1" cy="10.1" r="0.62"/><circle cx="6.5" cy="10.1" r="0.62"/><circle cx="8.9" cy="10.1" r="0.62"/></g></g><rect x="2" y="4.5" width="20" height="15" rx="2.2" fill="none" stroke="#3c3b6e" stroke-width="0.6" opacity="0.25"/></svg><span>US Incorporated</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.2 5.4v5.7c0 4.7 3.2 8.2 7.8 10.4 4.6-2.2 7.8-5.7 7.8-10.4V5.4z"/><path d="m8.4 11.8 2.7 2.7 4.5-5"/></svg><span>SOC 2</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M6.4 10h11.2A2.4 2.4 0 0 1 20 12.4v6.2A2.4 2.4 0 0 1 17.6 21H6.4A2.4 2.4 0 0 1 4 18.6v-6.2A2.4 2.4 0 0 1 6.4 10Zm5.6 4.6a1.5 1.5 0 0 0-.7 2.83l-.5 1.97h2.4l-.5-1.97A1.5 1.5 0 0 0 12 14.6Z"/></svg><span>PCI DSS</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.7 14.6l-1.9 5.6 3.5-1.7 1.7 1.3 1.7-1.3 3.5 1.7-1.9-5.6"/><path d="M12 2.3l1.85 1.27 2.24-.18.86 2.08 2.08.86-.18 2.24L20 10.5l-1.27 1.85.18 2.24-2.08.86-.86 2.08-2.24-.18L12 18.7l-1.85-1.27-2.24.18-.86-2.08-2.08-.86.18-2.24L4 10.5l1.27-1.85-.18-2.24 2.08-.86.86-2.08 2.24.18z" opacity="0.55"/><circle cx="12" cy="10.5" r="4.2"/><path d="M10.1 10.6l1.4 1.4 2.5-2.8" stroke-width="1.7"/></svg><span>ISO/IEC 27001</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#0a3d91"/><g fill="#ffd617"><g transform="translate(12 5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(19 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(18.06 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(15.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(12 19)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 18.06)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 15.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5 12)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(5.94 8.5)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g><g transform="translate(8.5 5.94)"><path d="M0 -1.5 L0.44 -0.46 L1.43 -0.46 L0.69 0.18 L0.88 1.21 L0 0.6 L-0.88 1.21 L-0.69 0.18 L-1.43 -0.46 L-0.44 -0.46 Z"/></g></g></svg><span>GDPR</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 2.25l7.25 2.55v5.45c0 4.7-3.05 8.45-7.25 9.95-4.2-1.5-7.25-5.25-7.25-9.95V4.8L12 2.25z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8.1v5.9M9.05 11.05h5.9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg><span>HIPAA</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="4.5" y="10.3" width="15" height="10.2" rx="2.3" fill="currentColor" fill-opacity="0.13"/><path d="M8 10.3V7.7a4 4 0 0 1 7.7-1.5"/><circle cx="12" cy="14.6" r="1.6" fill="currentColor" stroke="none"/><path d="M12 16.2v2.1"/></svg><span>OWASP</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.2l7.4 2.6v6.1c0 4.9-3.1 8.4-7.4 10.4-4.3-2-7.4-5.5-7.4-10.4V4.8z"/><circle cx="12" cy="8.6" r="2.5"/><path d="M12 11.1v6.0"/><path d="M12 13.5h2.1"/><path d="M12 15.4h1.6"/></svg><span>MITRE ATT&amp;CK</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v3.1M19.36 7.75l-2.68 1.55M19.36 16.25l-2.68-1.55M12 20.5v-3.1M4.64 16.25l2.68-1.55M4.64 7.75l2.68 1.55"/></svg><span>NIST CSF</span></span><span class="cc" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 3.4h5.4L17 6.6v8.1a1.4 1.4 0 0 1-1.4 1.4H8.4A1.4 1.4 0 0 1 7 14.7V4.8A1.4 1.4 0 0 1 8.4 3.4Z" opacity="0.45"/><path d="M6.6 7.6h5.4L15.2 10.8v8.4a1.4 1.4 0 0 1-1.4 1.4H6.6a1.4 1.4 0 0 1-1.4-1.4V9A1.4 1.4 0 0 1 6.6 7.6Z" fill="currentColor" fill-opacity="0.12"/><path d="M11.7 7.8V11h3.3" opacity="0.6"/><path d="M7.6 12.6h5M7.6 15h5" opacity="0.9"/><path d="M7.6 17.6l1.2 1.2 2.2-2.4"/></svg><span>NDA + MSA</span></span></div>
       </div>
     </div>
   </section>
@@ -1233,6 +1296,7 @@
             <a href="mailto:contact@greycorelabs.com">contact@greycorelabs.com</a>
             <a href="#contact">Request a scope</a>
             <a href="#process">Our process</a>
+            <a href="https://moamenbasel.com" target="_blank" rel="noopener">Founder: moamenbasel.com</a>
           </div>
         </div>
       </div>
@@ -1310,6 +1374,24 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
+    // Live GitHub star counts (static fallbacks already rendered)
+    (async () => {
+      const repos = { 'momenbasel/keyFinder': 675, 'momenbasel/vulnhawk': 64, 'momenbasel/AgentGuard': 6, 'momenbasel/htb-writeups': 117 };
+      let total = 0;
+      await Promise.all(Object.entries(repos).map(async ([repo, fallback]) => {
+        let n = fallback;
+        try {
+          const r = await fetch('https://api.github.com/repos/' + repo);
+          if (r.ok) { const d = await r.json(); if (Number.isInteger(d.stargazers_count)) n = d.stargazers_count; }
+        } catch {}
+        total += n;
+        const el = document.querySelector('[data-stars="' + repo + '"]');
+        if (el) el.textContent = n.toLocaleString();
+      }));
+      const t = document.getElementById('oss-total');
+      if (t) t.textContent = total.toLocaleString() + '+';
+    })();
+
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       const toggle = () => {
@@ -1333,7 +1415,7 @@
         btn.disabled = true;
         const data = new FormData(scanForm);
         const mailto = () => {
-          const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0ACompany Size: ${data.get('company_size')}%0AConcerns: ${data.get('concerns')}`;
+          const body = `Name: ${data.get('name')}%0ADomain: ${data.get('domain')}%0AConcerns: ${data.get('concerns')}`;
           window.location.href = `mailto:contact@greycorelabs.com?subject=Free Security Scan Request&body=${body}`;
         };
         try {

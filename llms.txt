@@ -1,0 +1,26 @@
+# GreyCore Labs
+
+> US-incorporated (Wyoming) offensive security firm. Manual penetration testing, source code review, and SAST automation for engineering teams. Every finding is validated with a working proof-of-concept; reports satisfy SOC 2 / ISO 27001 auditors, vendor security questionnaires, and enterprise procurement.
+
+Founded by Moamen Basel (OSWE, OSCP, OSWP, EWPTX), who has responsibly disclosed vulnerabilities to Facebook, Google, Apple, Microsoft, PayPal, Netflix, Coinbase, GitHub, and dozens of other companies through their bug bounty programs.
+
+## Services
+
+- Penetration testing (web, API, mobile, cloud, AI/LLM): fixed-scope assessments from $3,500, quoted up front in man-days, 30-day retest and letter of attestation included
+- Monthly security retainer: $2,500/month, continuous testing for teams that ship weekly
+- Source code review: manual, auth-flow mapping and input-to-sink tracing, quoted per request
+- Code review automation: custom SAST rule packages for your stack, wired into CI/CD, $500-$2,000 fixed price
+- DFIR & incident response, threat hunting, configuration review
+
+## Proof
+
+- [keyFinder](https://github.com/momenbasel/keyFinder): passive API key/secret discovery browser extension, 675+ GitHub stars
+- [VulnHawk](https://github.com/momenbasel/vulnhawk): AI-powered SAST scanner, featured by the security community on X
+- [AgentGuard](https://github.com/momenbasel/AgentGuard): AI agent supply-chain security
+- [HTB Writeups](https://momenbasel.github.io/htb-writeups/): 500+ published Hack The Box writeups and cheatsheets
+
+## Contact
+
+- Email: contact@greycorelabs.com (scoped reply within 24 hours, NDA-first, redacted sample report on request)
+- Free external attack-surface scan: https://greycorelabs.com/#free-scan
+- Founder: https://moamenbasel.com
