@@ -614,36 +614,11 @@
     #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 2000;
       background: linear-gradient(90deg, var(--hazard), var(--hazard-bright));
       box-shadow: 0 0 12px var(--hazard-glow); pointer-events: none; }
-    .hero-scanline { position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 1; pointer-events: none;
-      background: linear-gradient(90deg, transparent, var(--hazard) 38%, var(--hazard-bright) 50%, var(--hazard) 62%, transparent);
-      opacity: 0; }
-    .term-card { flex-direction: column; align-items: stretch; gap: 0; max-width: 330px; width: 330px; padding: 0; overflow: hidden; }
-    .term-head { display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem 0.85rem;
-      border-bottom: 1px solid var(--line); background: oklch(0.175 0.013 220 / 0.9); }
-    .term-head .td { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
-    .term-head .td:nth-child(1) { background: oklch(0.635 0.205 22 / 0.8); }
-    .term-head .td:nth-child(2) { background: oklch(0.78 0.15 85 / 0.8); }
-    .term-head .td:nth-child(3) { background: var(--hazard); }
-    .term-title { margin-left: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-      color: var(--paper-faint); letter-spacing: 0.08em; }
-    .term-body { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; line-height: 1.8;
-      color: var(--paper-dim); padding: 0.75rem 0.9rem 0.9rem; margin: 0; min-height: 148px;
-      white-space: pre-wrap; word-break: break-all; }
-    .term-body .tc { color: var(--hazard); }
-    .term-body .tcrit { color: var(--danger); font-weight: 700; }
-    .term-caret { display: inline-block; width: 7px; height: 12px; background: var(--hazard); vertical-align: -2px; }
-    .fc-3.term-card { bottom: 9%; left: 2%; }
     @media (prefers-reduced-motion: no-preference) {
-      .hero-scanline { animation: scanY 11s cubic-bezier(0.45, 0, 0.55, 1) 2.8s infinite; }
-      @keyframes scanY { 0% { transform: translateY(0); opacity: 0; } 5% { opacity: 0.42; }
-        44% { opacity: 0.3; } 52% { transform: translateY(91vh); opacity: 0; } 100% { transform: translateY(91vh); opacity: 0; } }
-      .term-caret { animation: blink 1s steps(1) infinite; }
-      @keyframes blink { 50% { opacity: 0; } }
       .reveal .roster-cloud .rc { opacity: 0; transform: translateY(9px); }
       .reveal.in .roster-cloud .rc { animation: chipIn 0.55s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 0.024s); }
       @keyframes chipIn { to { opacity: 1; transform: translateY(0); } }
     }
-    @media (prefers-reduced-motion: reduce) { .hero-scanline { display: none; } .term-caret { animation: none; } }
   </style>
   <script type="application/ld+json">
   {
@@ -716,15 +691,11 @@
       <source src="hero-bg.mp4" type="video/mp4">
     </video>
     <div class="hero-grid"></div>
-    <div class="hero-scanline" aria-hidden="true"></div>
 
     <!-- floating capability pills -->
     <div class="float-card fc-1"><span class="fc-ico"><i class="fas fa-crosshairs"></i></span><div><div class="fc-t">Manual Exploitation</div><div class="fc-s">depth scanners miss</div></div></div>
     <div class="float-card fc-2"><span class="fc-ico"><i class="fas fa-flask"></i></span><div><div class="fc-t">Validated PoCs</div><div class="fc-s">every finding proven</div></div></div>
-    <div class="float-card fc-3 term-card" aria-hidden="true">
-      <div class="term-head"><span class="td"></span><span class="td"></span><span class="td"></span><span class="term-title">greycore@recon ~ live</span></div>
-      <pre class="term-body" id="termBody"></pre>
-    </div>
+    <div class="float-card fc-3"><span class="fc-ico"><i class="fas fa-code"></i></span><div><div class="fc-t">Source Review</div><div class="fc-s">input-to-sink tracing</div></div></div>
     <div class="float-card fc-4"><span class="fc-ico"><i class="fas fa-code-branch"></i></span><div><div class="fc-t">CI/CD SAST</div><div class="fc-s">caught in the PR</div></div></div>
 
     <div class="wrap" style="text-align: center;">
@@ -1449,40 +1420,6 @@
       window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(setProg); } }, { passive: true });
       setProg();
     }
-
-    // Live recon terminal in hero
-    (function () {
-      const el = document.getElementById('termBody');
-      if (!el) return;
-      const LINES = [
-        ['$ subfinder -d acme.io -silent', 'tc'],
-        ['api.acme.io', ''],
-        ['staging.acme.io', ''],
-        ['legacy-admin.acme.io', ''],
-        ['$ httpx -status -title -silent', 'tc'],
-        ['[200] legacy-admin.acme.io · v9.2 EOL', ''],
-        ['$ nuclei -severity critical', 'tc'],
-        ['[critical] exposed .env → live AWS keys', 'tcrit'],
-        ['$ # validated by hand. writing PoC...', 'tc']
-      ];
-      const render = (upto, partial) => {
-        let html = '';
-        for (let i = 0; i < upto; i++) html += `<span class="${LINES[i][1]}">${LINES[i][0]}</span>\n`;
-        if (partial !== undefined) html += `<span class="${LINES[upto][1]}">${partial}</span>`;
-        el.innerHTML = html + '<span class="term-caret"></span>';
-      };
-      if (!motionOK) { render(LINES.length); return; }
-      let line = 0, ch = 0;
-      const tick = () => {
-        if (line >= LINES.length) { setTimeout(() => { line = 0; ch = 0; tick(); }, 5200); return; }
-        const text = LINES[line][0];
-        ch++;
-        render(line, text.slice(0, ch));
-        if (ch >= text.length) { line++; ch = 0; setTimeout(tick, text.startsWith('$') ? 420 : 170); }
-        else setTimeout(tick, text.startsWith('$') ? 26 : 9);
-      };
-      setTimeout(tick, 1600);
-    })();
 
     // Kicker scramble-decode on reveal
     if (motionOK && 'IntersectionObserver' in window) {
