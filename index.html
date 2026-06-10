@@ -609,6 +609,41 @@
       #stats.in .spec-num::after { transition: transform 1.6s var(--ease) 0.2s; transform: scaleX(1); }
     }
     @media (prefers-reduced-motion: reduce) { .spec-num::after { transform: scaleX(1); } }
+
+    /* ---------- motion & humanity pass ---------- */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 2000;
+      background: linear-gradient(90deg, var(--hazard), var(--hazard-bright));
+      box-shadow: 0 0 12px var(--hazard-glow); pointer-events: none; }
+    .hero-scanline { position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, transparent, var(--hazard) 38%, var(--hazard-bright) 50%, var(--hazard) 62%, transparent);
+      opacity: 0; }
+    .term-card { flex-direction: column; align-items: stretch; gap: 0; max-width: 330px; width: 330px; padding: 0; overflow: hidden; }
+    .term-head { display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid var(--line); background: oklch(0.175 0.013 220 / 0.9); }
+    .term-head .td { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
+    .term-head .td:nth-child(1) { background: oklch(0.635 0.205 22 / 0.8); }
+    .term-head .td:nth-child(2) { background: oklch(0.78 0.15 85 / 0.8); }
+    .term-head .td:nth-child(3) { background: var(--hazard); }
+    .term-title { margin-left: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      color: var(--paper-faint); letter-spacing: 0.08em; }
+    .term-body { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; line-height: 1.8;
+      color: var(--paper-dim); padding: 0.75rem 0.9rem 0.9rem; margin: 0; min-height: 148px;
+      white-space: pre-wrap; word-break: break-all; }
+    .term-body .tc { color: var(--hazard); }
+    .term-body .tcrit { color: var(--danger); font-weight: 700; }
+    .term-caret { display: inline-block; width: 7px; height: 12px; background: var(--hazard); vertical-align: -2px; }
+    .fc-3.term-card { bottom: 9%; left: 2%; }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-scanline { animation: scanY 11s cubic-bezier(0.45, 0, 0.55, 1) 2.8s infinite; }
+      @keyframes scanY { 0% { transform: translateY(0); opacity: 0; } 5% { opacity: 0.42; }
+        44% { opacity: 0.3; } 52% { transform: translateY(91vh); opacity: 0; } 100% { transform: translateY(91vh); opacity: 0; } }
+      .term-caret { animation: blink 1s steps(1) infinite; }
+      @keyframes blink { 50% { opacity: 0; } }
+      .reveal .roster-cloud .rc { opacity: 0; transform: translateY(9px); }
+      .reveal.in .roster-cloud .rc { animation: chipIn 0.55s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 0.024s); }
+      @keyframes chipIn { to { opacity: 1; transform: translateY(0); } }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-scanline { display: none; } .term-caret { animation: none; } }
   </style>
   <script type="application/ld+json">
   {
@@ -651,6 +686,8 @@
 </head>
 <body>
 
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="wrap nav-inner">
@@ -679,11 +716,15 @@
       <source src="hero-bg.mp4" type="video/mp4">
     </video>
     <div class="hero-grid"></div>
+    <div class="hero-scanline" aria-hidden="true"></div>
 
     <!-- floating capability pills -->
     <div class="float-card fc-1"><span class="fc-ico"><i class="fas fa-crosshairs"></i></span><div><div class="fc-t">Manual Exploitation</div><div class="fc-s">depth scanners miss</div></div></div>
     <div class="float-card fc-2"><span class="fc-ico"><i class="fas fa-flask"></i></span><div><div class="fc-t">Validated PoCs</div><div class="fc-s">every finding proven</div></div></div>
-    <div class="float-card fc-3"><span class="fc-ico"><i class="fas fa-code"></i></span><div><div class="fc-t">Source Review</div><div class="fc-s">input-to-sink tracing</div></div></div>
+    <div class="float-card fc-3 term-card" aria-hidden="true">
+      <div class="term-head"><span class="td"></span><span class="td"></span><span class="td"></span><span class="term-title">greycore@recon ~ live</span></div>
+      <pre class="term-body" id="termBody"></pre>
+    </div>
     <div class="float-card fc-4"><span class="fc-ico"><i class="fas fa-code-branch"></i></span><div><div class="fc-t">CI/CD SAST</div><div class="fc-s">caught in the PR</div></div></div>
 
     <div class="wrap" style="text-align: center;">
@@ -696,7 +737,7 @@
           <a href="#free-scan" class="btn-ghost"><i class="fas fa-satellite-dish"></i> Free external scan</a>
           <a href="#plans" class="mono" style="color: var(--paper-dim); font-size: 0.8rem; letter-spacing: 0.02em; padding: 0.85rem 0.4rem;">View pricing &rarr;</a>
         </div>
-        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; SCOPED REPLY IN 24H &middot; SAMPLE REPORT ON REQUEST</div>
+        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; THE FOUNDER REPLIES IN 24H, NOT A BOT &middot; SAMPLE REPORT ON REQUEST</div>
         <div class="hero-certs" style="justify-content: center;">
           <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
           <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
@@ -982,7 +1023,7 @@
             <div id="scanSuccess" style="display:none; text-align:center; padding: 2rem 0;">
               <i class="fas fa-check-circle" style="font-size: 2.6rem; color: var(--hazard); margin-bottom: 1rem;"></i>
               <h4>Request received</h4>
-              <p style="color: var(--paper-dim);">We will send your security scan report within 48 hours.</p>
+              <p style="color: var(--paper-dim);">Moamen will personally run the scan and email your report within 48 hours.</p>
             </div>
           </div>
         </div>
@@ -1252,7 +1293,7 @@
       <div class="reveal">
         <div class="kicker" style="justify-content: center;"><b>12</b> GET STARTED</div>
         <h2 class="sect-title">Ready to secure your stack?</h2>
-        <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. We scope the engagement and get back to you within 24 hours.</p>
+        <p class="sect-desc" style="margin: 0 auto;">Tell us about your application, infrastructure, or codebase. You will hear back within 24 hours from the founder &mdash; the same person who will be testing your systems.</p>
         <div class="contact-actions">
           <a href="mailto:contact@greycorelabs.com?subject=Pentest%20scoping%20request" class="btn-h"><i class="fas fa-envelope"></i> contact@greycorelabs.com</a>
           <a href="#free-scan" class="btn-danger-glow"><i class="fas fa-satellite-dish"></i> Free scan instead</a>
@@ -1280,7 +1321,7 @@
               <path d="M86.37 29 L86.37 71 L50 92 L50 50 Z" fill="#586069"/>
               <path d="M50 8 L86.37 29 L86.37 71 L50 92 L13.63 71 L13.63 29 Z M50 50 L50 92 M50 50 L13.63 29 M50 50 L86.37 29" stroke="#0c0f13" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
             </svg>Grey<b>Core</b> Labs</div>
-          <p>US-incorporated offensive security firm. We find the flaw before the breach.</p>
+          <p>US-incorporated offensive security firm. We find the flaw before the breach.<br><span style="color: var(--paper-faint); font-size: 0.82rem;">No sales team, no account managers &mdash; you talk to the engineer doing the work.</span></p>
         </div>
         <div>
           <div class="foot-col-h">Navigate</div>
@@ -1392,6 +1433,108 @@
       const t = document.getElementById('oss-total');
       if (t) t.textContent = total.toLocaleString() + '+';
     })();
+
+    // ---------- motion & humanity pass ----------
+    const motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+    // Scroll progress bar
+    const prog = document.getElementById('scroll-progress');
+    if (prog) {
+      let ticking = false;
+      const setProg = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(setProg); } }, { passive: true });
+      setProg();
+    }
+
+    // Live recon terminal in hero
+    (function () {
+      const el = document.getElementById('termBody');
+      if (!el) return;
+      const LINES = [
+        ['$ subfinder -d acme.io -silent', 'tc'],
+        ['api.acme.io', ''],
+        ['staging.acme.io', ''],
+        ['legacy-admin.acme.io', ''],
+        ['$ httpx -status -title -silent', 'tc'],
+        ['[200] legacy-admin.acme.io · v9.2 EOL', ''],
+        ['$ nuclei -severity critical', 'tc'],
+        ['[critical] exposed .env → live AWS keys', 'tcrit'],
+        ['$ # validated by hand. writing PoC...', 'tc']
+      ];
+      const render = (upto, partial) => {
+        let html = '';
+        for (let i = 0; i < upto; i++) html += `<span class="${LINES[i][1]}">${LINES[i][0]}</span>\n`;
+        if (partial !== undefined) html += `<span class="${LINES[upto][1]}">${partial}</span>`;
+        el.innerHTML = html + '<span class="term-caret"></span>';
+      };
+      if (!motionOK) { render(LINES.length); return; }
+      let line = 0, ch = 0;
+      const tick = () => {
+        if (line >= LINES.length) { setTimeout(() => { line = 0; ch = 0; tick(); }, 5200); return; }
+        const text = LINES[line][0];
+        ch++;
+        render(line, text.slice(0, ch));
+        if (ch >= text.length) { line++; ch = 0; setTimeout(tick, text.startsWith('$') ? 420 : 170); }
+        else setTimeout(tick, text.startsWith('$') ? 26 : 9);
+      };
+      setTimeout(tick, 1600);
+    })();
+
+    // Kicker scramble-decode on reveal
+    if (motionOK && 'IntersectionObserver' in window) {
+      const GLYPHS = '#$%&/<>[]{}=*+-abcdef0123456789';
+      const scramble = (node) => {
+        const orig = node.textContent;
+        const start = performance.now(), dur = 700;
+        const frame = (now) => {
+          const p = Math.min((now - start) / dur, 1);
+          const solved = Math.floor(orig.length * p);
+          let out = orig.slice(0, solved);
+          for (let i = solved; i < orig.length; i++)
+            out += orig[i] === ' ' ? ' ' : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          node.textContent = out;
+          if (p < 1) requestAnimationFrame(frame); else node.textContent = orig;
+        };
+        requestAnimationFrame(frame);
+      };
+      const kio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          kio.unobserve(e.target);
+          [...e.target.childNodes].forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) scramble(n); });
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll('.kicker').forEach(k => kio.observe(k));
+    }
+
+    // Stagger index for logo chips
+    document.querySelectorAll('.roster-cloud .rc').forEach((c, i) => c.style.setProperty('--i', i));
+
+    // Subtle 3D tilt on cards (fine pointers only)
+    if (motionOK && window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.repo, .plan, .quote, .post').forEach(card => {
+        let raf = null;
+        card.addEventListener('mousemove', (e) => {
+          if (raf) return;
+          raf = requestAnimationFrame(() => {
+            const r = card.getBoundingClientRect();
+            const rx = ((e.clientY - r.top) / r.height - 0.5) * -3.2;
+            const ry = ((e.clientX - r.left) / r.width - 0.5) * 3.2;
+            card.style.transform = `perspective(820px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-3px)`;
+            card.style.transition = 'transform 0.08s linear';
+            raf = null;
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.5s var(--ease)';
+          card.style.transform = '';
+        });
+      });
+    }
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
