@@ -431,7 +431,7 @@
       display: flex; align-items: center; gap: 0.8rem; }
     .plan-group-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
     .plans { display: grid; gap: 18px; grid-template-columns: 1fr; }
-    @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 880px) { .plans { grid-template-columns: repeat(3, 1fr); } .plans.plans-2 { grid-template-columns: repeat(2, 1fr); } }
     .plan {
       border: 1px solid var(--line); border-radius: 14px; padding: 30px 28px; background: var(--ink-2);
       position: relative; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s;
@@ -852,7 +852,7 @@
 
       <p class="plan-group-label reveal">Penetration Testing</p>
       <p class="reveal" style="color: var(--paper-dim); font-size: 0.92rem; max-width: 68ch; margin: -0.4rem 0 1.4rem;">A typical US web-app pentest runs <b style="color: var(--paper);">$12,000&ndash;$18,000+</b>. Our senior-only, zero-overhead model delivers the same manual depth from $3,500 &mdash; and scope flexes both ways: smaller target, smaller quote. <a href="#contact">Tell us what you have</a> and we size it honestly.</p>
-      <div class="plans reveal" style="margin-bottom: 3.2rem;">
+      <div class="plans plans-2 reveal" style="margin-bottom: 3.2rem;">
         <div class="plan">
           <div class="plan-name">One-Time Assessment</div>
           <div class="plan-price">from $3,500<span> / assessment</span></div>
@@ -883,19 +883,6 @@
             <li><i class="fas fa-check"></i> Monthly security posture report</li>
           </ul>
           <a href="#contact" class="btn-h btn-block">Get started</a>
-        </div>
-        <div class="plan">
-          <div class="plan-name">Source Code Review</div>
-          <div class="plan-price quote">Request quote</div>
-          <p class="plan-desc">Deep manual review of your codebase for security flaws scanners miss. Scoped per request.</p>
-          <ul class="plan-feats">
-            <li><i class="fas fa-check"></i> Auth flow &amp; access control mapping</li>
-            <li><i class="fas fa-check"></i> Input-to-sink tracing</li>
-            <li><i class="fas fa-check"></i> IDOR &amp; business logic analysis</li>
-            <li><i class="fas fa-check"></i> Framework-specific vulnerability patterns</li>
-            <li><i class="fas fa-check"></i> Annotated findings with line references</li>
-          </ul>
-          <a href="#contact" class="btn-ghost btn-block">Request quote</a>
         </div>
       </div>
 
