@@ -850,9 +850,14 @@
     .wt-frame { position: relative; display: block; border-radius: 14px; overflow: hidden;
       border: 1px solid var(--hazard-line); box-shadow: 0 30px 90px oklch(0 0 0 / 0.55);
       aspect-ratio: 16 / 10; background: var(--ink); }
-    .wt-frame img { width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.7s var(--ease); }
-    .wt-frame:hover img { transform: scale(1.045); }
+    .wt-frame img, .wt-frame video { width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.7s var(--ease); background: var(--ink); }
+    .wt-frame:hover img, .wt-frame:hover video { transform: scale(1.045); }
+    /* Reduced-motion: no autoplay video, fall back to the static poster. */
+    @media (prefers-reduced-motion: reduce) {
+      .wt-vid { display: none; }
+      .wt-frame { background: url('assets/scroll-world/exposed.webp') center / cover no-repeat; }
+    }
     .wt-frame::after { content: ''; position: absolute; inset: 0;
       background: radial-gradient(120% 90% at 50% 40%, transparent 40%, oklch(0.155 0.012 220 / 0.55) 100%); }
     .wt-play { position: absolute; inset: 0; margin: auto; width: 68px; height: 68px; z-index: 2;
@@ -880,13 +885,33 @@
           </div>
         </div>
         <a href="world.html" class="wt-frame" aria-label="Open the immersive walkthrough">
-          <img src="assets/scroll-world/exposed.webp" alt="Preview of the GreyCore Labs assessment walkthrough: a company's exposed attack surface at night" loading="lazy" width="1600" height="1000" />
+          <video class="wt-vid" muted loop playsinline preload="none" aria-hidden="true"
+            poster="assets/scroll-world/exposed.webp"
+            data-src="assets/scroll-world/vid/exposed-m.mp4"></video>
           <span class="wt-play"><i class="fas fa-play" aria-hidden="true"></i></span>
           <span class="wt-tag mono">SCROLL TO FLY IN</span>
         </a>
       </div>
     </div>
   </section>
+  <script>
+    // Lazy-play the walkthrough preview: load + play the muted loop only when the band
+    // scrolls near view (keeps the homepage light), and never under reduced-motion.
+    (function () {
+      var v = document.querySelector('.wt-vid');
+      if (!v || !('IntersectionObserver' in window)) return;
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          if (!v.src) v.src = v.dataset.src;
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
+          io.unobserve(v);
+        });
+      }, { rootMargin: '250px' });
+      io.observe(v);
+    })();
+  </script>
 
   <!-- PLANS -->
   <section id="plans">
