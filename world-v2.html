@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Inside a GreyCore Assessment: v2 (hoodie-free edition)</title>
+  <meta name="description" content="Scroll to fly through a GreyCore Labs penetration test, from your exposed perimeter to a hardened network. Six scenes, one continuous camera." />
+  <link rel="canonical" href="https://greycorelabs.com/world.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preload" as="image" href="assets/scroll-world-v2/exposed.webp" fetchpriority="high" />
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Inside a GreyCore Assessment" />
+  <meta property="og:description" content="Fly through a penetration test: exposed perimeter to hardened network." />
+  <meta property="og:image" content="https://greycorelabs.com/og.png" />
+  <meta property="og:url" content="https://greycorelabs.com/world.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Analytics (same property as the main site) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYWKT4Q7C6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MYWKT4Q7C6');
+  </script>
+
+  <style>
+    /* Theme the scroll-world engine with GreyCore's palette (matches the scene backgrounds). */
+    :root, .sw-root {
+      --sw-bg:        #0d1216;   /* == the generated scene background */
+      --sw-ink:       #f2f4f5;
+      --sw-ink-soft:  #9aa4a8;
+      --sw-accent:    #00d4aa;   /* GreyCore green; per-section accents override at runtime */
+      --sw-font-display: 'Bricolage Grotesque', 'Archivo', system-ui, sans-serif;
+      --sw-font-body:    'Archivo', system-ui, sans-serif;
+    }
+    html, body { margin: 0; background: #0d1216; color: #f2f4f5; }
+    body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* --- Dark-theme fixes for the engine chrome (its defaults assume a LIGHT theme). --- */
+    /* Unlayered rules beat the engine's @layer sw, restoring WCAG AA contrast. */
+    /* Without this the primary CTA is #fff on a light --sw-ink == invisible. */
+    /* Pin to fixed brand teal (not the per-section --sw-accent) so the conversion CTA */
+    /* always clears WCAG AA (dark text on #00d4aa is ~5.2:1; red-accent scenes would be ~3.8:1). */
+    .sw-topcta, .sw-btn--primary { background: #00d4aa; color: #0d1216; }
+    .sw-topcta:hover, .sw-btn--primary:hover { background: #3df0cf; color: #0d1216; }
+    .sw-nav { background: color-mix(in srgb, #0d1216 66%, transparent);
+      border-color: color-mix(in srgb, var(--sw-accent) 24%, transparent); }
+    .sw-nav__item { color: #c3ccd0; }
+    .sw-nav__item:hover { color: #f2f4f5; }
+    .sw-nav__item.is-active { color: #0d1216; background: var(--sw-accent); }
+
+    /* Visually-hidden document heading (engine emits only h2 section titles). */
+    .sw-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    /* Real GreyCore cube logo in the brand mark (engine default is a plain accent square). */
+    .sw-brand__mark { width: 30px; height: 30px; border-radius: 0; box-shadow: none;
+      background: url('logo.svg') center / contain no-repeat;
+      filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.45)); }
+
+    /* No-JS / hard-fallback: a quiet link back to the main site so the page is never a dead end. */
+    .nojs {
+      max-width: 640px; margin: 22vh auto; padding: 0 28px; text-align: center;
+      font-family: 'Archivo', system-ui, sans-serif;
+    }
+    .nojs a { color: #00d4aa; }
+    .nojs .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: .04em; font-size: .82rem;
+      text-transform: uppercase; color: #9aa4a8; }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world">
+    <h1 class="sw-sr">Inside a GreyCore Labs assessment: from exposed perimeter to hardened network</h1>
+    <noscript>
+      <div class="nojs">
+        <p class="mono">GreyCore Labs</p>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;">The flight needs JavaScript.</h1>
+        <p style="color:#9aa4a8">This is a scroll-scrubbed video experience. Head back to the
+          main site to book an assessment or read the full brief.</p>
+        <p><a href="index.html">&larr; greycorelabs.com</a></p>
+      </div>
+    </noscript>
+  </div>
+
+  <script src="assets/scroll-world-v2/scrub-engine.js"></script>
+  <script>
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'GreyCore Labs', href: 'index.html' },
+      cta: { label: 'Book an assessment', href: 'index.html#contact' },
+      hint: 'scroll to fly in',
+      diveScroll: 1.3,
+      connScroll: 0.9,
+      sections: [
+        {
+          id: 'exposed', label: 'Exposed',
+          still: 'assets/scroll-world-v2/exposed.webp',
+          clip: 'assets/scroll-world-v2/vid/exposed.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/exposed-m.mp4',
+          accent: '#e5484d',
+          scroll: 1.6, linger: 0.4,
+          eyebrow: 'Where it starts',
+          title: 'Every company has a way in.',
+          body: 'Before we touch anything, we look at what the internet already sees: your exposed edge, mapped the way an attacker finds it.',
+          tags: ['External surface', 'Open services', 'Exposure map'],
+        },
+        {
+          id: 'recon', label: 'Recon',
+          still: 'assets/scroll-world-v2/recon.webp',
+          clip: 'assets/scroll-world-v2/vid/recon.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/recon-m.mp4',
+          accent: '#00d4aa',
+          scroll: 1.3,
+          eyebrow: 'Recon',
+          title: 'We chart what you expose.',
+          body: 'Subdomains, live services, leaked credentials, the host nobody remembered, pulled together into one attack graph.',
+          tags: ['OSINT', 'Attack graph', 'Asset discovery'],
+        },
+        {
+          id: 'breach', label: 'Breach',
+          still: 'assets/scroll-world-v2/breach.webp',
+          clip: 'assets/scroll-world-v2/vid/breach.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/breach-m.mp4',
+          accent: '#e5484d',
+          scroll: 1.5, linger: 0.35,
+          eyebrow: 'Exploitation',
+          title: 'Then we break in, for real.',
+          body: 'Not a scanner guessing at CVEs. A human chaining the flaws that actually put someone inside your systems.',
+          tags: ['Manual exploit', 'Chained flaws', 'Proof of impact'],
+        },
+        {
+          id: 'inside', label: 'Inside',
+          still: 'assets/scroll-world-v2/inside.webp',
+          clip: 'assets/scroll-world-v2/vid/inside.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/inside-m.mp4',
+          accent: '#3df0cf',
+          scroll: 1.3,
+          eyebrow: 'Post-exploitation',
+          title: 'We move like the adversary.',
+          body: 'Lateral movement, privilege escalation, the full path from one small bug to your crown-jewel data.',
+          tags: ['Lateral movement', 'Priv-esc', 'Domain admin'],
+        },
+        {
+          id: 'report', label: 'Report',
+          still: 'assets/scroll-world-v2/report.webp',
+          clip: 'assets/scroll-world-v2/vid/report.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/report-m.mp4',
+          accent: '#00d4aa',
+          scroll: 1.4, linger: 0.3,
+          eyebrow: 'The deliverable',
+          title: 'You get proof, not a PDF dump.',
+          body: 'Every finding reproduced, ranked by real business impact, with the fix written for the engineers who have to ship it.',
+          tags: ['Reproduced', 'Ranked by impact', 'Fix guidance'],
+        },
+        {
+          id: 'hardened', label: 'Hardened',
+          still: 'assets/scroll-world-v2/hardened.webp',
+          clip: 'assets/scroll-world-v2/vid/hardened.mp4',
+          clipMobile: 'assets/scroll-world-v2/vid/hardened-m.mp4',
+          accent: '#3df0cf',
+          scroll: 1.7, linger: 0.45,
+          eyebrow: 'The outcome',
+          title: 'Now nothing walks in.',
+          body: 'You close what matters, we retest to prove it is shut, and you get an attestation you can hand to customers and auditors.',
+          tags: [],
+          cta: {
+            primary:   { label: 'Book an assessment', href: 'index.html#contact' },
+            secondary: { label: 'See pricing',         href: 'index.html#plans' },
+          },
+        },
+      ],
+      // length === sections.length - 1 (5), in order. Frame-locked per SKILL Step 5.
+      connectors: [null,null,null,null,null],
+      connectorsMobile: [null,null,null,null,null],
+    });
+
+    // A11y: the engine fades non-active copy to opacity 0 but leaves its CTA links
+    // keyboard-focusable. Mirror visibility into `inert` so Tab skips off-screen controls
+    // (WCAG 2.4.3 / 2.4.7). Reads the engine's own opacity output; no engine changes.
+    (function () {
+      var copies = document.querySelectorAll('.sw-copy');
+      var queued = false;
+      function sync() {
+        queued = false;
+        copies.forEach(function (c) {
+          var visible = parseFloat(getComputedStyle(c).opacity) > 0.5;
+          if (visible) c.removeAttribute('inert'); else c.setAttribute('inert', '');
+        });
+      }
+      function schedule() { if (!queued) { queued = true; requestAnimationFrame(sync); } }
+      addEventListener('scroll', schedule, { passive: true });
+      addEventListener('resize', schedule, { passive: true });
+      addEventListener('load', sync);
+      sync();
+    })();
+  </script>
+</body>
+</html>
