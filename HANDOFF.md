@@ -48,7 +48,7 @@ LCP preload; sr-only h1; keyboard-focus `inert` script; sitemap; SOUL wording; l
 - Prior open items: replace founder.jpg, sample report PDF, GSC submit sitemap.
 
 <!-- Last session: 2026-07-18 (UI overhaul pass) -->
-## 2026-07-18 UI overhaul (UNCOMMITTED)
+## 2026-07-18 UI overhaul (SHIPPED LIVE, commit 7965328, pushed via greycorelabs user)
 - index.html: hero rebuilt as asymmetric split with live engagement terminal (typed cmds, severity-tagged output, blinking cursor, loops; static render under reduced-motion). Floating pills removed.
 - Dropped Bootstrap CSS+JS (~230KB): scan form now on custom .f-grid. Font Awesome + Google Fonts kept.
 - New: scope sizer in #plans (target x size -> indicative days/price), scrollspy nav (aria-expanded, Esc/click-outside close), spotlight card hover, status bar in footer w/ live UTC clock + back-to-top, custom scrollbar, section scroll-margin-top: 84px, FAQ aria-expanded.
