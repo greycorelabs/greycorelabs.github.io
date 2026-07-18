@@ -1,0 +1,9 @@
+{
+  "name": "greycorelabs-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GreyCore Labs static marketing site",
+  "scripts": {
+    "dev": "node dev-server.mjs"
+  }
+}

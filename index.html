@@ -30,7 +30,6 @@
   <meta name="theme-color" content="#11181f">
   <link rel="canonical" href="https://greycorelabs.com">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -246,26 +245,6 @@
     .stagger > *:nth-child(5) { animation-delay: 0.49s; }
     @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
-    /* hero floating feature pills (buguard-style) */
-    .float-card {
-      position: absolute; z-index: 2; display: flex; align-items: center; gap: 0.7rem;
-      background: oklch(0.205 0.014 220 / 0.72); backdrop-filter: blur(10px);
-      border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.95rem;
-      box-shadow: 0 18px 50px oklch(0 0 0 / 0.4); max-width: 230px;
-      opacity: 0; transform: translateY(14px) scale(0.96); animation: floatin 1s var(--ease) forwards;
-    }
-    @keyframes floatin { to { opacity: 1; transform: translateY(0) scale(1); } }
-    .float-card .fc-ico { width: 34px; height: 34px; min-width: 34px; border-radius: 9px;
-      background: var(--hazard-dim); color: var(--hazard); display: flex; align-items: center;
-      justify-content: center; font-size: 0.85rem; }
-    .float-card .fc-t { font-size: 0.82rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
-    .float-card .fc-s { font-size: 0.7rem; color: var(--paper-faint); font-family: 'JetBrains Mono', monospace; }
-    .fc-1 { top: 20%; left: 1%; animation-delay: 0.7s; }
-    .fc-2 { top: 13%; right: 2%; animation-delay: 0.95s; }
-    .fc-3 { bottom: 16%; left: 4%; animation-delay: 1.15s; }
-    .fc-4 { bottom: 10%; right: 1%; animation-delay: 1.35s; }
-    @media (max-width: 1100px) { .float-card { display: none; } }
-
     /* faded crest watermark */
     .crest-wm {
       position: absolute; z-index: 0; pointer-events: none; opacity: 0.04;
@@ -290,6 +269,10 @@
     .m-item i { color: var(--hazard); opacity: 0.9; }
     .marquee:hover .marquee-track { animation-play-state: paused; }
     .m-item:hover { color: var(--paper); }
+    .m-logo { display: block; width: auto; opacity: 0.78; transition: opacity 0.2s, filter 0.2s; }
+    .m-logo.mk { height: 17px; }
+    .m-logo.wm { height: 13.5px; }
+    .m-item:hover .m-logo { opacity: 1; filter: brightness(1.45); }
     @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; } }
 
@@ -335,10 +318,9 @@
     .rc:hover { border-color: var(--hazard-line); color: var(--paper); }
     .rc.more { color: var(--hazard); border-color: var(--hazard-line); }
     .rc { display: inline-flex; align-items: center; gap: 0.5rem; }
-    .rc-logo { width: 15px; height: 15px; display: block; opacity: 0.85; flex-shrink: 0; }
+    .rc-logo { height: 15px; width: auto; display: block; opacity: 0.85; flex-shrink: 0; }
     svg.rc-logo { fill: #9aa3ad; }
-    .rc i.rc-fa { color: #9aa3ad; font-size: 0.85rem; width: 15px; text-align: center; opacity: 0.85; flex-shrink: 0; }
-    .rc:hover .rc-logo, .rc:hover i.rc-fa { opacity: 1; }
+    .rc:hover .rc-logo { opacity: 1; }
     .founder-av.has-photo { overflow: hidden; padding: 0; }
     .founder-av.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -564,7 +546,7 @@
       .reveal.in { opacity: 1; transform: translateY(0); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .stagger > *, .float-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
       .hero-tag .dot, .cap-bar, .marquee-track { animation: none !important; }
       .redact::after { display: none; }
@@ -602,10 +584,6 @@
     @media (prefers-reduced-motion: no-preference) {
       .stagger > *:nth-child(6) { animation-delay: 0.6s; }
       .btn-h:hover::before { transition: transform 0.7s var(--ease); transform: translateX(320%); }
-      .float-card { animation: floatin 1s var(--ease) forwards, drift 7s var(--ease) infinite; }
-      @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-      .fc-1 { animation-delay: 0.7s, 1.9s; } .fc-2 { animation-delay: 0.95s, 2.6s; }
-      .fc-3 { animation-delay: 1.15s, 2.2s; } .fc-4 { animation-delay: 1.35s, 3.0s; }
       #stats.in .spec-num::after { transition: transform 1.6s var(--ease) 0.2s; transform: scaleX(1); }
     }
     @media (prefers-reduced-motion: reduce) { .spec-num::after { transform: scaleX(1); } }
@@ -619,6 +597,102 @@
       .reveal.in .roster-cloud .rc { animation: chipIn 0.55s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 0.024s); }
       @keyframes chipIn { to { opacity: 1; transform: translateY(0); } }
     }
+
+    /* ---------- 2026-07 UI overhaul ---------- */
+    section[id] { scroll-margin-top: 84px; }
+    ::-webkit-scrollbar { width: 11px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--ink-3); border-radius: 8px; border: 3px solid var(--ink); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--line-2); }
+
+    /* form grid (replaces Bootstrap) */
+    .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .f-12 { grid-column: 1 / -1; }
+    @media (max-width: 640px) { .f-grid { grid-template-columns: 1fr; } }
+
+    /* nav scrollspy */
+    .nav-links a.active:not(.nav-cta) { color: var(--hazard); background: var(--ink-3); }
+
+    /* hero split + engagement terminal */
+    .hero-split { display: grid; grid-template-columns: 1.04fr 0.96fr; gap: clamp(2.4rem, 4.5vw, 4.2rem); align-items: center; }
+    @media (max-width: 980px) { .hero-split { grid-template-columns: 1fr; } }
+    .hero-bar { margin-top: clamp(2.6rem, 4vw, 3.6rem); padding-top: 1.4rem; border-top: 1px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 0.6rem 2.1rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.12em; color: var(--paper-faint); }
+    .hero-bar span { display: inline-flex; align-items: center; gap: 0.55rem; }
+    .hero-bar i { color: var(--hazard); font-size: 0.78rem; }
+    .term { border: 1px solid var(--line-2); border-radius: 14px; background: oklch(0.13 0.011 220 / 0.88);
+      backdrop-filter: blur(8px); overflow: hidden; font-family: 'JetBrains Mono', monospace;
+      box-shadow: 0 34px 90px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.785 0.142 173 / 0.05); }
+    .term-bar { display: flex; align-items: center; gap: 0.8rem; padding: 0.68rem 1rem;
+      border-bottom: 1px solid var(--line); background: var(--ink-2); }
+    .term-dots { display: inline-flex; gap: 6px; }
+    .term-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
+    .term-dots i:last-child { background: var(--hazard); }
+    .term-title { font-size: 0.68rem; letter-spacing: 0.05em; color: var(--paper-faint); flex: 1;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .term-live { font-size: 0.62rem; letter-spacing: 0.16em; color: var(--hazard);
+      display: inline-flex; align-items: center; gap: 0.4rem; }
+    .term-live .t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hazard);
+      animation: ping 1.8s var(--ease) infinite; }
+    .term-body { padding: 1.05rem 1.2rem 1.2rem; font-size: 0.78rem; line-height: 1.95; min-height: 308px; }
+    .t-line { white-space: pre-wrap; word-break: break-word; }
+    .t-line.cmd { color: var(--paper); }
+    .t-line.cmd .ps1 { color: var(--hazard); font-weight: 700; }
+    .t-line.out { color: var(--paper-dim); animation: t-chunk-in 0.6s var(--ease) both; }
+    .t-line .lv-crit { color: var(--danger); font-weight: 700; }
+    .t-line .lv-high { color: oklch(0.78 0.15 70); font-weight: 700; }
+    .t-line .lv-med  { color: oklch(0.78 0.15 70 / 0.75); font-weight: 700; }
+    .t-line .lv-ok, .t-line .lv-done { color: var(--hazard); font-weight: 700; }
+    .t-line .lv-scan { color: oklch(0.72 0.09 220); }
+    @keyframes t-chunk-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+    .t-cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--hazard);
+      vertical-align: text-bottom; margin-left: 2px; animation: t-blink 1.1s step-start infinite; }
+    @keyframes t-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @media (max-width: 640px) { .term-body { font-size: 0.71rem; min-height: 280px; } }
+    @media (prefers-reduced-motion: reduce) {
+      .t-line.out { animation: none; }
+      .t-cursor, .term-live .t-dot { animation: none; }
+    }
+
+    /* spotlight hover on cards */
+    @media (pointer: fine) {
+      .cap, .plan, .repo, .quote, .post { position: relative; }
+      .cap::after, .plan::after, .repo::after, .quote::after, .post::after {
+        content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+        background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), oklch(0.785 0.142 173 / 0.07), transparent 65%);
+        opacity: 0; transition: opacity 0.35s; }
+      .cap:hover::after, .plan:hover::after, .repo:hover::after, .quote:hover::after, .post:hover::after { opacity: 1; }
+    }
+
+    /* scope sizer */
+    .sizer { border: 1px solid var(--line); border-radius: 14px; background: var(--ink-2);
+      padding: 1.6rem 1.7rem; margin: 0 0 3rem; }
+    .sizer-grid { display: grid; grid-template-columns: 1.05fr 1.05fr 0.9fr; gap: 1.7rem; align-items: end; }
+    @media (max-width: 920px) { .sizer-grid { grid-template-columns: 1fr; gap: 1.25rem; } }
+    .sizer-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--paper-faint); margin-bottom: 0.6rem; }
+    .seg { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .seg button { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--paper-dim);
+      background: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 0.85rem;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .seg button:hover { border-color: var(--line-2); color: var(--paper); }
+    .seg button.on { background: var(--hazard-dim); border-color: var(--hazard); color: var(--hazard); font-weight: 700; }
+    .seg button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--hazard-dim); }
+    .sizer-rec { font-size: 1.02rem; font-weight: 800; letter-spacing: -0.015em; }
+    .sizer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--hazard); margin-top: 0.25rem; }
+    .sizer-link { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; display: inline-flex;
+      align-items: center; gap: 0.45rem; margin-top: 0.7rem; }
+
+    /* footer status bar */
+    .status-bar { display: flex; flex-wrap: wrap; gap: 0.55rem 1.6rem; align-items: center;
+      justify-content: space-between; border: 1px solid var(--line); border-radius: 11px;
+      padding: 0.75rem 1.15rem; margin-bottom: 2.2rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.06em; color: var(--paper-faint); }
+    .status-bar .st-ok { color: var(--hazard); display: inline-flex; align-items: center; gap: 0.55rem; }
+    .status-bar .st-ok i { font-size: 0.5rem; animation: ping 2.2s var(--ease) infinite; }
+    .status-bar a { color: var(--paper-dim); display: inline-flex; align-items: center; gap: 0.4rem; }
+    .status-bar a:hover { color: var(--hazard); }
   </style>
   <script type="application/ld+json">
   {
@@ -693,28 +767,39 @@
     </video>
     <div class="hero-grid"></div>
 
-    <!-- floating capability pills -->
-    <div class="float-card fc-1"><span class="fc-ico"><i class="fas fa-crosshairs"></i></span><div><div class="fc-t">Manual Exploitation</div><div class="fc-s">depth scanners miss</div></div></div>
-    <div class="float-card fc-2"><span class="fc-ico"><i class="fas fa-flask"></i></span><div><div class="fc-t">Validated PoCs</div><div class="fc-s">every finding proven</div></div></div>
-    <div class="float-card fc-3"><span class="fc-ico"><i class="fas fa-code"></i></span><div><div class="fc-t">Source Review</div><div class="fc-s">input-to-sink tracing</div></div></div>
-    <div class="float-card fc-4"><span class="fc-ico"><i class="fas fa-code-branch"></i></span><div><div class="fc-t">CI/CD SAST</div><div class="fc-s">caught in the PR</div></div></div>
-
-    <div class="wrap" style="text-align: center;">
-      <div class="stagger" style="max-width: 920px; margin: 0 auto;">
-        <div class="hero-tag" style="justify-content: center;"><span class="dot"></span> OFFENSIVE SECURITY FIRM &middot; INCORPORATED IN WYOMING, USA</div>
-        <h1 class="display">We find the flaw<br>before the <span class="hot">breach</span><span class="dim">.</span></h1>
-        <p class="lead" style="margin-left: auto; margin-right: auto;">Manual penetration testing, source-code review, and SAST automation for teams that ship fast. Every finding validated with a working proof-of-concept &mdash; and a report that satisfies SOC 2 auditors, vendor questionnaires, and enterprise procurement.</p>
-        <div class="hero-actions" style="justify-content: center; align-items: center;">
-          <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Get my scoped quote</a>
-          <a href="#free-scan" class="btn-ghost"><i class="fas fa-satellite-dish"></i> Free external scan</a>
-          <a href="world.html" class="btn-ghost"><i class="fas fa-film" aria-hidden="true"></i> Take the walkthrough</a>
-          <a href="#plans" class="mono" style="color: var(--paper-dim); font-size: 0.8rem; letter-spacing: 0.02em; padding: 0.85rem 0.4rem;">View pricing &rarr;</a>
+    <div class="wrap">
+      <div class="hero-split">
+        <div class="stagger">
+          <div class="hero-tag"><span class="dot"></span> OFFENSIVE SECURITY FIRM &middot; INCORPORATED IN WYOMING, USA</div>
+          <h1 class="display">We find the flaw<br>before the <span class="hot">breach</span><span class="dim">.</span></h1>
+          <p class="lead">Manual penetration testing, source-code review, and SAST automation for teams that ship fast. Every finding validated with a working proof-of-concept &mdash; and a report that satisfies SOC 2 auditors, vendor questionnaires, and enterprise procurement.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-h"><i class="fas fa-crosshairs"></i> Get my scoped quote</a>
+            <a href="#free-scan" class="btn-ghost"><i class="fas fa-satellite-dish"></i> Free external scan</a>
+            <a href="world.html" class="btn-ghost"><i class="fas fa-film" aria-hidden="true"></i> Take the walkthrough</a>
+            <a href="#plans" class="mono" style="color: var(--paper-dim); font-size: 0.8rem; letter-spacing: 0.02em; padding: 0.85rem 0.4rem;">View pricing &rarr;</a>
+          </div>
+          <div class="hero-certs">
+            <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
+            <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
+          </div>
         </div>
-        <div class="hero-tag" style="justify-content: center; margin: 1.6rem 0 0; color: var(--paper-faint);"><i class="fas fa-lock" style="color: var(--hazard);"></i> NDA-FIRST &middot; THE FOUNDER REPLIES IN 24H, NOT A BOT &middot; SAMPLE REPORT ON REQUEST</div>
-        <div class="hero-certs" style="justify-content: center;">
-          <span class="chip">OSWE</span><span class="chip">OSCP</span><span class="chip">OSWP</span>
-          <span class="chip">EWPTX</span><span class="chip">EWPT</span><span class="chip">VHL Advanced+</span>
+        <div class="stagger">
+          <div class="term" style="animation-delay: 0.55s;" role="img" aria-label="Simulated GreyCore engagement terminal: scoping, manual exploitation with validated findings, auditor-ready report delivery.">
+            <div class="term-bar">
+              <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="term-title">greycore@ops &mdash; ~/engagements/acme-corp</span>
+              <span class="term-live"><i class="t-dot"></i>LIVE</span>
+            </div>
+            <div class="term-body" id="termBody"></div>
+          </div>
         </div>
+      </div>
+      <div class="hero-bar reveal">
+        <span><i class="fas fa-lock"></i> NDA-FIRST</span>
+        <span><i class="fas fa-user-shield"></i> THE FOUNDER REPLIES IN 24H, NOT A BOT</span>
+        <span><i class="fas fa-file-lines"></i> SAMPLE REPORT ON REQUEST</span>
+        <span><i class="fas fa-flag"></i> US-INCORPORATED ENTITY</span>
       </div>
     </div>
   </section>
@@ -726,22 +811,22 @@
     </div>
     <div class="marquee">
       <div class="marquee-track">
-        <span class="m-item"><i class="fas fa-bug"></i> HackerOne</span>
-        <span class="m-item"><i class="fas fa-bug"></i> Bugcrowd</span>
-        <span class="m-item"><i class="fas fa-shield-halved"></i> Synack Red Team</span>
-        <span class="m-item"><i class="fas fa-certificate"></i> OffSec</span>
-        <span class="m-item"><i class="fas fa-certificate"></i> INE</span>
-        <span class="m-item"><i class="fas fa-cloud"></i> AWS</span>
-        <span class="m-item"><i class="fab fa-microsoft"></i> Azure</span>
-        <span class="m-item"><i class="fab fa-google"></i> GCP</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-bug"></i> HackerOne</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-bug"></i> Bugcrowd</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-shield-halved"></i> Synack Red Team</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-certificate"></i> OffSec</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-certificate"></i> INE</span>
-        <span class="m-item" aria-hidden="true"><i class="fas fa-cloud"></i> AWS</span>
-        <span class="m-item" aria-hidden="true"><i class="fab fa-microsoft"></i> Azure</span>
-        <span class="m-item" aria-hidden="true"><i class="fab fa-google"></i> GCP</span>
+        <span class="m-item"><img class="m-logo mk" src="assets/logos/hackerone.svg" alt="" loading="lazy"> HackerOne</span>
+        <span class="m-item"><img class="m-logo mk" src="assets/logos/bugcrowd.svg" alt="" loading="lazy"> Bugcrowd</span>
+        <span class="m-item" aria-label="Synack Red Team"><img class="m-logo wm" src="assets/logos/synack.svg" alt="Synack" loading="lazy"></span>
+        <span class="m-item"><img class="m-logo mk" src="assets/logos/offsec.svg" alt="" loading="lazy"> OffSec</span>
+        <span class="m-item" aria-label="INE"><img class="m-logo wm" src="assets/logos/ine.svg" alt="INE" loading="lazy"></span>
+        <span class="m-item" aria-label="AWS"><img class="m-logo wm" src="assets/logos/aws.svg" alt="AWS" loading="lazy"></span>
+        <span class="m-item" aria-label="Microsoft Azure"><img class="m-logo wm" src="assets/logos/azure.svg" alt="Microsoft Azure" loading="lazy"></span>
+        <span class="m-item"><img class="m-logo mk" src="assets/logos/googlecloud.svg" alt="" loading="lazy"> GCP</span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo mk" src="assets/logos/hackerone.svg" alt="" loading="lazy"> HackerOne</span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo mk" src="assets/logos/bugcrowd.svg" alt="" loading="lazy"> Bugcrowd</span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo wm" src="assets/logos/synack.svg" alt="Synack" loading="lazy"></span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo mk" src="assets/logos/offsec.svg" alt="" loading="lazy"> OffSec</span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo wm" src="assets/logos/ine.svg" alt="INE" loading="lazy"></span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo wm" src="assets/logos/aws.svg" alt="AWS" loading="lazy"></span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo wm" src="assets/logos/azure.svg" alt="Microsoft Azure" loading="lazy"></span>
+        <span class="m-item" aria-hidden="true"><img class="m-logo mk" src="assets/logos/googlecloud.svg" alt="" loading="lazy"> GCP</span>
       </div>
     </div>
   </section>
@@ -924,6 +1009,33 @@
 
       <p class="plan-group-label reveal">Penetration Testing</p>
       <p class="reveal" style="color: var(--paper-dim); font-size: 0.92rem; max-width: 68ch; margin: -0.4rem 0 1.4rem;">A typical US web-app pentest runs <b style="color: var(--paper);">$12,000&ndash;$18,000+</b>. Our senior-only, zero-overhead model delivers the same manual depth from $3,500 &mdash; and scope flexes both ways: smaller target, smaller quote. <a href="#contact">Tell us what you have</a> and we size it honestly.</p>
+      <div class="sizer reveal">
+        <div class="sizer-grid">
+          <div>
+            <div class="sizer-label">What are we testing?</div>
+            <div class="seg" id="segTarget">
+              <button type="button" class="on" data-v="web">WEB APP</button>
+              <button type="button" data-v="api">API</button>
+              <button type="button" data-v="mobile">MOBILE</button>
+              <button type="button" data-v="cloud">CLOUD &amp; AI</button>
+            </div>
+          </div>
+          <div>
+            <div class="sizer-label">How big is the surface?</div>
+            <div class="seg" id="segSize">
+              <button type="button" class="on" data-v="s">SMALL</button>
+              <button type="button" data-v="m">MEDIUM</button>
+              <button type="button" data-v="l">LARGE / MULTI-APP</button>
+            </div>
+          </div>
+          <div class="sizer-out" aria-live="polite">
+            <div class="sizer-label">Indicative fit</div>
+            <div class="sizer-rec" id="sizerRec">One-Time Assessment</div>
+            <div class="sizer-meta" id="sizerMeta">from $3,500 &middot; 5&ndash;8 days</div>
+            <a href="#contact" class="sizer-link">Get this scoped <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
       <div class="plans plans-2 reveal" style="margin-bottom: 3.2rem;">
         <div class="plan">
           <div class="plan-name">One-Time Assessment</div>
@@ -1025,24 +1137,24 @@
             <h4>Request your free scan</h4>
             <p style="color: var(--paper-faint); font-size: 0.86rem; margin: 0 0 1.6rem;">We assess your external attack surface and send you a report.</p>
             <form id="scanForm" action="https://formspree.io/f/xyknaopq" method="POST">
-              <div class="row g-3">
-                <div class="col-md-6">
+              <div class="f-grid">
+                <div>
                   <label class="field-label">Your name</label>
                   <input type="text" name="name" placeholder="John Smith" required>
                 </div>
-                <div class="col-md-6">
+                <div>
                   <label class="field-label">Work email</label>
                   <input type="email" name="email" placeholder="john@company.com" required>
                 </div>
-                <div class="col-12">
+                <div class="f-12">
                   <label class="field-label">Domain to scan</label>
                   <input type="text" name="domain" placeholder="example.com" required>
                 </div>
-                <div class="col-12">
+                <div class="f-12">
                   <label class="field-label">What are you most concerned about? (optional)</label>
                   <input type="text" name="concerns" placeholder="e.g. we just launched a new API, worried about exposed endpoints">
                 </div>
-                <div class="col-12 mt-2">
+                <div class="f-12">
                   <button type="submit" class="btn-danger-glow btn-block" style="padding: 1rem;">
                     <i class="fas fa-shield-halved"></i> Request free scan
                   </button>
@@ -1105,7 +1217,7 @@
       <div class="reveal" style="margin-bottom: 2.6rem;">
         <p class="roster-label">Responsibly disclosed vulnerabilities to</p>
         <div class="roster-cloud">
-          <span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/facebook/9aa3ad" alt="">Facebook</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/google/9aa3ad" alt="">Google</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/apple/9aa3ad" alt="">Apple</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9.3" height="9.3"/><rect x="12.7" y="2" width="9.3" height="9.3"/><rect x="2" y="12.7" width="9.3" height="9.3"/><rect x="12.7" y="12.7" width="9.3" height="9.3"/></svg>Microsoft</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/x/9aa3ad" alt="">Twitter</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624z"/></svg>Adobe</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/sony/9aa3ad" alt="">Sony</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/paypal/9aa3ad" alt="">PayPal</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/netflix/9aa3ad" alt="">Netflix</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/coinbase/9aa3ad" alt="">Coinbase</span><span class="rc"><i class="fab fa-linkedin-in rc-fa"></i>LinkedIn</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/dropbox/9aa3ad" alt="">Dropbox</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/snapchat/9aa3ad" alt="">Snapchat</span><span class="rc"><i class="fab fa-yahoo rc-fa"></i>Yahoo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/github/9aa3ad" alt="">GitHub</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/twitch/9aa3ad" alt="">Twitch</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/vimeo/9aa3ad" alt="">Vimeo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/tumblr/9aa3ad" alt="">Tumblr</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/soundcloud/9aa3ad" alt="">SoundCloud</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/wordpress/9aa3ad" alt="">WordPress</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#9aa3ad;stroke-width:1.6"><circle cx="12" cy="12" r="9.2"/><path d="M3.4 9h17.2M2.8 12.6h18.4M3.8 16.2h16.4" stroke-width="1.3"/></svg>AT&amp;T</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/unitedairlines/9aa3ad" alt="">United</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/duckduckgo/9aa3ad" alt="">DuckDuckGo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/zendesk/9aa3ad" alt="">Zendesk</span><span class="rc">ESET</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/99designs/9aa3ad" alt="">99designs</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/mediafire/9aa3ad" alt="">Mediafire</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/freelancer/9aa3ad" alt="">Freelancer</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/bugcrowd/9aa3ad" alt="">Bugcrowd</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="https://cdn.simpleicons.org/hackerone/9aa3ad" alt="">HackerOne</span><span class="rc more">+ more</span>
+          <span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/facebook.svg" alt="">Facebook</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/google.svg" alt="">Google</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/apple.svg" alt="">Apple</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9.3" height="9.3"/><rect x="12.7" y="2" width="9.3" height="9.3"/><rect x="2" y="12.7" width="9.3" height="9.3"/><rect x="12.7" y="12.7" width="9.3" height="9.3"/></svg>Microsoft</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/x.svg" alt="">Twitter</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624z"/></svg>Adobe</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/sony.svg" alt="">Sony</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/paypal.svg" alt="">PayPal</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/netflix.svg" alt="">Netflix</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/coinbase.svg" alt="">Coinbase</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/linkedin.svg" alt="">LinkedIn</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/dropbox.svg" alt="">Dropbox</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/snapchat.svg" alt="">Snapchat</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/yahoo.svg" alt="">Yahoo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/github.svg" alt="">GitHub</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/twitch.svg" alt="">Twitch</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/vimeo.svg" alt="">Vimeo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/tumblr.svg" alt="">Tumblr</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/soundcloud.svg" alt="">SoundCloud</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/wordpress.svg" alt="">WordPress</span><span class="rc"><svg class="rc-logo" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#9aa3ad;stroke-width:1.6"><circle cx="12" cy="12" r="9.2"/><path d="M3.4 9h17.2M2.8 12.6h18.4M3.8 16.2h16.4" stroke-width="1.3"/></svg>AT&amp;T</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/unitedairlines.svg" alt="">United</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/duckduckgo.svg" alt="">DuckDuckGo</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/zendesk.svg" alt="">Zendesk</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/eset.svg" alt="">ESET</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/99designs.svg" alt="">99designs</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/mediafire.svg" alt="">Mediafire</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/freelancer.svg" alt="">Freelancer</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/bugcrowd.svg" alt="">Bugcrowd</span><span class="rc"><img class="rc-logo" loading="lazy" width="15" height="15" src="assets/logos/hackerone.svg" alt="">HackerOne</span><span class="rc more">+ more</span>
         </div>
       </div>
       <div class="quotes reveal">
@@ -1184,9 +1296,9 @@
         <p class="sect-desc">Our hackers are ranked on the world's top bug bounty platforms, finding real vulnerabilities in production systems every day.</p>
       </div>
       <div class="platforms reveal" style="margin-bottom: 2.2rem;">
-        <div class="platform"><i class="fas fa-bug"></i> HackerOne</div>
-        <div class="platform"><i class="fas fa-bug"></i> Bugcrowd</div>
-        <div class="platform"><i class="fas fa-shield-halved"></i> Synack Red Team</div>
+        <div class="platform"><img class="m-logo mk" src="assets/logos/hackerone.svg" alt="" loading="lazy"> HackerOne</div>
+        <div class="platform"><img class="m-logo mk" src="assets/logos/bugcrowd.svg" alt="" loading="lazy"> Bugcrowd</div>
+        <div class="platform"><img class="m-logo mk" src="assets/logos/synack-mark.svg" alt="" loading="lazy"> Synack Red Team</div>
       </div>
       <p class="mono reveal" style="color: var(--paper-faint); font-size: 0.78rem; letter-spacing: 0.06em; margin-bottom: 1rem;">CERTIFIED BY OFFSEC, INE, AND INDUSTRY-RECOGNIZED BODIES</p>
       <div class="hero-certs reveal">
@@ -1372,18 +1484,33 @@
           </div>
         </div>
       </div>
+      <div class="status-bar">
+        <span class="st-ok"><i class="fas fa-circle"></i> ALL SYSTEMS OPERATIONAL</span>
+        <span>WYOMING, US &middot; <span id="statusClock">--:--:--</span> UTC</span>
+        <a href="#hero">BACK TO TOP <i class="fas fa-arrow-up"></i></a>
+      </div>
       <div class="foot-bottom">
         <p>&copy; 2026 GreyCore Labs. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Mobile nav
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
-    navToggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
+    const setNavOpen = (open) => {
+      navLinks.classList.toggle('open', open);
+      navToggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    navToggle?.setAttribute('aria-expanded', 'false');
+    navToggle?.setAttribute('aria-controls', 'navLinks');
+    navToggle?.addEventListener('click', () => setNavOpen(!navLinks.classList.contains('open')));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNavOpen(false); });
+    document.addEventListener('click', (e) => {
+      if (!navLinks.classList.contains('open')) return;
+      if (!e.target.closest('#navLinks') && !e.target.closest('#navToggle')) setNavOpen(false);
+    });
 
     // Smooth scroll + close mobile nav
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1394,7 +1521,7 @@
         if (target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          navLinks.classList.remove('open');
+          setNavOpen(false);
         }
       });
     });
@@ -1404,6 +1531,22 @@
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Scrollspy: highlight the nav link of the section in view
+    if ('IntersectionObserver' in window) {
+      const spyMap = new Map();
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => spyMap.set(a.getAttribute('href').slice(1), a));
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          const link = spyMap.get(en.target.id);
+          if (!link) return;
+          spyMap.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      }, { rootMargin: '-38% 0px -55% 0px' });
+      spyMap.forEach((link, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+    }
 
     // Animated counters
     let countersDone = false;
@@ -1534,11 +1677,18 @@
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
+      q.setAttribute('aria-expanded', q.parentElement.classList.contains('active') ? 'true' : 'false');
       const toggle = () => {
         const item = q.parentElement;
         const wasActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-        if (!wasActive) item.classList.add('active');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+        });
+        if (!wasActive) {
+          item.classList.add('active');
+          q.setAttribute('aria-expanded', 'true');
+        }
       };
       q.addEventListener('click', toggle);
       q.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
@@ -1569,6 +1719,115 @@
         btn.disabled = false;
       });
     }
+
+    // ---------- hero engagement terminal ----------
+    (function () {
+      const body = document.getElementById('termBody');
+      if (!body) return;
+      const LINES = [
+        { t: 'cmd', x: 'greycore scope --target acme-corp.com' },
+        { t: 'out', x: '[scan] 34 subdomains \u00b7 6 apps \u00b7 3 cloud buckets' },
+        { t: 'out', x: '[scan] fingerprint: nginx / django / react / aws' },
+        { t: 'cmd', x: 'greycore run --manual --poc-first' },
+        { t: 'out', x: '[crit] exposed vpn gateway \u00b7 CVE-2025-21887' },
+        { t: 'out', x: '[high] IDOR /api/v2/invoices \u2192 cross-tenant read' },
+        { t: 'out', x: '[med ] reflected XSS on /search \u00b7 PoC attached' },
+        { t: 'out', x: '[done] 17 findings validated \u00b7 0 false positives' },
+        { t: 'cmd', x: 'greycore report --auditor-ready' },
+        { t: 'out', x: '[ ok ] report.pdf + attestation letter delivered' },
+      ];
+      const render = (line, typed) => {
+        const div = document.createElement('div');
+        div.className = 't-line ' + (line.t === 'cmd' ? 'cmd' : 'out');
+        if (line.t === 'cmd') {
+          const ps = document.createElement('span'); ps.className = 'ps1'; ps.textContent = '$ ';
+          const tx = document.createElement('span'); tx.className = 'tx'; tx.textContent = typed || '';
+          div.appendChild(ps); div.appendChild(tx);
+        } else {
+          div.innerHTML = line.x.replace(/\[([^\]]+)\]/, (m, g) =>
+            '<span class="lv-' + g.trim().split(' ')[0].toLowerCase() + '">' + m + '</span>');
+        }
+        return div;
+      };
+      if (!motionOK) {
+        LINES.forEach(l => body.appendChild(render(l, l.x)));
+        return;
+      }
+      const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+      (async function play() {
+        body.innerHTML = '';
+        const cursor = document.createElement('span'); cursor.className = 't-cursor';
+        for (const line of LINES) {
+          if (line.t === 'cmd') {
+            const div = render(line, '');
+            body.appendChild(div); div.appendChild(cursor);
+            const tx = div.querySelector('.tx');
+            for (let i = 0; i <= line.x.length; i++) {
+              tx.textContent = line.x.slice(0, i);
+              div.appendChild(cursor);
+              await sleep(24 + Math.random() * 30);
+            }
+            await sleep(280);
+          } else {
+            const div = render(line);
+            body.appendChild(div); div.appendChild(cursor);
+            await sleep(340);
+          }
+        }
+        body.appendChild(cursor);
+        await sleep(3800);
+        play();
+      })();
+    })();
+
+    // ---------- spotlight hover position ----------
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.cap, .plan, .repo, .quote, .post').forEach(card => {
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+          card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+        }, { passive: true });
+      });
+    }
+
+    // ---------- scope sizer ----------
+    (function () {
+      const recEl = document.getElementById('sizerRec');
+      const metaEl = document.getElementById('sizerMeta');
+      if (!recEl || !metaEl) return;
+      const DAYS = { web: [5, 8], api: [4, 7], mobile: [6, 9], cloud: [6, 10] };
+      const MULT = { s: 1, m: 1.6, l: 2.4 };
+      const state = { target: 'web', size: 's' };
+      const money = (n) => '$' + n.toLocaleString();
+      const update = () => {
+        const d = DAYS[state.target], m = MULT[state.size];
+        const lo = Math.round(d[0] * m), hi = Math.round(d[1] * m);
+        recEl.textContent = state.size === 'l' ? 'One-Time Assessment \u00b7 Extended' : 'One-Time Assessment';
+        metaEl.textContent = money(lo * 700) + ' \u2013 ' + money(hi * 700) + ' \u00b7 ' + lo + '\u2013' + hi + ' days';
+      };
+      [['segTarget', 'target'], ['segSize', 'size']].forEach(([id, key]) => {
+        const seg = document.getElementById(id);
+        seg?.addEventListener('click', (e) => {
+          const b = e.target.closest('button');
+          if (!b) return;
+          seg.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+          b.classList.add('on');
+          state[key] = b.dataset.v;
+          update();
+        });
+      });
+      update();
+    })();
+
+    // ---------- footer live clock ----------
+    (function () {
+      const el = document.getElementById('statusClock');
+      if (!el) return;
+      const tick = () => { el.textContent = new Date().toISOString().slice(11, 19); };
+      tick();
+      setInterval(tick, 1000);
+    })();
   </script>
 </body>
 </html>
