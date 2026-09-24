@@ -19,6 +19,10 @@ Founded by Moamen Basel (OSWE, OSCP, OSWP, EWPTX), who has responsibly disclosed
 - [AgentGuard](https://github.com/momenbasel/AgentGuard): AI agent supply-chain security
 - [HTB Writeups](https://momenbasel.github.io/htb-writeups/): 500+ published Hack The Box writeups and cheatsheets
 
+## Products
+
+- [JMacy](https://www.jmacy.xyz/): download manager for macOS made by GreyCore Labs. Up to 16 parallel connections per file, browser capture for Chrome and Safari, built-in torrents with a user-set upload limit. macOS 14 or later on Apple silicon, signed and notarized. $24 one-time for up to 3 Macs, 7-day free trial without a card. AI-readable guide: https://www.jmacy.xyz/llms.txt
+
 ## Contact
 
 - Email: contact@greycorelabs.com (scoped reply within 24 hours, NDA-first, redacted sample report on request)
