@@ -1,0 +1,23 @@
+Self-hosted fonts from the Google Fonts repository, retrieved 2026-10-24.
+
+Bricolage Grotesque
+Source: https://github.com/google/fonts/tree/main/ofl/bricolagegrotesque
+File: bricolage-grotesque-latin.woff2
+Axes: weight 600-800; optical size 12-96; width fixed at 100.
+License: BricolageGrotesque-OFL.txt
+
+Archivo
+Source: https://github.com/google/fonts/tree/main/ofl/archivo
+File: archivo-latin.woff2
+Axes: weight 400-800; width fixed at 100.
+License: Archivo-OFL.txt
+
+JetBrains Mono
+Source: https://github.com/google/fonts/tree/main/ofl/jetbrainsmono
+File: jetbrains-mono-latin.woff2
+Axes: weight 400-800.
+License: JetBrainsMono-OFL.txt
+
+The upstream variable TTF files were subset to Latin text, punctuation, and
+available arrow glyphs, then compressed as WOFF2 with FontTools and Brotli.
+Original font names and license metadata are preserved.

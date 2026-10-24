@@ -19,19 +19,21 @@
   <meta property="og:description" content="Independent penetration testing, source code review, and security automation. Work directly with the engineer testing your systems.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://greycorelabs.com">
-  <meta property="og:image" content="https://greycorelabs.com/og.png?v=2">
+  <meta property="og:image" content="https://greycorelabs.com/og.png?v=3">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GreyCore Labs | Offensive Security">
   <meta name="twitter:description" content="US-incorporated offensive security firm. Pentest, SAST, code review.">
-  <meta name="twitter:image" content="https://greycorelabs.com/og.png?v=2">
+  <meta name="twitter:image" content="https://greycorelabs.com/og.png?v=3">
   <meta name="author" content="Moamen Basel">
-  <meta name="theme-color" content="#f5f6f4">
+  <meta name="theme-color" content="#0d1418">
   <link rel="canonical" href="https://greycorelabs.com">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/site.css?v=3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +43,7 @@
     "description": "US-incorporated offensive security firm. Penetration testing, code review automation, source code review, and threat intelligence.",
     "url": "https://greycorelabs.com",
     "logo": "https://greycorelabs.com/logo.svg",
-    "image": "https://greycorelabs.com/og.png?v=2",
+    "image": "https://greycorelabs.com/og.png?v=3",
     "email": "contact@greycorelabs.com",
     "sameAs": [
       "https://github.com/greycorelabs",
@@ -75,35 +77,42 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#hero" aria-label="GreyCore Labs home"><img src="logo.svg" width="32" height="32" alt="">GreyCore Labs</a>
+      <a class="brand" href="#hero" aria-label="GreyCore Labs home"><img src="logo.svg" width="32" height="32" alt=""><span>Grey<span class="brand-core">Core</span> Labs</span></a>
       <button class="nav-toggle" id="navToggle" type="button" aria-controls="navLinks" aria-expanded="false">Menu</button>
       <nav id="navLinks" class="nav-links" aria-label="Main navigation">
-        <a href="#services">Services</a><a href="#work">Work</a><a href="#plans">Pricing</a><a href="#about">About</a>
+        <a href="#services">Services</a><a href="#work">Work</a><a href="#plans">Pricing</a><a href="#about">About</a><a href="#free-scan">Free scan</a>
         <a class="nav-contact" href="#contact">Request a scope <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
   <main id="main">
-    <section id="hero" class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Independent offensive security</p>
-        <h1 id="hero-title">Know where<br>you’re exposed.</h1>
-        <p class="hero-description">Manual penetration testing and code review. Clear findings, practical fixes, and an engineer you can talk to.</p>
-        <div class="hero-actions"><a class="button" href="#contact">Discuss an assessment <span aria-hidden="true">↗</span></a><a class="text-link" href="#work">See our work <span aria-hidden="true">↓</span></a></div>
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-copy">
+        <p class="eyebrow">Offensive security. US-incorporated.</p>
+        <h1 id="hero-title">We find the flaw<br>before the <span>breach.</span></h1>
+        <p class="hero-description">Manual penetration testing, source-code review, and security automation. Validated findings with the evidence and guidance to fix them.</p>
+        <div class="hero-actions"><a class="button" href="#contact">Request a scope <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#free-scan">Free external scan</a><a class="text-link" href="#plans">View pricing <span aria-hidden="true">→</span></a></div>
+        <div class="hero-credentials" aria-label="Security certifications"><span>OSWE</span><span>OSCP</span><span>OSWP</span><span>EWPTX</span><span>EWPT</span><span>VHL Advanced+</span></div>
       </div>
+      <nav class="capability-nav wrap" aria-label="Explore our capabilities"><a href="#pentesting">Manual testing <span aria-hidden="true">↘</span></a><a href="#source-review">Source review <span aria-hidden="true">↘</span></a><a href="#cloud-security">Cloud &amp; AI security <span aria-hidden="true">↘</span></a><a href="#sast">SAST automation <span aria-hidden="true">↘</span></a></nav>
     </section>
     <section id="services" class="section wrap" aria-labelledby="services-title">
-      <div class="section-intro"><h2 id="services-title" class="section-title">Put your systems<br>to the test.</h2><p>Start with an application, a codebase, or your infrastructure. We agree the scope and test the paths that matter.</p></div>
+      <div class="section-intro"><p class="eyebrow">Capabilities</p><h2 id="services-title" class="section-title">Offensive security,<br><span>end to end.</span></h2><p>From application logic to cloud permissions. Testing, review, and response across your attack surface.</p></div>
       <div class="service-list">
-        <article class="service"><h3>Penetration testing</h3><div><p>Manual testing of web applications, APIs, and mobile apps. We investigate access controls, authentication, and business logic, then document how each issue can be reproduced.</p><p class="service-detail">Web applications / APIs / iOS &amp; Android</p></div></article>
-        <article class="service"><h3>Cloud &amp; AI security</h3><div><p>Review cloud permissions, exposed services, and configuration. Test AI applications for prompt injection, data exposure, and unsafe tool access.</p><p class="service-detail">AWS / Azure / GCP / LLM applications</p></div></article>
-        <article class="service" id="sast"><h3>Code review &amp; SAST</h3><div><p>Trace vulnerable paths through your source code. Add rules tailored to your frameworks and integrate them into pull requests, with baseline triage and fix guidance.</p><a class="text-link" href="#sast-plans">Code security packages <span aria-hidden="true">↗</span></a></div></article>
-        <article class="service"><h3>Detection &amp; response</h3><div><p>Investigate incidents, hunt for signs of compromise, and review system hardening. We also help set up SOC workflows and automate alert triage.</p><p class="service-detail">Digital forensics / Threat hunting / Configuration review</p></div></article>
+        <article class="service" id="pentesting"><span class="service-index" aria-hidden="true">01</span><h3>Penetration testing</h3><p>Manual testing of web applications, APIs, and mobile apps. Authentication, access control, and business logic, validated with reproducible evidence.</p></article>
+        <article class="service" id="cloud-security"><span class="service-index" aria-hidden="true">02</span><h3>Cloud &amp; AI security</h3><p>AWS, Azure, and GCP assessments. Cloud permissions, exposed services, prompt injection, and unsafe tool access in AI applications.</p></article>
+        <article class="service" id="source-review"><span class="service-index" aria-hidden="true">03</span><h3>Source code review</h3><p>Follow authentication flows and trace untrusted input through your code. Investigate authorization flaws and vulnerable application logic.</p></article>
+        <article class="service"><span class="service-index" aria-hidden="true">04</span><h3>SAST automation</h3><p>Rules tailored to your frameworks and code patterns, integrated into pull requests with baseline triage and remediation guidance.</p></article>
+        <article class="service"><span class="service-index" aria-hidden="true">05</span><h3>SOC automation</h3><p>Set up detection workflows and automate alert triage, threat correlation, and incident prioritization.</p></article>
+        <article class="service"><span class="service-index" aria-hidden="true">06</span><h3>Incident response</h3><p>Digital forensics, evidence collection, root-cause analysis, and containment planning when an incident needs investigation.</p></article>
+        <article class="service"><span class="service-index" aria-hidden="true">07</span><h3>Threat hunting</h3><p>Investigate signs of compromise, lateral movement, and persistent access across your environment.</p></article>
+        <article class="service"><span class="service-index" aria-hidden="true">08</span><h3>Configuration review</h3><p>Review cloud resources, servers, firewalls, and network devices against your security requirements and CIS benchmarks.</p></article>
       </div>
     </section>
+    <section id="sast" class="section automation-section" aria-labelledby="sast-title"><div class="wrap automation-layout"><div class="section-intro"><p class="eyebrow">Code security</p><h2 id="sast-title" class="section-title">Make security part<br>of the pull request.</h2><p>Custom rules for your stack, connected to your development workflow. We handle setup and triage with your engineers.</p><a class="button button-secondary" href="#sast-plans">Explore SAST packages <span aria-hidden="true">↗</span></a></div><dl class="automation-details"><div><dt>Rules for your codebase</dt><dd>Checks tailored to your frameworks, libraries, and application patterns.</dd></div><div><dt>CI/CD integration</dt><dd>GitHub Actions, GitLab CI, or Bitbucket Pipelines, with findings surfaced in code review.</dd></div><div><dt>Baseline triage</dt><dd>Review the initial results, tune false positives, and prioritize the issues your team should investigate.</dd></div><div><dt>Fix guidance</dt><dd>Developer documentation, weakness classifications, and a walkthrough with your team.</dd></div></dl></div></section>
     <section id="process" class="section process-section" aria-labelledby="process-title">
       <div class="wrap process-layout">
-        <div class="section-intro"><h2 id="process-title" class="section-title">A finding is only useful<br>if you can act on it.</h2><p>Every assessment includes a technical report, an executive summary, and time to discuss the fixes.</p><a class="text-link" href="mailto:contact@greycorelabs.com?subject=Sample%20pentest%20report%20request">Request a sample report <span aria-hidden="true">↗</span></a></div>
+        <div class="section-intro"><h2 id="process-title" class="section-title">A clear process.<br>Findings you can use.</h2><p>Every assessment includes a technical report, an executive summary, and time to discuss the fixes.</p><a class="text-link" href="mailto:contact@greycorelabs.com?subject=Sample%20pentest%20report%20request">Request a sample report <span aria-hidden="true">↗</span></a></div>
         <div class="process-content">
           <ol class="process-list">
             <li><h3>Agree the scope</h3><p>Targets, access, testing windows, and rules of engagement. A fixed quote before testing begins.</p></li>
@@ -116,20 +125,18 @@
       </div>
     </section>
     <section id="work" class="section wrap" aria-labelledby="work-title">
-      <div class="section-intro" id="track-record"><h2 id="work-title" class="section-title">You can inspect<br>our work.</h2><p>Our public tools and research give you a way to judge how we approach security.</p></div>
+      <div class="section-intro" id="track-record"><p class="eyebrow">Open source &amp; research</p><h2 id="work-title" class="section-title">Tools we build<br><span>in the open.</span></h2><p>Explore our tools and technical research. Read the code, follow an attack path, and see how we approach the work.</p></div>
       <div class="work-layout">
-        <article class="research-feature" id="blog"><div><p class="work-kind">Research &amp; walkthroughs</p><h3>Hack The Box<br>writeups.</h3><p>Technical walkthroughs, attack paths, and practical notes on exploitation. The reasoning behind the result, documented step by step.</p></div><a class="text-link" href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener noreferrer">Read the collection <span aria-hidden="true">↗</span></a></article>
-        <div class="tool-list">
-          <a class="tool" href="https://github.com/momenbasel/keyFinder" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>keyFinder</h3><span aria-hidden="true">↗</span></div><p>Find exposed API keys and secrets while browsing.</p><span class="tool-meta">Browser extension</span></a>
-          <a class="tool" href="https://github.com/momenbasel/vulnhawk" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>VulnHawk</h3><span aria-hidden="true">↗</span></div><p>Framework-aware static analysis with SARIF output and GitHub Actions integration.</p><span class="tool-meta">Code security</span></a>
-          <a class="tool" href="https://github.com/momenbasel/AgentGuard" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>AgentGuard</h3><span aria-hidden="true">↗</span></div><p>Check package installs and downloads initiated by coding agents.</p><span class="tool-meta">Supply-chain security</span></a>
-        </div>
+        <a class="tool" href="https://github.com/momenbasel/keyFinder" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>keyFinder</h3><span aria-hidden="true">↗</span></div><p>Discover exposed API keys and secrets while browsing. An extension for Chrome and Firefox.</p><span class="tool-meta">JavaScript / Browser extension</span></a>
+        <a class="tool" href="https://github.com/momenbasel/vulnhawk" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>VulnHawk</h3><span aria-hidden="true">↗</span></div><p>Framework-aware static analysis, with SARIF output and GitHub Actions integration.</p><span class="tool-meta">Python / Code security</span></a>
+        <a id="blog" class="tool" href="https://momenbasel.github.io/htb-writeups/" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>HTB Writeups</h3><span aria-hidden="true">↗</span></div><p>Hack The Box walkthroughs, attack paths, and exploitation notes. The reasoning behind the result, step by step.</p><span class="tool-meta">Research / Technical walkthroughs</span></a>
+        <a class="tool" href="https://github.com/momenbasel/AgentGuard" target="_blank" rel="noopener noreferrer"><div class="tool-heading"><h3>AgentGuard</h3><span aria-hidden="true">↗</span></div><p>Check the packages, repositories, and downloads that coding agents bring into your environment.</p><span class="tool-meta">Python / Supply-chain security</span></a>
       </div>
       <div class="product-note"><p>We build software, too. <a href="https://www.jmacy.xyz/" target="_blank" rel="noopener noreferrer">JMacy</a> is our download manager for macOS, with parallel downloads, browser capture, and built-in torrents.</p><a class="text-link" href="https://www.jmacy.xyz/" target="_blank" rel="noopener noreferrer">Explore JMacy <span aria-hidden="true">↗</span></a></div>
     </section>
     <section id="plans" class="section pricing-section" aria-labelledby="pricing-title">
       <div class="wrap">
-        <div class="section-intro"><h2 id="pricing-title" class="section-title">A clear scope.<br>A clear price.</h2><p>Choose an assessment or ongoing support. The final scope and price are agreed before work starts.</p></div>
+        <div class="section-intro"><p class="eyebrow">Pricing</p><h2 id="pricing-title" class="section-title">Engagement <span>plans.</span></h2><p>Choose an assessment or ongoing support. The final scope and price are agreed before work starts.</p></div>
         <div class="assessment-plans">
           <article class="assessment-plan"><h3>One-time assessment</h3><p class="price"><span>from</span> $3,500</p><p>A scoped pentest of your application or infrastructure.</p><ul><li>Executive summary and technical report</li><li>Validated findings and remediation guidance</li><li>Letter of attestation</li><li>30-day retest included</li></ul><a class="text-link" href="mailto:contact@greycorelabs.com?subject=One-time%20assessment%20scoping%20request">Scope an assessment <span aria-hidden="true">↗</span></a></article>
           <article class="assessment-plan"><h3>Monthly retainer</h3><p class="price">$2,500 <span>/ month</span></p><p>Ongoing testing for teams shipping new features regularly.</p><ul><li>Weekly scanning and monthly manual testing</li><li>Security review of new features</li><li>Dedicated Slack or Teams channel</li><li>Monthly report and priority critical response</li></ul><a class="text-link" href="mailto:contact@greycorelabs.com?subject=Monthly%20retainer%20enquiry">Discuss ongoing testing <span aria-hidden="true">↗</span></a></article>
@@ -151,11 +158,11 @@
       </div>
     </section>
     <section id="about" class="section wrap about-layout" aria-labelledby="about-title">
-      <div class="section-intro"><h2 id="about-title" class="section-title">Work directly<br>with the tester.</h2></div>
-      <div class="about-copy"><h3>Moamen Basel</h3><p class="founder-role">Founder, GreyCore Labs</p><p>I’ve worked in offensive and defensive security since 2014, across web applications, infrastructure, and mobile. I founded GreyCore Labs to work directly with teams on finding and fixing security issues.</p><p>You speak with the engineer doing the assessment, from the first scoping conversation through the retest.</p><div id="hackers" class="credentials"><span>OSWE</span><span>OSCP</span><span>OSWP</span><span>EWPTX</span><span>EWPT</span><span>CRTO</span></div><div class="profile-links"><a href="https://linkedin.com/in/momenbasel" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/momenbasel" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://moamenbasel.com" target="_blank" rel="noopener noreferrer">Personal site ↗</a></div><p class="small muted company-note">GreyCore Labs LLC is incorporated in Wyoming, USA. NDAs and MSAs are available before an engagement.</p></div>
+      <div class="section-intro"><h2 id="about-title" class="section-title">Independent.<br>Engineer-led.</h2></div>
+      <div class="about-copy"><h3>Moamen Basel</h3><p class="founder-role">Founder, GreyCore Labs</p><p>GreyCore Labs is an independent offensive security firm founded by Moamen Basel. His work spans offensive and defensive security, across web applications, infrastructure, and mobile, since 2014.</p><p>You speak with the engineer doing the assessment, from the first scoping conversation through the retest.</p><div id="hackers" class="credentials"><span>OSWE</span><span>OSCP</span><span>OSWP</span><span>EWPTX</span><span>EWPT</span><span>CRTO</span></div><div class="profile-links"><a href="https://linkedin.com/in/momenbasel" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/momenbasel" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://moamenbasel.com" target="_blank" rel="noopener noreferrer">Personal site ↗</a></div><p class="small muted company-note">GreyCore Labs LLC is incorporated in Wyoming, USA. NDAs and MSAs are available before an engagement.</p></div>
     </section>
     <section id="faq" class="section wrap faq-layout" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="section-title">Before we start.</h2>
+      <h2 id="faq-title" class="section-title">Common<br>questions.</h2>
       <div class="faq-list">
         <details name="faq" open><summary>How long does a pentest take?</summary><p>Most web application assessments take 5-10 business days, depending on scope. We share preliminary findings during testing so your team can begin remediation.</p></details>
         <details name="faq"><summary>What access do you need?</summary><p>We agree this during scoping. Application testing may require test accounts for each role, API documentation, and a suitable test environment. Code review requires access to the repositories in scope.</p></details>
@@ -166,7 +173,7 @@
       </div>
     </section>
     <section id="free-scan" class="section scan-section" aria-labelledby="scan-title">
-      <div class="wrap scan-layout"><div class="section-intro"><h2 id="scan-title" class="section-title">Start with your<br>external exposure.</h2><p>Request a free automated scan of a domain you own. Receive a one-page report within 48 hours.</p><p class="small muted">Includes subdomain discovery, known vulnerability checks, and configuration review. No purchase required.</p></div>
+      <div class="wrap scan-layout"><div class="section-intro"><h2 id="scan-title" class="section-title">Free external<br><span>security scan.</span></h2><p>Request a free automated scan of a domain you own. Receive a one-page report within 48 hours.</p><p class="small muted">Includes subdomain discovery, known vulnerability checks, and configuration review. No purchase required.</p></div>
         <div class="scan-form-wrap"><form id="scanForm" action="https://formspree.io/f/xyknaopq" method="POST">
           <div class="form-grid"><div><label for="scan-name">Your name</label><input id="scan-name" name="name" autocomplete="name" required maxlength="120"></div><div><label for="scan-email">Work email</label><input id="scan-email" name="email" type="email" autocomplete="email" required maxlength="254"></div></div>
           <label for="scan-domain">Domain to scan</label><input id="scan-domain" name="domain" placeholder="yourcompany.com" autocapitalize="none" spellcheck="false" required maxlength="253">
@@ -177,9 +184,9 @@
         </form><div id="scanError" class="form-message error" role="alert" hidden><h3>We couldn’t send your request.</h3><p>Your details are still here. Try again, or <a id="scanFallback" href="mailto:contact@greycorelabs.com">send the request by email</a>.</p></div><div id="scanSuccess" class="form-message" role="status" tabindex="-1" hidden><h3>Request received.</h3><p>We’ll review your domain and email your report within 48 hours.</p></div></div>
       </div>
     </section>
-    <section id="contact" class="section wrap contact-section" aria-labelledby="contact-title"><p class="eyebrow">Have a system in mind?</p><h2 id="contact-title">Let’s take<br>a closer look.</h2><a class="contact-email" href="mailto:contact@greycorelabs.com?subject=Pentest%20scoping%20request">contact@greycorelabs.com <span aria-hidden="true">↗</span></a><p>Send your scope, stack, and deadline. Moamen will reply within 24 hours.</p></section>
+    <section id="contact" class="section wrap contact-section" aria-labelledby="contact-title"><p class="eyebrow">Start a conversation</p><h2 id="contact-title">Tell us what<br>needs testing.</h2><a class="contact-email" href="mailto:contact@greycorelabs.com?subject=Pentest%20scoping%20request">contact@greycorelabs.com <span aria-hidden="true">↗</span></a><p>Send your scope, stack, and deadline. Moamen will reply within 24 hours.</p></section>
   </main>
-  <footer class="site-footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#hero"><img src="logo.svg" width="28" height="28" alt="">GreyCore Labs</a><nav aria-label="Footer navigation"><a href="#free-scan">Free scan</a><a href="world.html">Walkthrough</a><a href="#faq">FAQ</a><a href=".well-known/security.txt">Security disclosure</a></nav></div><div class="footer-bottom"><p>© 2026 GreyCore Labs LLC</p><p>Also from GreyCore: <a href="https://www.jmacy.xyz/" target="_blank" rel="noopener noreferrer">JMacy</a> <span aria-hidden="true">/</span> <a href="https://cryptoinbrief.xyz/" target="_blank" rel="noopener noreferrer">Crypto in Brief</a></p><a href="#hero">Back to top ↑</a></div></div></footer>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#hero"><img src="logo.svg" width="28" height="28" alt=""><span>Grey<span class="brand-core">Core</span> Labs</span></a><nav aria-label="Footer navigation"><a href="#free-scan">Free scan</a><a href="world.html">Walkthrough</a><a href="#faq">FAQ</a><a href=".well-known/security.txt">Security disclosure</a></nav></div><div class="footer-bottom"><p>© 2026 GreyCore Labs LLC</p><p>Also from GreyCore: <a href="https://www.jmacy.xyz/" target="_blank" rel="noopener noreferrer">JMacy</a> <span aria-hidden="true">/</span> <a href="https://cryptoinbrief.xyz/" target="_blank" rel="noopener noreferrer">Crypto in Brief</a></p><a href="#hero">Back to top ↑</a></div></div></footer>
   <script src="assets/site.js" defer></script>
 </body>
 </html>
