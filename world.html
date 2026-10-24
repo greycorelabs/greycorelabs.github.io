@@ -1,27 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Inside a GreyCore Assessment: the pentest, as a flight</title>
-  <meta name="description" content="Scroll to fly through a GreyCore Labs penetration test, from your exposed perimeter to a hardened network. Six scenes, one continuous camera." />
-  <link rel="canonical" href="https://greycorelabs.com/world.html" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preload" as="image" href="assets/scroll-world/exposed.webp" fetchpriority="high" />
-
-  <!-- Social preview -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Inside a GreyCore Assessment" />
-  <meta property="og:description" content="Fly through a penetration test: exposed perimeter to hardened network." />
-  <meta property="og:image" content="https://greycorelabs.com/og.png" />
-  <meta property="og:url" content="https://greycorelabs.com/world.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <!-- Analytics (same property as the main site) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inside an assessment | GreyCore Labs</title>
+  <meta name="description" content="How a GreyCore Labs penetration test works: scope, manual testing, documented findings, remediation guidance, and a retest.">
+  <link rel="canonical" href="https://greycorelabs.com/world.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Inside an assessment | GreyCore Labs">
+  <meta property="og:description" content="What we test, how we document findings, and what your team receives.">
+  <meta property="og:image" content="https://greycorelabs.com/og.png">
+  <meta property="og:url" content="https://greycorelabs.com/world.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="assets/site.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYWKT4Q7C6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -29,190 +21,146 @@
     gtag('js', new Date());
     gtag('config', 'G-MYWKT4Q7C6');
   </script>
-
   <style>
-    /* Theme the scroll-world engine with GreyCore's palette (matches the scene backgrounds). */
-    :root, .sw-root {
-      --sw-bg:        #0d1216;   /* == the generated scene background */
-      --sw-ink:       #f2f4f5;
-      --sw-ink-soft:  #9aa4a8;
-      --sw-accent:    #00d4aa;   /* GreyCore green; per-section accents override at runtime */
-      --sw-font-display: 'Bricolage Grotesque', 'Archivo', system-ui, sans-serif;
-      --sw-font-body:    'Archivo', system-ui, sans-serif;
+    .assessment-page .assessment-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 80px; }
+    .assessment-page .brand img { width: 32px; height: 32px; }
+    .assessment-page .assessment-back { color: var(--ink); font-size: 15px; text-decoration: underline; text-underline-offset: 5px; }
+    .assessment-intro { padding: 76px 0 64px; max-width: 890px; }
+    .assessment-intro h1 { font-size: clamp(42px, 6.5vw, 84px); line-height: 1.04; letter-spacing: -.055em; font-weight: 600; margin: 0 0 28px; }
+    .assessment-intro p { max-width: 57ch; color: var(--muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.5; margin: 0; }
+    .assessment-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 72px; border-top: 1px solid var(--line); padding: 36px 0 96px; }
+    .assessment-nav { align-self: start; position: sticky; top: 112px; display: grid; gap: 16px; }
+    .assessment-nav a { color: var(--muted); text-decoration: none; font-size: 15px; line-height: 1.5; }
+    .assessment-nav a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 5px; }
+    .assessment-content { max-width: 760px; }
+    .assessment-content section { padding: 16px 0 48px; scroll-margin-top: 110px; }
+    .assessment-content section + section { border-top: 1px solid var(--line); padding-top: 44px; }
+    .assessment-content h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.15; font-weight: 550; letter-spacing: -.035em; margin: 0 0 20px; }
+    .assessment-content h3 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; }
+    .assessment-content p, .assessment-content li { color: var(--muted); font-size: 17px; line-height: 1.7; }
+    .assessment-content p { margin: 0 0 16px; }
+    .assessment-content ul { padding-left: 22px; margin: 0; }
+    .assessment-content li + li { margin-top: 8px; }
+    .assessment-content details { margin-top: 24px; padding: 18px 20px; background: var(--surface); }
+    .assessment-content summary { cursor: pointer; font-weight: 600; color: var(--ink); line-height: 1.5; }
+    .assessment-content details[open] summary { margin-bottom: 18px; }
+    .assessment-content details p:last-child { margin-bottom: 0; }
+    .assessment-content .assessment-deliverable { margin-top: 28px; padding-left: 20px; border-left: 2px solid var(--accent); color: var(--ink); }
+    .assessment-content .assessment-deliverable strong { display: block; font-weight: 600; }
+    .assessment-end { padding: 38px 0 48px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+    .assessment-end p { margin: 0; color: var(--muted); font-size: 15px; }
+    .assessment-end nav { display: flex; flex-wrap: wrap; gap: 24px; }
+    .assessment-end a { color: var(--ink); text-underline-offset: 5px; }
+    .assessment-page a:focus-visible, .assessment-page summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+    .assessment-alias { display: block; scroll-margin-top: 110px; }
+    @media (max-width: 900px) {
+      .assessment-layout { grid-template-columns: 1fr; gap: 28px; padding-bottom: 48px; }
+      .assessment-nav { position: static; grid-template-columns: 1fr 1fr; gap: 12px 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+      .assessment-intro { padding: 48px 0; }
+      .assessment-content { max-width: none; }
     }
-    html, body { margin: 0; background: #0d1216; color: #f2f4f5; }
-    body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-
-    /* --- Dark-theme fixes for the engine chrome (its defaults assume a LIGHT theme). --- */
-    /* Unlayered rules beat the engine's @layer sw, restoring WCAG AA contrast. */
-    /* Without this the primary CTA is #fff on a light --sw-ink == invisible. */
-    /* Pin to fixed brand teal (not the per-section --sw-accent) so the conversion CTA */
-    /* always clears WCAG AA (dark text on #00d4aa is ~5.2:1; red-accent scenes would be ~3.8:1). */
-    .sw-topcta, .sw-btn--primary { background: #00d4aa; color: #0d1216; }
-    .sw-topcta:hover, .sw-btn--primary:hover { background: #3df0cf; color: #0d1216; }
-    .sw-nav { background: color-mix(in srgb, #0d1216 66%, transparent);
-      border-color: color-mix(in srgb, var(--sw-accent) 24%, transparent); }
-    .sw-nav__item { color: #c3ccd0; }
-    .sw-nav__item:hover { color: #f2f4f5; }
-    .sw-nav__item.is-active { color: #0d1216; background: var(--sw-accent); }
-
-    /* Visually-hidden document heading (engine emits only h2 section titles). */
-    .sw-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
-      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-
-    /* Real GreyCore cube logo in the brand mark (engine default is a plain accent square). */
-    .sw-brand__mark { width: 30px; height: 30px; border-radius: 0; box-shadow: none;
-      background: url('logo.svg') center / contain no-repeat;
-      filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.45)); }
-
-    /* No-JS / hard-fallback: a quiet link back to the main site so the page is never a dead end. */
-    .nojs {
-      max-width: 640px; margin: 22vh auto; padding: 0 28px; text-align: center;
-      font-family: 'Archivo', system-ui, sans-serif;
+    @media (max-width: 480px) {
+      .assessment-page .assessment-header { min-height: 72px; gap: 16px; }
+      .assessment-page .assessment-back { font-size: 13px; }
+      .assessment-content details { padding: 16px; }
     }
-    .nojs a { color: #00d4aa; }
-    .nojs .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: .04em; font-size: .82rem;
-      text-transform: uppercase; color: #9aa4a8; }
   </style>
 </head>
-<body>
-  <div id="top"></div>
-  <div id="world">
-    <h1 class="sw-sr">Inside a GreyCore Labs assessment: from exposed perimeter to hardened network</h1>
-    <noscript>
-      <div class="nojs">
-        <p class="mono">GreyCore Labs</p>
-        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;">The flight needs JavaScript.</h1>
-        <p style="color:#9aa4a8">This is a scroll-scrubbed video experience. Head back to the
-          main site to book an assessment or read the full brief.</p>
-        <p><a href="index.html">&larr; greycorelabs.com</a></p>
+<body class="assessment-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap assessment-header">
+      <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32">GreyCore Labs</a>
+      <a class="assessment-back" href="index.html#services">Back to services</a>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <div class="assessment-intro">
+      <h1>Inside an assessment.</h1>
+      <p>A guide to working with GreyCore: what we need, how we test, and what your team receives.</p>
+    </div>
+    <div class="assessment-layout">
+      <nav class="assessment-nav" aria-label="Assessment guide">
+        <a href="#scope">Agree the scope</a>
+        <a href="#testing">Test the system</a>
+        <a href="#findings">Document the findings</a>
+        <a href="#retest">Verify the fixes</a>
+      </nav>
+      <div class="assessment-content">
+        <section id="scope" aria-labelledby="scope-title">
+          <span id="exposed" class="assessment-alias"></span>
+          <h2 id="scope-title">Agree the scope.</h2>
+          <p>We start with the application, API, infrastructure, or codebase you need assessed. Together, we define the targets, access, testing window, and restrictions before testing begins.</p>
+          <p>The scope determines the work and the fixed quote. An NDA and written authorization come before access to your systems.</p>
+          <details open>
+            <summary>What to send us</summary>
+            <ul>
+              <li>The systems in scope and a short description of how they are used.</li>
+              <li>Your stack, hosting environment, and available technical documentation.</li>
+              <li>The user roles and integrations that need testing.</li>
+              <li>Your deadline, any audit requirements, and known testing restrictions.</li>
+            </ul>
+          </details>
+          <p class="assessment-deliverable"><strong>You receive</strong>A written scope, testing schedule, rules of engagement, and quote.</p>
+        </section>
+        <section id="testing" aria-labelledby="testing-title">
+          <span id="recon" class="assessment-alias"></span>
+          <span id="breach" class="assessment-alias"></span>
+          <span id="inside" class="assessment-alias"></span>
+          <h2 id="testing-title">Test the system.</h2>
+          <p>We map the agreed attack surface, then test the authentication, authorization, data flows, and business logic that matter to the system.</p>
+          <p>Automated checks support manual investigation. We validate suspected issues and their impact within the agreed boundaries. Critical findings are raised during the engagement so your team can begin remediation.</p>
+          <details>
+            <summary>How testing changes with the target</summary>
+            <ul>
+              <li><strong>Web and API:</strong> permissions across roles and tenants, session handling, input processing, and application workflows.</li>
+              <li><strong>Mobile:</strong> client behavior, local storage, communications, and the connected API.</li>
+              <li><strong>Cloud:</strong> identity permissions, exposed services, configuration, and access to sensitive resources.</li>
+              <li><strong>Source code:</strong> authentication flows, input-to-sink paths, framework usage, and business logic.</li>
+            </ul>
+          </details>
+          <p class="assessment-deliverable"><strong>You receive</strong>Progress updates and early notification of critical findings, with a direct line to the tester.</p>
+        </section>
+        <section id="findings" aria-labelledby="findings-title">
+          <span id="report" class="assessment-alias"></span>
+          <h2 id="findings-title">Document the findings.</h2>
+          <p>The report separates the summary for decision makers from the technical detail engineers need to reproduce and fix each issue.</p>
+          <p>Findings include the affected components, severity, demonstrated impact, reproduction steps, and remediation guidance. The report records the scope and limitations of the assessment.</p>
+          <details>
+            <summary>What is in the report</summary>
+            <ul>
+              <li>An executive summary of the assessment and the risks identified.</li>
+              <li>Technical findings with evidence and reproducible proof of concept.</li>
+              <li>Severity ratings and relevant weakness classifications.</li>
+              <li>Remediation recommendations for the engineering team.</li>
+              <li>A record of what was tested and any constraints on coverage.</li>
+            </ul>
+          </details>
+          <p class="assessment-deliverable"><strong>You receive</strong>An executive summary, technical report, and letter of attestation for the assessment.</p>
+          <p><a class="text-link" href="mailto:contact@greycorelabs.com?subject=Sample%20pentest%20report%20request">Request a redacted sample report</a></p>
+        </section>
+        <section id="retest" aria-labelledby="retest-title">
+          <span id="hardened" class="assessment-alias"></span>
+          <h2 id="retest-title">Verify the fixes.</h2>
+          <p>Your engineers make the changes. We retest the reported issues to check whether the fixes address the original behavior and document anything still unresolved.</p>
+          <p>One-time assessments include a 30-day retest window. The retest covers reported findings; new features or a materially changed scope can require a separate assessment.</p>
+          <details>
+            <summary>What a retest confirms</summary>
+            <p>The updated report records each finding as resolved, partially resolved, or still open, based on the evidence from retesting. It describes the tested scope at that point in time. It does not certify that every possible vulnerability has been found.</p>
+          </details>
+          <p class="assessment-deliverable"><strong>You receive</strong>Updated finding status and evidence of the fixes verified during the retest.</p>
+          <p><a class="text-link" href="index.html#contact">Discuss your assessment</a></p>
+        </section>
       </div>
-    </noscript>
-  </div>
-
-  <script src="assets/scroll-world/scrub-engine.js"></script>
-  <script>
-    mountScrollWorld(document.getElementById('world'), {
-      brand: { name: 'GreyCore Labs', href: 'index.html' },
-      cta: { label: 'Book an assessment', href: 'index.html#contact' },
-      hint: 'scroll to fly in',
-      diveScroll: 1.3,
-      connScroll: 0.9,
-      sections: [
-        {
-          id: 'exposed', label: 'Exposed',
-          still: 'assets/scroll-world/exposed.webp',
-          clip: 'assets/scroll-world/vid/exposed.mp4',
-          clipMobile: 'assets/scroll-world/vid/exposed-m.mp4',
-          accent: '#e5484d',
-          scroll: 1.6, linger: 0.4,
-          eyebrow: 'Where it starts',
-          title: 'Every company has a way in.',
-          body: 'Before we touch anything, we look at what the internet already sees: your exposed edge, mapped the way an attacker finds it.',
-          tags: ['External surface', 'Open services', 'Exposure map'],
-        },
-        {
-          id: 'recon', label: 'Recon',
-          still: 'assets/scroll-world/recon.webp',
-          clip: 'assets/scroll-world/vid/recon.mp4',
-          clipMobile: 'assets/scroll-world/vid/recon-m.mp4',
-          accent: '#00d4aa',
-          scroll: 1.3,
-          eyebrow: 'Recon',
-          title: 'We chart what you expose.',
-          body: 'Subdomains, live services, leaked credentials, the host nobody remembered, pulled together into one attack graph.',
-          tags: ['OSINT', 'Attack graph', 'Asset discovery'],
-        },
-        {
-          id: 'breach', label: 'Breach',
-          still: 'assets/scroll-world/breach.webp',
-          clip: 'assets/scroll-world/vid/breach.mp4',
-          clipMobile: 'assets/scroll-world/vid/breach-m.mp4',
-          accent: '#e5484d',
-          scroll: 1.5, linger: 0.35,
-          eyebrow: 'Exploitation',
-          title: 'Then we break in, for real.',
-          body: 'Not a scanner guessing at CVEs. A human chaining the flaws that actually put someone inside your systems.',
-          tags: ['Manual exploit', 'Chained flaws', 'Proof of impact'],
-        },
-        {
-          id: 'inside', label: 'Inside',
-          still: 'assets/scroll-world/inside.webp',
-          clip: 'assets/scroll-world/vid/inside.mp4',
-          clipMobile: 'assets/scroll-world/vid/inside-m.mp4',
-          accent: '#3df0cf',
-          scroll: 1.3,
-          eyebrow: 'Post-exploitation',
-          title: 'We move like the adversary.',
-          body: 'Lateral movement, privilege escalation, the full path from one small bug to your crown-jewel data.',
-          tags: ['Lateral movement', 'Priv-esc', 'Domain admin'],
-        },
-        {
-          id: 'report', label: 'Report',
-          still: 'assets/scroll-world/report.webp',
-          clip: 'assets/scroll-world/vid/report.mp4',
-          clipMobile: 'assets/scroll-world/vid/report-m.mp4',
-          accent: '#00d4aa',
-          scroll: 1.4, linger: 0.3,
-          eyebrow: 'The deliverable',
-          title: 'You get proof, not a PDF dump.',
-          body: 'Every finding reproduced, ranked by real business impact, with the fix written for the engineers who have to ship it.',
-          tags: ['Reproduced', 'Ranked by impact', 'Fix guidance'],
-        },
-        {
-          id: 'hardened', label: 'Hardened',
-          still: 'assets/scroll-world/hardened.webp',
-          clip: 'assets/scroll-world/vid/hardened.mp4',
-          clipMobile: 'assets/scroll-world/vid/hardened-m.mp4',
-          accent: '#3df0cf',
-          scroll: 1.7, linger: 0.45,
-          eyebrow: 'The outcome',
-          title: 'Now nothing walks in.',
-          body: 'You close what matters, we retest to prove it is shut, and you get an attestation you can hand to customers and auditors.',
-          tags: [],
-          cta: {
-            primary:   { label: 'Book an assessment', href: 'index.html#contact' },
-            secondary: { label: 'See pricing',         href: 'index.html#plans' },
-          },
-        },
-      ],
-      // length === sections.length - 1 (5), in order. Frame-locked per SKILL Step 5.
-      // All 5 aerial fly-over connectors (one continuous flight, no crossfade gaps).
-      connectors: [
-        'assets/scroll-world/vid/conn1.mp4',
-        'assets/scroll-world/vid/conn2.mp4',
-        'assets/scroll-world/vid/conn3.mp4',
-        'assets/scroll-world/vid/conn4.mp4',
-        'assets/scroll-world/vid/conn5.mp4',
-      ],
-      connectorsMobile: [
-        'assets/scroll-world/vid/conn1-m.mp4',
-        'assets/scroll-world/vid/conn2-m.mp4',
-        'assets/scroll-world/vid/conn3-m.mp4',
-        'assets/scroll-world/vid/conn4-m.mp4',
-        'assets/scroll-world/vid/conn5-m.mp4',
-      ],
-    });
-
-    // A11y: the engine fades non-active copy to opacity 0 but leaves its CTA links
-    // keyboard-focusable. Mirror visibility into `inert` so Tab skips off-screen controls
-    // (WCAG 2.4.3 / 2.4.7). Reads the engine's own opacity output; no engine changes.
-    (function () {
-      var copies = document.querySelectorAll('.sw-copy');
-      var queued = false;
-      function sync() {
-        queued = false;
-        copies.forEach(function (c) {
-          var visible = parseFloat(getComputedStyle(c).opacity) > 0.5;
-          if (visible) c.removeAttribute('inert'); else c.setAttribute('inert', '');
-        });
-      }
-      function schedule() { if (!queued) { queued = true; requestAnimationFrame(sync); } }
-      addEventListener('scroll', schedule, { passive: true });
-      addEventListener('resize', schedule, { passive: true });
-      addEventListener('load', sync);
-      sync();
-    })();
-  </script>
+    </div>
+  </main>
+  <footer class="wrap assessment-end">
+    <p>GreyCore Labs. Offensive security.</p>
+    <nav aria-label="Footer">
+      <a href="index.html#plans">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </footer>
 </body>
 </html>
